@@ -1,3 +1,16 @@
-h1 {
-  color: red;
+header {
+  min-height: 3rem;
+  background-color: whitesmoke;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  position: relative;
+  left: 0;
+  right: 0;
+  p {
+    margin: auto;
+    justify-self: center;
+    text-align: justify;
+  }
 }
