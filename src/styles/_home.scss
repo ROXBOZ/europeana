@@ -1,11 +1,7 @@
-.ergebnis-info {
-  font-size: 80%;
-  font-style: italic;
-  text-align: right;
-}
 .pagination-button-container {
   display: flex;
   justify-content: space-between;
+  padding: 1rem 0;
 
   button {
     background-color: lighten($primary, 10%);

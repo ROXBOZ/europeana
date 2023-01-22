@@ -42,6 +42,11 @@ const Home = () => {
         consequuntur. Ut illum delectus saepe placeat eum labore veritatis
         maiores illo.
       </p>
+      <hr />
+      <p className="small">
+        <strong>{result}</strong> Ergebnisse von <a href="">FHXB Museum</a> bei{" "}
+        <a href="">Europana Search API</a>.{" "}
+      </p>
 
       <div className="pagination-button-container">
         <button
@@ -59,7 +64,8 @@ const Home = () => {
           nächste&nbsp;→
         </button>
       </div>
-      <p className="ergebnis-info">Ergebnisse: {result} </p>
+
+      <hr />
       <ItemsGrid data={data} />
     </div>
   );

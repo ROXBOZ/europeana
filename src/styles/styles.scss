@@ -1,10 +1,12 @@
 @import "vars";
 @import "header";
+@import "typography";
 @import "home";
 @import "card";
 @import "footer";
 
 body {
+  line-height: 1.5;
   background-color: whitesmoke;
   margin: 0;
   padding: 0;
