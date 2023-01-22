@@ -1,32 +1,34 @@
 import React from "react";
-// import CardDetail from "./CardDetail";
+import { Link } from "react-router-dom";
 
 const Card = ({ catalog }) => {
   return (
     <>
       {catalog &&
         catalog.map((c) => {
-          // const provider = c.dataProvider[0];
           const id = c.id;
-          const title = c.dcTitleLangAware["de"];
-          // const shortenTitle = title.replace("Fotografie: ", "");
+          const clearId = id.replace("/2064115/", "");
+          const title = c.dcTitleLangAware["de"][0];
+          let shortTitle;
+          if (title.length > 40) {
+            shortTitle = title.substring(0, 40) + "...";
+          } else {
+            shortTitle = title;
+          }
+          const clearTitle = shortTitle
+            .replace("Fotografie: ", "")
+            .replace("Diapositive: ", "")
+            .replace("Diapositiv: ", "")
+            .replace("um ", "~");
 
           const img = c.edmIsShownBy[0];
-          // const description = c.dcDescription[0];
-          // const copyrights = c.rights[0];
-
           return (
-            <div className="card" key={id}>
-              <h3 className="data-title">{title}</h3>
-              <img className="card-img" src={img} alt={title} />
-              {/* <p className="data-description">{description}</p> */}
-              <button>Einzelheiten</button>
-              {/* <CardDetail c={c} /> */}
-              {/* <div className="data-caption">
-                <a href={copyrights}>©</a>
-                <span className="data-author">{provider}</span>
-              </div> */}
-            </div>
+            <Link className="card-link" to={`items/${clearId}`} key={clearId}>
+              <div className="card" key={id}>
+                <img className="card-img" src={img} alt={clearTitle} />
+                <p className="card-title">{clearTitle}</p>
+              </div>
+            </Link>
           );
         })}
     </>
@@ -35,12 +37,12 @@ const Card = ({ catalog }) => {
 
 export default Card;
 
-// fetch the whole collection = +2000 pictures
-// create thumbnails then pages
-// FILTERS per street name
-// clean up title (remove fotografie, "um")
+// create pages
+// FILTERS per street name consider ß
 // hide API KEY
 // create store for API
+//styled components
+// log in + 404 page
 
 ////////
 

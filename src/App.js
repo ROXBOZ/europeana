@@ -1,13 +1,30 @@
-import Header from "./components/Header";
-import Footer from "./components/Footer";
 import Home from "./components/Home";
+import About from "./components/About";
+import CardDetail from "./components/CardDetail";
+import {
+  createBrowserRouter,
+  Route,
+  createRoutesFromElements,
+  RouterProvider,
+} from "react-router-dom";
+import RootLayout from "./components/RootLayout";
+import NotFound from "./components/NotFound";
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<RootLayout />}>
+      <Route index exact element={<Home />} />
+      <Route path="/items/:id" element={<CardDetail />} />
+      <Route path="about" element={<About />} />
+      <Route path="*" element={<NotFound />} />
+    </Route>
+  )
+);
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Home />
-      <Footer />
+      <RouterProvider router={router} />
     </div>
   );
 }

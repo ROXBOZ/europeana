@@ -1,6 +1,7 @@
 header {
-  min-height: 3rem;
-  background-color: whitesmoke;
+  min-height: 2rem;
+  background-color: black;
+  color: white;
   padding: 1rem;
   display: flex;
   align-items: center;
@@ -8,7 +9,7 @@ header {
   position: relative;
   left: 0;
   right: 0;
-  p {
+  h1 {
     margin: auto;
     justify-self: center;
     text-align: justify;
