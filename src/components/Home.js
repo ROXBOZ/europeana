@@ -3,7 +3,6 @@ import ItemsGrid from "./ItemsGrid";
 import { useState } from "react";
 import { useEffect } from "react";
 import Pagination from "./Pagination";
-// import Search from "./Search";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -19,7 +18,9 @@ const Home = () => {
         );
         const result = await response.json();
         setData(result);
+        console.log(result);
         setCatalog(result.items);
+        setFilteredItems(result.items);
       } catch (error) {
         console.log("Catch: ", error);
         setError(error);
@@ -39,20 +40,27 @@ const Home = () => {
   };
 
   const [searchEntry, setSearchEntry] = useState("");
-  const getInput = (e) => {
-    setSearchEntry(e.target.value);
-    console.log("asdasdasdasda");
-    filtering();
-    // console.log("e.target.value", e.target.value);
-  };
+
   const filtering = () => {
-    console.log("searcjEntry", searchEntry);
-    let filteredItems = catalog.filter((e) => {
-      console.log("e.dcTitleLangAware.de[0] :>> ", e.dcTitleLangAware.de[0]);
+    let filter = catalog.filter((e) => {
       return e.dcTitleLangAware.de[0].includes(searchEntry);
     });
-    console.log("filteredItems :>> ", filteredItems);
+    setFilteredItems(filter);
   };
+
+  const [filteredItems, setFilteredItems] = useState([]);
+
+  const getInput = (e) => {
+    e.preventDefault();
+    console.log("typing", e.target.value);
+    setSearchEntry(e.target.value);
+  };
+
+  useEffect(() => {
+    filtering();
+  }, [searchEntry]);
+
+  console.log("filtereditems", filteredItems);
 
   return (
     <div>
@@ -64,22 +72,16 @@ const Home = () => {
         Kreuzberg-Friedrichshain. Mach jetzt die Suche und finde dein Zuhause!
       </p>
 
-      <hr />
       <div className="search-container">
-        {/* <input
+        <input
           value={searchEntry}
           id="search"
           onChange={getInput}
           className="search-bar"
           type="text"
-          placeholder="Waldermarstr.."
-        /> */}
-
-        <label className="search-bar-label" for="search">
-          &nbsp;Suche eine Straße
-        </label>
+          placeholder="Suche eine Straße..."
+        />
       </div>
-      <hr />
 
       <Pagination
         page={page}
@@ -93,10 +95,7 @@ const Home = () => {
         <a href="">Europana Search API</a>.{" "}
       </p>
 
-      <hr />
-
-      {/* <ItemsGrid catalog={catalog} searchEntry={searchEntry} /> */}
-      <ItemsGrid catalog={catalog} searchEntry={searchEntry} />
+      <ItemsGrid catalog={filteredItems} searchEntry={searchEntry} />
     </div>
   );
 };

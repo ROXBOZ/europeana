@@ -2,13 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Card = ({ catalog }) => {
-  // console.log("catalog", catalog);
   return (
     <>
-      {/* {catalog &&
+      {catalog &&
         catalog.map((c) => {
           const id = c.id;
           const clearId = id.replace("/2064115/", "");
+          console.log("c.dcTitleLangAware", c.dcTitleLangAware["de"][0]);
           const title = c.dcTitleLangAware["de"][0];
           let shortTitle;
           if (title.length > 40) {
@@ -31,8 +31,7 @@ const Card = ({ catalog }) => {
               </div>
             </Link>
           );
-        })} */}
-      <p>{catalog.dcTitleLangAware.de[0]}</p>
+        })}
     </>
   );
 };

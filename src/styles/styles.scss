@@ -24,7 +24,8 @@ body {
   p,
   Link,
   footer,
-  .pagination-button-container {
+  .pagination-button-container,
+  .search-container {
     padding: $padding-sm;
   }
 
@@ -35,14 +36,17 @@ body {
 
 @media only screen and (min-width: 768px) {
   body {
+    header,
     h1,
     h2,
     h3,
     p,
     Link,
     footer,
+    .card,
+    .search-container,
     .pagination-button-container {
-      padding: $padding-sm $padding-md;
+      padding: $padding-sm $padding-lg;
     }
   }
 }
