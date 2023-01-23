@@ -13,7 +13,7 @@ import NotFound from "./components/NotFound";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
-      <Route index exact element={<Home />} />
+      <Route index element={<Home />} />
       <Route path="/items/:id" element={<CardDetail />} />
       <Route path="about" element={<About />} />
       <Route path="*" element={<NotFound />} />

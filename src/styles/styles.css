@@ -16,6 +16,10 @@ header h1 {
   text-align: justify;
 }
 
+html {
+  font-size: 16px;
+}
+
 .small {
   font-size: 80%;
 }
@@ -29,6 +33,35 @@ a {
 a:hover {
   border: none;
   color: #8749fb;
+}
+
+/* Ratio Scale */
+h4,
+.h4 {
+  font-size: 1.125rem;
+  line-height: calc(2px + 2ex + 2px);
+  margin-bottom: 0.65em;
+}
+
+h3,
+.h3 {
+  font-size: 1.265625rem;
+  line-height: calc(2px + 2ex + 2px);
+  margin-bottom: 0.65em;
+}
+
+h2,
+.h2 {
+  font-size: 1.423828125rem;
+  line-height: calc(2px + 2ex + 2px);
+  margin-bottom: 0.65em;
+}
+
+h1,
+.h1 {
+  font-size: 1.6018066406rem;
+  line-height: calc(2px + 2ex + 2px);
+  margin-bottom: 0.65em;
 }
 
 .pagination-button-container {
@@ -49,11 +82,15 @@ a:hover {
   opacity: 60%;
 }
 
+.search-bar-label {
+  font-size: 80%;
+}
+
 .card-link {
   text-decoration: none;
 }
 .card-link:hover {
-  background-color: yellow;
+  background-color: #8749fb;
 }
 .card-link .card {
   background-color: rgb(201, 173, 253);
@@ -64,9 +101,6 @@ a:hover {
   gap: 1rem;
   align-items: center;
   height: 5rem;
-}
-.card-link .card:hover {
-  background-color: yellow;
 }
 .card-link .card .card-img {
   width: 5rem;

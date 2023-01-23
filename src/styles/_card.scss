@@ -1,8 +1,7 @@
 .card-link {
   text-decoration: none;
   &:hover {
-    // WHY IT IS NOT WORKING
-    background-color: yellow;
+    background-color: darken($primary, 20%);
   }
   .card {
     background-color: $primary;
@@ -13,9 +12,6 @@
     gap: 1rem;
     align-items: center;
     height: 5rem;
-    &:hover {
-      background-color: yellow; // WHY IT IS NOT WORKING
-    }
 
     .card-img {
       width: 5rem;
