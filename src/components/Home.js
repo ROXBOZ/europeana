@@ -3,11 +3,13 @@ import ItemsGrid from "./ItemsGrid";
 import { useState } from "react";
 import { useEffect } from "react";
 import Pagination from "./Pagination";
+import Card from "./Card";
 // import Search from "./Search";
 
 const Home = () => {
   const [data, setData] = useState([]);
-  const [catalog, setCatalog] = useState([]);
+  // const [catalog, setCatalog] = useState([]); //REVIEW by filtering down in JSX, we avoid creating this variable
+  const [searchEntry, setSearchEntry] = useState(""); //REVIEW moved the state up here. We usually group all state variables together.
   const [, setError] = useState(null);
   const [page, setPage] = useState(1);
 
@@ -20,7 +22,7 @@ const Home = () => {
         const result = await response.json();
         console.log("resuuult", result);
         setData(result);
-        setCatalog(result.items);
+        // setCatalog(result.items);
       } catch (error) {
         console.log("Catch: ", error);
         setError(error);
@@ -29,7 +31,7 @@ const Home = () => {
     fetchData();
   }, [page]);
 
-  const result = data.totalResults;
+  const result = data.totalResults; // REVIEW keep the "regular" variables right after the State variables.  keep some order inside the component, e.g : 1st styling objects (if any),then props,  then hooks (const abc=useNavigate(),  const xyz = useContext(nml)) , then state variables, then functions, then useEffects .
   const itemsCount = data.itemsCount;
 
   const handleNext = () => {
@@ -39,21 +41,20 @@ const Home = () => {
     setPage(page - itemsCount);
   };
 
-  const [searchEntry, setSearchEntry] = useState("");
   const getInput = (e) => {
     setSearchEntry(e.target.value);
-    console.log("asdasdasdasda");
-    filtering();
+    // filtering();
     // console.log("e.target.value", e.target.value);
   };
-  const filtering = () => {
-    console.log("searcjEntry", searchEntry);
-    let filteredItems = catalog.filter((e) => {
-      console.log("e.dcTitleLangAware.de[0] :>> ", e.dcTitleLangAware.de[0]);
-      return e.dcTitleLangAware.de[0].includes(searchEntry);
-    });
-    console.log("filteredItems :>> ", filteredItems);
-  };
+  //REVIEW if we filter down below, we dont need this function
+  // const filtering = () => {
+  //   console.log("searcjEntry", searchEntry);
+  //   let filteredItems = catalog.filter((e) => {
+  //     console.log("e.dcTitleLangAware.de[0] :>> ", e.dcTitleLangAware.de[0]);
+  //     return e.dcTitleLangAware.de[0].includes(searchEntry);
+  //   });
+  //   console.log("filteredItems :>> ", filteredItems);
+  // };
 
   return (
     <div>
@@ -95,9 +96,21 @@ const Home = () => {
       </p>
 
       <hr />
+      {/* If you move this logic up here, you don't need the ItemsGrid component, which sole function is to pass down the catalog and the searchEntry */}
+      {/* by filtering right before mapping , you also save a few lines of code and a stateVariable */}
+      {data && searchEntry ? (
+        data.items
+          .filter((c) => {
+            return c.dcTitleLangAware.de[0].includes(searchEntry);
+          })
+          .map((element) => {
+            return <Card key={element.id} catalog={element} />;
+          })
+      ) : (
+        <p>....loading </p>
+      )}
 
       {/* <ItemsGrid catalog={catalog} searchEntry={searchEntry} /> */}
-      <ItemsGrid catalog={catalog} searchEntry={searchEntry} />
     </div>
   );
 };
