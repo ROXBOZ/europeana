@@ -1,19 +1,47 @@
 html {
   font-size: 16px;
-}
+  h1,
+  h2,
+  h3,
+  p {
+    max-width: 80ch;
+  }
 
-.small {
-  font-size: 80%;
-}
+  h2 + p {
+    margin-top: 0;
+    padding-top: 0;
+  }
 
-a {
-  color: darken($primary, 40%);
-  font-weight: bold;
-  text-decoration: none;
-  border-bottom: 2px solid;
-  &:hover {
+  .small {
+    font-size: 80%;
+  }
+
+  hr {
+    border: 1px solid black;
+  }
+
+  a {
+    color: darken($primary, 40%);
+    font-weight: bold;
+    text-decoration: none;
+    border-bottom: 2px solid;
+    &:hover {
+      border: none;
+      color: darken($primary, 20%);
+    }
+  }
+
+  button {
+    background-color: lighten($primary, 10%);
+    font-family: $font;
+    padding: 0.5em;
+    border-radius: 0.5em;
     border: none;
-    color: darken($primary, 20%);
+    font-weight: bold;
+    cursor: pointer;
+    &:hover {
+      opacity: 60%;
+    }
   }
 }
 

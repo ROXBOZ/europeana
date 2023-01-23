@@ -2,17 +2,4 @@
   display: flex;
   justify-content: space-between;
   padding: 1rem 0;
-
-  button {
-    background-color: lighten($primary, 10%);
-    font-family: $font;
-    padding: 0.5em;
-    border-radius: 0.5em;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    &:hover {
-      opacity: 60%;
-    }
-  }
 }

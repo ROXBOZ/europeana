@@ -36,16 +36,3 @@ const Card = ({ catalog }) => {
 };
 
 export default Card;
-
-// create pages
-// FILTERS per street name consider ß
-// hide API KEY
-// create store for API
-//styled components
-// log in + 404 page
-
-////////
-
-// be able to like the picture
-// be able to save picture
-// scss typo

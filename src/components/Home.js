@@ -18,7 +18,6 @@ const Home = () => {
           `https://www.europeana.eu/api/v2/search.json?wskey=abastende &query=Berlin&query =Kreuzberg&query=Museum FHXB&start=${page}`
         );
         const result = await response.json();
-        console.log("resuuult", result);
         setData(result);
         setCatalog(data.items);
       } catch (error) {
@@ -47,26 +46,24 @@ const Home = () => {
 
   return (
     <div>
-      <h2>This is a title</h2>
+      <h1>Set a H1</h1>
+      <h2>Friedrichshain-Kreuzberg?</h2>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas illo
-        debitis numquam maxime fuga quam molestias accusamus quae eaque
-        consequuntur. Ut illum delectus saepe placeat eum labore veritatis
-        maiores illo.
+        Du kannst einfach das Gebäude finden, in dem du wohnst. Durchsuche die
+        Sammlung und entdecke historische Aufnahmen von Gebäuden in
+        Kreuzberg-Friedrichshain. Mach jetzt die Suche und finde dein Zuhause!
       </p>
 
       <hr />
       <div className="search-container">
-        <input
+        {/* <input
           value={searchEntry}
           id="search"
-          onChange={() => {
-            console.log("gekki");
-          }}
+          onChange={() => {}}
           className="search-bar"
           type="text"
           placeholder="Waldermarstr.."
-        />
+        /> */}
 
         <label className="search-bar-label" for="search">
           &nbsp;Suche eine Straße

@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import RootLayout from "./components/RootLayout";
 import NotFound from "./components/NotFound";
+import Login from "./components/Login";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,6 +17,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="/items/:id" element={<CardDetail />} />
       <Route path="about" element={<About />} />
+      <Route path="login" element={<Login />} />
       <Route path="*" element={<NotFound />} />
     </Route>
   )

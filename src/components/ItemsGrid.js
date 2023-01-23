@@ -4,7 +4,6 @@ const ItemsGrid = ({ catalog, searchEntry }) => {
   if (Array.isArray(catalog) === false || catalog.length === 0) {
     return <div>Loading...</div>;
   } else {
-    console.log("catalog on item grids", catalog);
     return (
       <>
         {catalog &&

@@ -1,8 +1,10 @@
 @import "vars";
+@import "a11y";
 @import "header";
 @import "typography";
 @import "home";
 @import "search";
+@import "login";
 @import "card";
 @import "footer";
 
@@ -11,10 +13,36 @@ body {
   background-color: whitesmoke;
   margin: 0;
   padding: 0;
-
   font-family: $font;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  h1,
+  h2,
+  h3,
+  p,
+  Link,
+  footer,
+  .pagination-button-container {
+    padding: $padding-sm;
+  }
 
   main {
-    padding: 1rem;
+    padding: 0;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  body {
+    h1,
+    h2,
+    h3,
+    p,
+    Link,
+    footer,
+    .pagination-button-container {
+      padding: $padding-sm $padding-md;
+    }
   }
 }
