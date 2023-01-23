@@ -7,7 +7,7 @@ import Pagination from "./Pagination";
 
 const Home = () => {
   const [data, setData] = useState([]);
-  const [catalog, setCatalog] = useState(null);
+  const [catalog, setCatalog] = useState([]);
   const [, setError] = useState(null);
   const [page, setPage] = useState(1);
 
@@ -20,7 +20,7 @@ const Home = () => {
         const result = await response.json();
         console.log("resuuult", result);
         setData(result);
-        setCatalog(data.items);
+        setCatalog(result.items);
       } catch (error) {
         console.log("Catch: ", error);
         setError(error);
@@ -39,10 +39,20 @@ const Home = () => {
     setPage(page - itemsCount);
   };
 
-  const [searchEntry, setSearchEntry] = useState(null);
+  const [searchEntry, setSearchEntry] = useState("");
   const getInput = (e) => {
-    // setSearchEntry(text);
-    console.log("e.target.value", e.target.value);
+    setSearchEntry(e.target.value);
+    console.log("asdasdasdasda");
+    filtering();
+    // console.log("e.target.value", e.target.value);
+  };
+  const filtering = () => {
+    console.log("searcjEntry", searchEntry);
+    let filteredItems = catalog.filter((e) => {
+      console.log("e.dcTitleLangAware.de[0] :>> ", e.dcTitleLangAware.de[0]);
+      return e.dcTitleLangAware.de[0].includes(searchEntry);
+    });
+    console.log("filteredItems :>> ", filteredItems);
   };
 
   return (
@@ -60,9 +70,7 @@ const Home = () => {
         <input
           value={searchEntry}
           id="search"
-          onChange={() => {
-            console.log("gekki");
-          }}
+          onChange={getInput}
           className="search-bar"
           type="text"
           placeholder="Waldermarstr.."
@@ -88,6 +96,7 @@ const Home = () => {
 
       <hr />
 
+      {/* <ItemsGrid catalog={catalog} searchEntry={searchEntry} /> */}
       <ItemsGrid catalog={catalog} searchEntry={searchEntry} />
     </div>
   );
