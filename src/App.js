@@ -10,12 +10,27 @@ import {
 import RootLayout from "./components/RootLayout";
 import NotFound from "./components/NotFound";
 import Login from "./components/Login";
+import { ItemsContextProvider } from "./store/ItemsContext";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
-      <Route index element={<Home />} />
-      <Route path="/items/:id" element={<CardDetail />} />
+      <Route
+        index
+        element={
+          <ItemsContextProvider>
+            <Home />
+          </ItemsContextProvider>
+        }
+      />
+      <Route
+        path="/items/:id"
+        element={
+          <ItemsContextProvider>
+            <CardDetail />
+          </ItemsContextProvider>
+        }
+      />
       <Route path="about" element={<About />} />
       <Route path="login" element={<Login />} />
       <Route path="*" element={<NotFound />} />

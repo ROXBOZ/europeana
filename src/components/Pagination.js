@@ -1,19 +1,22 @@
 import React from "react";
+import { useContext } from "react";
+import { ItemsContext } from "../store/ItemsContext";
 
-const Pagination = ({ page, handleNext, handlePrev, totalResult }) => {
+const Pagination = ({ handleNext, handlePrev }) => {
+  const { page, totalResult } = useContext(ItemsContext);
   return (
     <div className="pagination-button-container">
       <button
         className="pagination-button"
         disabled={page === 1 ? true : false}
-        onClick={handlePrev}
+        onClick={handlePrev()}
       >
         ←&nbsp;vor
       </button>
       <button
         className="pagination-button"
         disabled={page >= totalResult ? true : false}
-        onClick={handleNext}
+        onClick={handleNext()}
       >
         nächste&nbsp;→
       </button>
