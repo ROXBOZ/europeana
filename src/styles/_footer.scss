@@ -2,12 +2,13 @@ footer {
   background-color: darken($primary, 30%);
   color: white;
   bottom: 0;
-  position: relative;
   left: 0;
   right: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  line-height: 2;
+  // position: absolute;
 
   a {
     color: white;

@@ -1,11 +1,16 @@
 html {
   font-size: 16px;
+
   h1,
   h2,
-  h3,
-  p {
+  h3 {
+    font-weight: 400;
     color: $text-color;
+  }
+
+  p {
     max-width: 80ch;
+    color: $text-color;
   }
 
   h2 + p {
@@ -60,7 +65,7 @@ $type-ratios: (
 }
 
 $type-base-size: 1rem;
-$type-size-ratio: type-ratio("majorThird");
+$type-size-ratio: type-ratio("minorThird");
 $type-levels: 4, 3, 2, 1;
 $type-styles: ();
 $level-size: $type-base-size;
