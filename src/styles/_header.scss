@@ -5,17 +5,18 @@ header {
   left: 0;
   right: 0;
   background-color: darken($primary, 30%);
+  color: white;
 
-  .title {
-    font-size: 150%;
-    font-weight: bold;
-  }
+  // .title {
+  //   font-size: 150%;
+  //   font-weight: bold;
+  // }
 
-  .title,
-  .subtitle {
-    margin: 0.5em;
-    padding: 0;
-    line-height: 1;
-    color: white !important;
-  }
+  // .title,
+  // .subtitle {
+  //   margin: 0.5em;
+  //   padding: 0;
+  //   line-height: 1;
+  //   color: white !important;
+  // }
 }

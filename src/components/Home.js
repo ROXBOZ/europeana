@@ -10,12 +10,16 @@ const Home = () => {
   const [catalog, setCatalog] = useState([]);
   const [, setError] = useState(null);
   const [page, setPage] = useState(1);
+  const row = 3;
+  const totalResult = data.totalResults;
+  const amountPage = totalResult / row;
+  // console.log("amountPage", amountPage);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://www.europeana.eu/api/v2/search.json?wskey=${API_KEY} &query=Berlin&query =Kreuzberg&query=Museum FHXB&start=${page}&rows=12`
+          `https://www.europeana.eu/api/v2/search.json?wskey=${API_KEY} &query=Berlin&query =Kreuzberg&query=Museum FHXB&start=${page}&rows=${row}`
         );
         const result = await response.json();
         setData(result);
@@ -30,17 +34,16 @@ const Home = () => {
     fetchData();
   }, [page]);
 
-  const totalResult = data.totalResults;
-  const itemsCount = data.itemsCount;
-
   const handleNext = () => {
     setPage(page + 1);
   };
   const handlePrev = () => {
     setPage(page - 1);
   };
+  /////////////////////////////////////////////////// FILTERS
 
   const [searchEntry, setSearchEntry] = useState("");
+  const [filteredItems, setFilteredItems] = useState([]);
 
   const filtering = () => {
     let filter = catalog.filter((e) => {
@@ -49,20 +52,24 @@ const Home = () => {
     setFilteredItems(filter);
   };
 
-  const [filteredItems, setFilteredItems] = useState([]);
-
   const getInput = (e) => {
+    // if (e.target.value.includes("strasse" || "straße" || "str.")) {
+    //   e.target.value = e.target.value.replace("strasse" | "straße", "str");
+    //   console.log("e.target.value", e.target.value);
+    // }
+
     setSearchEntry(e.target.value.toLowerCase());
-    console.log("searchEntry", searchEntry);
   };
 
   useEffect(() => {
     filtering();
   }, [searchEntry]);
 
+  ///////////////////////////////////////////////////
   return (
     <div>
       <h1>Berlin SO36 Wohnhäusern Fotosammlung</h1>
+      <h2>Vorwärts in die Vergangenheit</h2>
       <p>
         SO36 - das ist die alte Postleitzahl von Kreuzberg und der Name des
         berühmten Clubs, der in den 80er Jahren die Underground-Szene Berlins
@@ -89,12 +96,11 @@ const Home = () => {
         totalResult={totalResult}
       />
 
+      <ItemsGrid catalog={filteredItems} searchEntry={searchEntry} />
       <p className="small">
         <strong>{totalResult}</strong> Ergebnisse von <a href="">FHXB Museum</a>{" "}
-        bei <a href="">Europana Search API</a>.{" "}
+        bei <a href="">Europana Search API</a>.
       </p>
-
-      <ItemsGrid catalog={filteredItems} searchEntry={searchEntry} />
     </div>
   );
 };
