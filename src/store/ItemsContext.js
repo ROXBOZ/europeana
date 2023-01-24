@@ -8,9 +8,8 @@ export const ItemsContextProvider = (props) => {
   const [catalog, setCatalog] = useState([]);
   const [, setError] = useState(null);
   const [page, setPage] = useState(1);
-  let row = 3;
+  const [row] = useState(3);
   const [filteredItems, setFilteredItems] = useState([]);
-  const totalResult = data.totalResults;
 
   const fetchData = async () => {
     try {
@@ -19,7 +18,7 @@ export const ItemsContextProvider = (props) => {
       );
       const result = await response.json();
       setData(result);
-      console.log("result fetch", result);
+      console.log(result);
       setCatalog(result.items);
       setFilteredItems(result.items);
     } catch (error) {
@@ -36,7 +35,6 @@ export const ItemsContextProvider = (props) => {
         setPage,
         catalog,
         filteredItems,
-        totalResult,
         fetchData,
       }}
     >
@@ -44,3 +42,49 @@ export const ItemsContextProvider = (props) => {
     </ItemsContext.Provider>
   );
 };
+
+// import { createContext, useState } from "react";
+// import { API_KEY } from "./config";
+
+// export const ItemsContext = createContext();
+
+// export const ItemsContextProvider = (props) => {
+//   const [data, setData] = useState([]);
+//   const [catalog, setCatalog] = useState([]);
+//   const [, setError] = useState(null);
+//   const [page, setPage] = useState(1);
+//   let row = 3;
+//   const [filteredItems, setFilteredItems] = useState([]);
+//   const totalResult = 3000;
+
+//   const fetchData = async () => {
+//     try {
+//       const response = await fetch(
+//         `https://www.europeana.eu/api/v2/search.json?wskey=${API_KEY} &query=Berlin&query =Kreuzberg&query=Museum FHXB&start=${page}&rows=${row}`
+//       );
+//       const result = await response.json();
+//       setData(result);
+//       console.log("result fetch", result);
+//       setCatalog(result.items);
+//       setFilteredItems(result.items);
+//     } catch (error) {
+//       console.log("Catch: ", error);
+//       setError(error);
+//     }
+//   };
+
+//   return (
+//     <ItemsContext.Provider
+//       value={{
+//         data,
+//         page,
+//         catalog,
+//         filteredItems,
+//         totalResult,
+//         fetchData,
+//       }}
+//     >
+//       {props.children}
+//     </ItemsContext.Provider>
+//   );
+// };

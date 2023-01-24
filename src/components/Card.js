@@ -6,7 +6,6 @@ const Card = ({ catalog, c }) => {
   const clearId = id.replace("/2064115/", "");
   const title = c.dcTitleLangAware["de"][0];
   const img = c.edmIsShownBy[0];
-  const index = c.index;
 
   let shortTitle;
   if (title.length > 40) {
