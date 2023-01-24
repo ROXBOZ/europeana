@@ -1,6 +1,6 @@
 import React from "react";
 
-const Pagination = ({ page, handleNext, handlePrev, result }) => {
+const Pagination = ({ page, handleNext, handlePrev, totalResult }) => {
   return (
     <div className="pagination-button-container">
       <button
@@ -12,7 +12,7 @@ const Pagination = ({ page, handleNext, handlePrev, result }) => {
       </button>
       <button
         className="pagination-button"
-        disabled={page >= result ? true : false}
+        disabled={page >= totalResult ? true : false}
         onClick={handleNext}
       >
         nächste&nbsp;→

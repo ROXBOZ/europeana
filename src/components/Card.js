@@ -23,9 +23,12 @@ const Card = ({ catalog }) => {
             .replace("um ", "~");
 
           const img = c.edmIsShownBy[0];
+          const index = c.index;
+          // const index = indexOf(c);
           return (
             <Link className="card-link" to={`items/${clearId}`} key={clearId}>
               <div className="card" key={id}>
+                <span>{index}</span>
                 <img className="card-img" src={img} alt={clearTitle} />
                 <p className="card-title">{clearTitle}</p>
               </div>

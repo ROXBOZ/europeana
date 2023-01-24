@@ -3,6 +3,7 @@ import ItemsGrid from "./ItemsGrid";
 import { useState } from "react";
 import { useEffect } from "react";
 import Pagination from "./Pagination";
+import { API_KEY } from "./config";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -14,7 +15,7 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://www.europeana.eu/api/v2/search.json?wskey=abastende &query=Berlin&query =Kreuzberg&query=Museum FHXB&start=${page}`
+          `https://www.europeana.eu/api/v2/search.json?wskey=${API_KEY} &query=Berlin&query =Kreuzberg&query=Museum FHXB&start=${page}&rows=2`
         );
         const result = await response.json();
         setData(result);
@@ -29,14 +30,14 @@ const Home = () => {
     fetchData();
   }, [page]);
 
-  const result = data.totalResults;
+  const totalResult = data.totalResults;
   const itemsCount = data.itemsCount;
 
   const handleNext = () => {
-    setPage(page + itemsCount);
+    setPage(page + 1);
   };
   const handlePrev = () => {
-    setPage(page - itemsCount);
+    setPage(page - 1);
   };
 
   const [searchEntry, setSearchEntry] = useState("");
@@ -87,12 +88,12 @@ const Home = () => {
         page={page}
         handleNext={handleNext}
         handlePrev={handlePrev}
-        result={result}
+        totalResult={totalResult}
       />
 
       <p className="small">
-        <strong>{result}</strong> Ergebnisse von <a href="">FHXB Museum</a> bei{" "}
-        <a href="">Europana Search API</a>.{" "}
+        <strong>{totalResult}</strong> Ergebnisse von <a href="">FHXB Museum</a>{" "}
+        bei <a href="">Europana Search API</a>.{" "}
       </p>
 
       <ItemsGrid catalog={filteredItems} searchEntry={searchEntry} />
