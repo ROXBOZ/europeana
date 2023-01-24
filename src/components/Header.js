@@ -3,7 +3,8 @@ import React from "react";
 const Header = () => {
   return (
     <header>
-      <span>80er&nbsp;/&nbsp;SO36</span>
+      <p className="title">Berlin&nbsp;SO36</p>
+      <p className="subtitle">Vorwärts in die Vergangenheit</p>
     </header>
   );
 };

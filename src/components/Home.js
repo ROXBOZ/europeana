@@ -15,11 +15,11 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://www.europeana.eu/api/v2/search.json?wskey=${API_KEY} &query=Berlin&query =Kreuzberg&query=Museum FHXB&start=${page}&rows=2`
+          `https://www.europeana.eu/api/v2/search.json?wskey=${API_KEY} &query=Berlin&query =Kreuzberg&query=Museum FHXB&start=${page}&rows=12`
         );
         const result = await response.json();
         setData(result);
-        console.log(result);
+        // console.log(result);
         setCatalog(result.items);
         setFilteredItems(result.items);
       } catch (error) {
@@ -44,7 +44,7 @@ const Home = () => {
 
   const filtering = () => {
     let filter = catalog.filter((e) => {
-      return e.dcTitleLangAware.de[0].includes(searchEntry);
+      return e.dcTitleLangAware.de[0].toLowerCase().includes(searchEntry);
     });
     setFilteredItems(filter);
   };
@@ -52,25 +52,23 @@ const Home = () => {
   const [filteredItems, setFilteredItems] = useState([]);
 
   const getInput = (e) => {
-    e.preventDefault();
-    console.log("typing", e.target.value);
-    setSearchEntry(e.target.value);
+    setSearchEntry(e.target.value.toLowerCase());
+    console.log("searchEntry", searchEntry);
   };
 
   useEffect(() => {
     filtering();
   }, [searchEntry]);
 
-  console.log("filtereditems", filteredItems);
-
   return (
     <div>
-      <h1>Set a H1</h1>
-      <h2>Friedrichshain-Kreuzberg?</h2>
+      <h1>Berlin SO36 Wohnhäusern Fotosammlung</h1>
       <p>
-        Du kannst einfach das Gebäude finden, in dem du wohnst. Durchsuche die
-        Sammlung und entdecke historische Aufnahmen von Gebäuden in
-        Kreuzberg-Friedrichshain. Mach jetzt die Suche und finde dein Zuhause!
+        SO36 - das ist die alte Postleitzahl von Kreuzberg und der Name des
+        berühmten Clubs, der in den 80er Jahren die Underground-Szene Berlins
+        geprägt hat. Das FHXB Museum hat eine Sammlung von Fotos von Wohnhäusern
+        aus dieser Zeit ergattert, die zeigen, wie die Straßen in SO36 damals
+        ausgesehen haben. Schau doch mal vorbei!
       </p>
 
       <div className="search-container">
@@ -80,7 +78,7 @@ const Home = () => {
           onChange={getInput}
           className="search-bar"
           type="text"
-          placeholder="Suche eine Straße..."
+          placeholder="Suche eine Straße im Kiez..."
         />
       </div>
 

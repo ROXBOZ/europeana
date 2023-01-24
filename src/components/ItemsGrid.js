@@ -14,7 +14,7 @@ const ItemsGrid = ({ catalog, searchEntry }) => {
               return;
             }
 
-            return <Card key={c.id} catalog={catalog} />;
+            return <Card key={c.id} catalog={catalog} c={c} />;
           })}
       </>
     );
@@ -22,18 +22,3 @@ const ItemsGrid = ({ catalog, searchEntry }) => {
 };
 
 export default ItemsGrid;
-
-// return (
-//   <>
-//     {console.log("catalog, searchEntry", catalog, searchEntry)}
-//     {catalog && searchEntry ? (
-//       catalog.map((c) => {
-//         if (c.dcTitleLangAware.de[0].includes(searchEntry)) {
-//           return <Card key={c.id} catalog={c} />;
-//         }
-//       })
-//     ) : (
-//       <p>....loading </p>
-//     )}
-//   </>
-// );

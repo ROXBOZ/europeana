@@ -4,6 +4,7 @@ html {
   h2,
   h3,
   p {
+    color: $text-color;
     max-width: 80ch;
   }
 
@@ -14,10 +15,6 @@ html {
 
   .small {
     font-size: 80%;
-  }
-
-  hr {
-    border: 1px solid black;
   }
 
   a {

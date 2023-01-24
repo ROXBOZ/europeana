@@ -1,5 +1,5 @@
-$text-color: black;
 $primary: rgb(201, 173, 253);
+$text-color: darken($primary, 80%);
 
 $font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
   "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;

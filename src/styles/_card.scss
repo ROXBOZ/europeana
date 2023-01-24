@@ -21,10 +21,9 @@
       justify-self: flex-start !important;
     }
     p {
+      padding: 0;
       height: fit-content;
-      font-weight: bold;
       text-decoration-line: none;
-      width: fit-content;
       color: $text-color;
       &:hover {
         border: none;
