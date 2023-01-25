@@ -4,27 +4,18 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { ItemsContext } from "../store/ItemsContext";
 import { useContext } from "react";
+import Card from "./Card";
 
 const Home = () => {
   const { data, page, setPage, catalog, fetchData } = useContext(ItemsContext);
-  const [filteredItems, setFilteredItems] = useState([]);
   const [searchEntry, setSearchEntry] = useState("");
 
   useEffect(() => {
     fetchData();
   }, [page]);
 
-  useEffect(() => {
-    if (data) {
-      let filter = catalog.filter((e) => {
-        return e.dcTitleLangAware.de[0].toLowerCase().includes(searchEntry);
-      });
-      setFilteredItems(filter);
-    }
-  }, [searchEntry, catalog, data]);
-
   const getInput = (e) => {
-    setSearchEntry(e.target.value.toLowerCase());
+    setSearchEntry(e.target.value);
   };
 
   const handleNext = () => {
@@ -71,7 +62,21 @@ const Home = () => {
           </button>
         </div>
 
-        <ItemsGrid catalog={filteredItems} searchEntry={searchEntry} />
+        {data.items ? (
+          data.items
+            .filter((item) => {
+              return (
+                item.dcTitleLangAware.de[0]
+                  .toLowerCase()
+                  .includes(searchEntry.toLowerCase()) || !searchEntry
+              );
+            })
+            .map((c) => {
+              return <Card key={c.id} c={c} />;
+            })
+        ) : (
+          <p>...loading (1)...</p>
+        )}
         <p className="small">
           <strong>{data.totalResults}</strong> Ergebnisse von{" "}
           <a href="">FHXB Museum</a> bei <a href="">Europana Search API</a>.
@@ -79,7 +84,7 @@ const Home = () => {
       </div>
     );
   } else {
-    return <div>loading...</div>;
+    return <div>...loading (2)...</div>;
   }
 };
 

@@ -1,18 +1,18 @@
-import Card from "./Card";
+// import Card from "./Card";
 
-const ItemsGrid = ({ catalog }) => {
-  if (Array.isArray(catalog) === false) {
-    return <div>Loading...</div>;
-  } else {
-    return (
-      <>
-        {catalog &&
-          catalog.map((c) => {
-            return <Card key={c.id} c={c} />;
-          })}
-      </>
-    );
-  }
-};
+// const ItemsGrid = ({ catalog }) => {
+//   if (Array.isArray(catalog) === false) {
+//     return <div>Loading...</div>;
+//   } else {
+//     return (
+//       <>
+//         {catalog &&
+//           catalog.filter().map((c) => {
+//             return <Card key={c.id} c={c} />;
+//           })}
+//       </>
+//     );
+//   }
+// };
 
-export default ItemsGrid;
+// export default ItemsGrid;

@@ -197,7 +197,8 @@ h1,
   padding: 1em;
 }
 .card-content .data-title,
-.card-content .data-description {
+.card-content .data-description,
+.card-content .data-google-link {
   padding: 0;
 }
 .card-content .card-img {

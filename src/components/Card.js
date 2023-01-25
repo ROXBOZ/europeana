@@ -22,7 +22,16 @@ const Card = ({ c }) => {
     .replace("Diapositiv: ", "")
     .replace("um ", "~");
 
-  const itemDetail = { clearTitle, img, provider, description, copyrights };
+  const itemDetail = {
+    title,
+    clearTitle,
+    img,
+    provider,
+    description,
+    copyrights,
+  };
+
+  console.log("itemDetail Card", itemDetail);
 
   return (
     <Link

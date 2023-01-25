@@ -5,11 +5,11 @@ export const ItemsContext = createContext();
 
 export const ItemsContextProvider = (props) => {
   const [data, setData] = useState([]);
-  const [catalog, setCatalog] = useState([]);
+  // const [catalog, setCatalog] = useState([]);
   const [, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [row] = useState(12);
-  const [filteredItems, setFilteredItems] = useState([]);
+  // const [filteredItems, setFilteredItems] = useState([]);
 
   const fetchData = async () => {
     try {
@@ -18,8 +18,9 @@ export const ItemsContextProvider = (props) => {
       );
       const result = await response.json();
       setData(result);
-      setCatalog(result.items);
-      setFilteredItems(result.items);
+      console.log("result :>> ", result);
+      // setCatalog(result.items);
+      // setFilteredItems(result.items);
     } catch (error) {
       console.log("Catch: ", error);
       setError(error);
@@ -40,8 +41,7 @@ export const ItemsContextProvider = (props) => {
         data,
         page,
         setPage,
-        catalog,
-        filteredItems,
+
         fetchData,
       }}
     >
