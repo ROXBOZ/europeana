@@ -83,8 +83,6 @@ const Home = () => {
         </p>
       </div>
     );
-  } else {
-    return <div>...loading (2)...</div>;
   }
 };
 

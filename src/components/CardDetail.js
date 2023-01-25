@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import GoogleLink from "./GoogleLink";
 
 const CardDetail = () => {
   let location = useLocation();
@@ -18,11 +18,9 @@ const CardDetail = () => {
           <h3 className="data-title">{title}</h3>
           <img className="card-img" src={img} alt={clearTitle} />
           <p className="data-description">{description}.</p>
-          <p className="data-google-link">
-            <a href={googleMapLink} target="_blank" rel="noopener noreferrer">
-              <button>auf Google Map</button>
-            </a>
-          </p>
+
+          <GoogleLink title={title} googleMapLink={googleMapLink} />
+
           <div className="data-caption">
             <span>
               ©&nbsp;
