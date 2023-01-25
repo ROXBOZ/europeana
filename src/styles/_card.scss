@@ -31,3 +31,18 @@
     }
   }
 }
+
+.card-content {
+  padding: 1em;
+  .data-title,
+  .data-description {
+    padding: 0;
+  }
+  .card-img {
+    width: 100%;
+  }
+
+  .data-provider {
+    font-size: 80%;
+  }
+}

@@ -8,7 +8,7 @@ const ItemsGrid = ({ catalog }) => {
       <>
         {catalog &&
           catalog.map((c) => {
-            return <Card key={c.id} catalog={catalog} c={c} />;
+            return <Card key={c.id} c={c} />;
           })}
       </>
     );

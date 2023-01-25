@@ -44,7 +44,7 @@ const Home = () => {
           berühmten Clubs, der in den 80er Jahren die Underground-Szene Berlins
           geprägt hat. Das FHXB Museum hat eine Sammlung von Fotos von
           Wohnhäusern aus dieser Zeit ergattert, die zeigen, wie die Straßen in
-          SO36 damals ausgesehen haben. Schau doch mal vorbei!
+          SO36 damals ausgesehen haben.
         </p>
 
         <div className="search-container">

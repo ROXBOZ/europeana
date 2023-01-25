@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Card = ({ catalog, c }) => {
-  const id = c.id;
-  const clearId = id.replace("/2064115/", "");
+const Card = ({ c }) => {
+  const id = c.id.replace("/2064115/", "");
   const title = c.dcTitleLangAware["de"][0];
   const img = c.edmIsShownBy[0];
+  const provider = c.dataProvider[0];
+  const description = c.dcDescription[0];
+  const copyrights = c.rights[0];
 
   let shortTitle;
   if (title.length > 40) {
@@ -13,21 +15,27 @@ const Card = ({ catalog, c }) => {
   } else {
     shortTitle = title;
   }
+
   const clearTitle = shortTitle
     .replace("Fotografie: ", "")
     .replace("Diapositive: ", "")
     .replace("Diapositiv: ", "")
     .replace("um ", "~");
 
+  const itemDetail = { clearTitle, img, provider, description, copyrights };
+
   return (
-    <>
-      <Link className="card-link" to={`items/${clearId}`} key={clearId}>
-        <div className="card" key={id}>
-          <img className="card-img" src={img} alt={clearTitle} />
-          <p className="card-title">{clearTitle}</p>
-        </div>
-      </Link>
-    </>
+    <Link
+      className="card-link"
+      to={{ pathname: `items/${id}` }}
+      state={{ content: itemDetail }}
+      key={id}
+    >
+      <div className="card">
+        <img className="card-img" src={img} alt={clearTitle} />
+        <p className="card-title">{clearTitle}</p>
+      </div>
+    </Link>
   );
 };
 

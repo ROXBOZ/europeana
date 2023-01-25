@@ -193,6 +193,20 @@ h1,
   border: none;
 }
 
+.card-content {
+  padding: 1em;
+}
+.card-content .data-title,
+.card-content .data-description {
+  padding: 0;
+}
+.card-content .card-img {
+  width: 100%;
+}
+.card-content .data-provider {
+  font-size: 80%;
+}
+
 footer {
   background-color: #b63100;
   color: white;

@@ -1,31 +1,37 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const CardDetail = () => {
-  // const location = useLocation();
-  // const { catalog } = location.state;
+  let location = useLocation();
+  const { content } = location.state;
 
-  const { id } = useParams();
-  // const c = catalog.filter((item) => item.id === id)[0];
+  const [state, setState] = useState(null);
 
-  // const provider = c.dataProvider[0];
-  // const title = c.dcTitleLangAware["de"];
-  // const img = c.edmIsShownBy[0];
-  // const description = c.dcDescription[0];
-  // const copyrights = c.rights[0];
+  useEffect(() => {
+    setState(content);
+  }, [location]);
+
+  if (!state) {
+    return <div>Loading...</div>;
+  }
+
+  const { clearTitle, img, provider, description, copyrights } = state;
 
   return (
-    <>
-      <h2>item {id}</h2>
-      {/* <h3 className="data-title">{title}</h3> */}
-      {/* <img className="card-img" src={img} alt={title} /> */}
-      {/* <p className="data-description">{description}</p>
+    <div className="card-content">
+      <h3 className="data-title">{clearTitle}</h3>
+      <img className="card-img" src={img} alt={clearTitle} />
+      <p className="data-description">{description}</p>
       <div className="data-caption">
-        <a href={copyrights}>©</a>
-        <span className="data-author">{provider}</span>
-      </div> */}
-    </>
+        <span>
+          ©&nbsp;
+          <a href={copyrights} className="data-provider">
+            {provider}
+          </a>
+        </span>
+      </div>
+    </div>
   );
 };
 
