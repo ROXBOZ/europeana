@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
+
 import { auth } from "../config/firebaseConfig";
 
 export const AuthContext = createContext();
@@ -44,18 +46,40 @@ export const AuthContextProvider = (props) => {
     }
   };
 
-  const login = (email, password) => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        setUser(userCredential.user);
-      })
-      .catch((error) => {
-        console.log("error", error);
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
+  const login = async (email, password) => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      setUser(userCredential.user);
+      redirectTo("/");
+    } catch (error) {
+      console.log("error", error);
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    }
   };
+
+  // last 13 min of Firebase Spike
+  const checkUserStatus = () => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        console.log("user logged in");
+        setUser(user);
+      } else {
+        console.log("user not loged in");
+        setUser(null);
+      }
+    });
+  };
+
+  useEffect(() => {
+    checkUserStatus();
+  }, []);
 
   const logout = () => {
     setUser("");

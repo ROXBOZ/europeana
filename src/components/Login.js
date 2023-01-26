@@ -26,10 +26,7 @@ const Login = () => {
   return (
     <>
       <h2>Einloggen</h2>
-      <p>
-        Dies ist eine Demo-App. Du kannst mit falschen Anmeldeinformationen
-        einloggen.
-      </p>
+      <p>Dies ist eine Demo-App. Du kannst mit falschen Daten einloggen.</p>
       <div className="login-form">
         <div className="email-container">
           <label htmlFor="email">Email</label>

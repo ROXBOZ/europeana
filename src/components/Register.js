@@ -26,7 +26,7 @@ const Register = () => {
     <>
       <h2>Sich anmelden</h2>
       <p>
-        Dies ist eine Demo-App. Du kannst dich mit falschen Anmeldeinformationen
+        Dies ist eine Demo-App. Du kannst dich mit falschen Informationen
         anmelden.
       </p>
       <div className="register-form">
