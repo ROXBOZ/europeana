@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { API_KEY } from "./config";
+import { API_KEY } from "../config/apiKey";
 
 export const ItemsContext = createContext();
 export const ItemsContextProvider = (props) => {

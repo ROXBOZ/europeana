@@ -4,11 +4,13 @@ import { ItemsContext } from "../store/ItemsContext";
 import Card from "../components/Card";
 import { AuthContext } from "../store/AuthContext";
 import { Link } from "react-router-dom";
+import useIsAuth from "../hooks/useIsAuth";
 
 const ProtectedRoute = ({ getInput, handleNext, handlePrev }) => {
   const { data, page, loading, searchEntry } = useContext(ItemsContext);
   const { user } = useContext(AuthContext);
   // const isUser = isAuth(user);
+  // const isUser = useIsAuth();
 
   return (
     <>

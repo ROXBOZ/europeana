@@ -6,7 +6,7 @@ const Login = () => {
   };
   return (
     <div className="login-page">
-      <h2>Sign Up / Log In</h2>
+      <h2>Login</h2>
       <p>
         <div className="login-container">
           <label for="login-name">Name</label>

@@ -7,6 +7,10 @@ export const AuthContextProvider = (props) => {
   const [user, setUser] = useState("");
   const redirectTo = useNavigate();
 
+  const register = (email, password) => {
+    console.log("email, password", email, password);
+  };
+
   const login = () => {
     setUser({
       userName: "Monique",
@@ -21,7 +25,7 @@ export const AuthContextProvider = (props) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, register }}>
       {props.children}
     </AuthContext.Provider>
   );

@@ -13,6 +13,8 @@ import Login from "./components/Login";
 import { ItemsContextProvider } from "./store/ItemsContext";
 import { DarkModeContextProvider } from "./store/DarkModeContext";
 import { AuthContextProvider } from "./store/AuthContext";
+import { app } from "./config/firebaseConfig";
+import Register from "./components/Register";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -43,12 +45,14 @@ const router = createBrowserRouter(
       />
       <Route path="about" element={<About />} />
       <Route path="login" element={<Login />} />
+      <Route path="register" element={<Register />} />
       <Route path="*" element={<NotFound />} />
     </Route>
   )
 );
 
 function App() {
+  // console.log("app :>> ", app);
   return (
     <div className="App">
       <RouterProvider router={router} />
