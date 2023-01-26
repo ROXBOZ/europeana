@@ -150,7 +150,11 @@ h1,
   color: #e0e0e0;
 }
 
-.login-container {
+.register-form {
+  padding: 1rem;
+}
+.register-form .email-container,
+.register-form .password-container {
   display: grid;
   grid-template-columns: 1fr 2fr;
   margin-bottom: 0.5rem;

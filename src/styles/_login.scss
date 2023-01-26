@@ -1,5 +1,9 @@
-.login-container {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  margin-bottom: 0.5rem;
+.register-form {
+  padding: 1rem;
+  .email-container,
+  .password-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin-bottom: 0.5rem;
+  }
 }

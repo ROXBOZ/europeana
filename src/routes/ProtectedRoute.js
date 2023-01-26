@@ -55,10 +55,6 @@ const ProtectedRoute = ({ getInput, handleNext, handlePrev }) => {
           ) : (
             <p>...loading (1)...</p>
           )}
-          <p className="small">
-            <strong>{data.totalResults}</strong> Ergebnisse von{" "}
-            <a href="">FHXB Museum</a> bei <a href="">Europana Search API</a>.
-          </p>
         </>
       ) : (
         <p>

@@ -46,7 +46,7 @@ const Home = () => {
     return (
       <div>
         <h1>Berlin SO36 Wohnhäusern Fotosammlung</h1>
-        <p className="salutation">Hallo {user?.userName}</p>
+        <p className="salutation">Hallo {user?.email}</p>
         <h2>Vorwärts in die Vergangenheit</h2>
         <p>
           SO36 - das ist die alte Postleitzahl von Kreuzberg und der Name des
