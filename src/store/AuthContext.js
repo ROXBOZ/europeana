@@ -2,12 +2,14 @@ import { useState } from "react";
 import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../config/firebaseConfig";
 
 export const AuthContext = createContext();
 export const AuthContextProvider = (props) => {
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(false);
   const redirectTo = useNavigate();
+  const [showModal, setShowModal] = useState(false);
 
   const register = async (email, password) => {
     try {
@@ -18,41 +20,41 @@ export const AuthContextProvider = (props) => {
       );
       const user = userCredential.user;
       setUser(userCredential.user);
+      redirectTo("/");
     } catch (error) {
-      console.log("error", error);
-      const errorCode = error.code;
       const errorMessage = error.message;
-      // const [isModalVisible, setIsModalVisible] = useState(true);
       if (errorMessage.includes("email-already-in-use")) {
-        return alert("hello");
-        // <>
-        //   <div className="modal">
-        //     <div className="modal-content">
-        //       <button
-        //         className="close-modal"
-        //         onClick={() => {
-        //           setIsModalVisible(false);
-        //         }}
-        //       >
-        //         <span className="close-icon">&times;</span>{" "}
-        //         <span className="close-text">close</span>
-        //       </button>
-
-        //       <div className="modal-content-text">
-        //         <p>Bereits verwendetes Passwort</p>
-        //       </div>
-        //     </div>
-        //   </div>
-        // </>
+        setShowModal(true);
+        console.log("EROROROROR");
+        return (
+          <>
+            {showModal && (
+              <div id="myModal" className="modal">
+                <div className="modal-content">
+                  <span className="close" onClick={() => setShowModal(false)}>
+                    &times;
+                  </span>
+                  <p>Bereits verwendetes Passwort. Melde dich an.</p>
+                </div>
+              </div>
+            )}
+          </>
+        );
       }
     }
   };
 
-  const login = () => {
-    setUser({
-      userName: "Monique",
-    });
-    console.log("logged in");
+  const login = (email, password) => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        setUser(userCredential.user);
+      })
+      .catch((error) => {
+        console.log("error", error);
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
   };
 
   const logout = () => {

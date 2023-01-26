@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useState } from "react";
 import { AuthContext } from "../store/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -19,12 +20,15 @@ const Register = () => {
 
   const handleRegister = () => {
     register(email, password);
-    redirectTo("/");
   };
 
   return (
-    <div className="login-page">
-      <h2>Register</h2>
+    <>
+      <h2>Sich anmelden</h2>
+      <p>
+        Dies ist eine Demo-App. Du kannst dich mit falschen Anmeldeinformationen
+        anmelden.
+      </p>
       <div className="register-form">
         <div className="email-container">
           <label htmlFor="email">Email</label>
@@ -54,8 +58,11 @@ const Register = () => {
         >
           sich anmelden
         </button>
+        <p>
+          Bereits angemeldet? <Link to="/login">Zum&nbsp;Einloggen</Link>.
+        </p>
       </div>
-    </div>
+    </>
   );
 };
 

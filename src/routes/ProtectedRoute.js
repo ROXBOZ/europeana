@@ -58,8 +58,8 @@ const ProtectedRoute = ({ getInput, handleNext, handlePrev }) => {
         </>
       ) : (
         <p>
-          Bitte melde dich an, um auf die Daten zuzugreifen.{" "}
-          <Link to="login">Jetzt anloggen</Link>{" "}
+          Bitte <Link to="register">anmelden</Link> oder{" "}
+          <Link to="login">einloggen</Link>, um auf die Daten entdecken.{" "}
         </p>
       )}
     </>
