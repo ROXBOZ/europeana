@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const ProtectedRoute = ({ getInput, handleNext, handlePrev }) => {
   const { data, page, loading, searchEntry } = useContext(ItemsContext);
   const { user } = useContext(AuthContext);
-  console.log("user :>> ", user);
+  // const isUser = isAuth(user);
 
   return (
     <>
