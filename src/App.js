@@ -11,10 +11,20 @@ import RootLayout from "./components/RootLayout";
 import NotFound from "./components/NotFound";
 import Login from "./components/Login";
 import { ItemsContextProvider } from "./store/ItemsContext";
+import { DarkModeContextProvider } from "./store/DarkModeContext";
+import { AuthContextProvider } from "./store/AuthContext";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<RootLayout />}>
+    <Route
+      path="/"
+      element={
+        // <DarkModeContextProvider>
+        <AuthContextProvider>
+          <RootLayout />
+        </AuthContextProvider>
+      }
+    >
       <Route
         index
         element={

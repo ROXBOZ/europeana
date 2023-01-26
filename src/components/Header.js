@@ -1,7 +1,10 @@
-import React from "react";
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../store/AuthContext";
 
 const Header = () => {
+  const { user, login, logout } = useContext(AuthContext);
+
   return (
     <header>
       <nav>
@@ -11,10 +14,13 @@ const Header = () => {
         <NavLink className="nav-link" to="about">
           About
         </NavLink>
-        <NavLink className="nav-link login-nav-link" to="login">
-          Login
-        </NavLink>
+        {user ? (
+          <button onClick={logout}>Logout</button>
+        ) : (
+          <button onClick={login}>Login</button>
+        )}
       </nav>
+      {/* <Switch onChange={switchMode()} /> */}
     </header>
   );
 };

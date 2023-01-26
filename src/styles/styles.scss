@@ -6,7 +6,9 @@
 @import "search";
 @import "login";
 @import "card";
+@import "theme";
 @import "footer";
+@import "salutation";
 
 * {
   overflow-wrap: break-word;
@@ -35,13 +37,6 @@ body {
   main {
     padding: 0;
   }
-}
-
-.root-layout {
-  // margin: 0;
-  // padding: 0;
-  // bottom: 0;
-  // position: relative;
 }
 
 @media only screen and (min-width: 768px) {

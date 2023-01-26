@@ -11,16 +11,14 @@ const CardDetail = () => {
   const street = clearTitle.split(",")[0];
   const googleMapLink = `https://www.google.com/maps?q=${street}`;
 
-  return (
+  https: return (
     <>
       {true ? (
         <div className="card-content">
           <h3 className="data-title">{title}</h3>
           <img className="card-img" src={img} alt={clearTitle} />
           <p className="data-description">{description}.</p>
-
           <GoogleLink title={title} googleMapLink={googleMapLink} />
-
           <div className="data-caption">
             <span>
               ©&nbsp;

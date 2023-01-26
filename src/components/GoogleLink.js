@@ -5,7 +5,7 @@ const GoogleLink = ({ title, googleMapLink }) => {
     return (
       <p className="data-google-link">
         <a href={googleMapLink} target="_blank" rel="noopener noreferrer">
-          <button>auf Google Map</button>
+          <button>Google Map</button>
         </a>
       </p>
     );

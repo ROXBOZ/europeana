@@ -31,8 +31,6 @@ const Card = ({ c }) => {
     copyrights,
   };
 
-  console.log("itemDetail Card", itemDetail);
-
   return (
     <Link
       className="card-link"

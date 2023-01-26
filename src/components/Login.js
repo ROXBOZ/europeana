@@ -1,17 +1,20 @@
 import React from "react";
 
 const Login = () => {
+  const handleInput = (e) => {
+    console.log(e.target.value);
+  };
   return (
     <div className="login-page">
       <h2>Sign Up / Log In</h2>
       <p>
         <div className="login-container">
           <label for="login-name">Name</label>
-          <input id="login-name" type="text" />
+          <input onChange={handleInput} id="login-name" type="text" />
         </div>
         <div className="login-container">
           <label for="login-email">Email</label>
-          <input id="login-email" type="text" />
+          <input onChange={handleInput} id="login-email" type="text" />
         </div>
         <button>Senden</button>
       </p>
