@@ -1,26 +1,22 @@
 header {
-  left: 0;
-  right: 0;
   display: flex;
-  justify-items: center;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
   a {
     border-bottom: none !important;
   }
+
   .title {
     font-size: x-large;
-    text-align: center !important;
     font-family: "poster-cut-neue", sans-serif;
     font-weight: 400;
     font-style: normal;
     color: $txt-light;
     white-space: nowrap;
   }
+
   nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
     .nav-link {
       color: $txt-light;
       margin: 0.5em;
@@ -39,10 +35,11 @@ header {
         color: $txt-light;
       }
     }
-    .login-nav-link {
-      padding: 0.25em;
-      border-radius: 0.25em;
-      border-bottom: transparent;
-    }
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  header {
+    min-width: 600px;
   }
 }

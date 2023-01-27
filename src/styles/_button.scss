@@ -22,13 +22,8 @@ button,
 }
 
 .big-button {
-  background-color: $color1;
+  background-color: $color3;
   margin: 1em 0 0 0;
   width: 100%;
+  color: $txt-dark !important;
 }
-
-// @media only screen and (min-width: 600px) {
-//   .big-button {
-//     max-width: 70ch;
-//   }
-// }

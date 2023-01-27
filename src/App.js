@@ -21,7 +21,6 @@ const router = createBrowserRouter(
     <Route
       path="/"
       element={
-        // <DarkModeContextProvider>
         <AuthContextProvider>
           <RootLayout />
         </AuthContextProvider>
@@ -35,6 +34,7 @@ const router = createBrowserRouter(
           </ItemsContextProvider>
         }
       />
+
       <Route
         path="/items/:id"
         element={

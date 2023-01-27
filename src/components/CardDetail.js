@@ -15,6 +15,7 @@ const CardDetail = () => {
     <>
       {true ? (
         <div className="card-content">
+          <button>speichern</button>
           <h3 className="data-title">{title}</h3>
           <div className="card-main-content">
             <img className="card-img" src={img} alt={clearTitle} />
@@ -22,7 +23,7 @@ const CardDetail = () => {
               <p className="data-description">{description}.</p>
               {/* <p className="data-creator">von {creator}</p> */}
               <GoogleLink title={title} googleMapLink={googleMapLink} />
-              <span>
+              <span className="data-copyrights">
                 ©&nbsp;
                 <a href={copyrights} className="data-provider">
                   {provider}

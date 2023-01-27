@@ -1,10 +1,10 @@
-$bg-dark: #122853;
-$txt-light: #f7d9b1;
-$txt-dark: #122853;
-$txt-light: #f7d9b1;
-$color1: #6aa79e;
-$color2: #e63c28;
-$color3: #f1a66d;
+$bg-dark: #060010;
+$bg-light: #faf5e0;
+$txt-dark: $bg-dark;
+$txt-light: $bg-light;
+$color1: rgb(123, 125, 253);
+$color2: #7bfda7;
+$color3: lighten($color2, 10%);
 
 $font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
   "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;

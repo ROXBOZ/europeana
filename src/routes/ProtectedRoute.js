@@ -3,18 +3,16 @@ import { useContext } from "react";
 import { ItemsContext } from "../store/ItemsContext";
 import Card from "../components/Card";
 import { AuthContext } from "../store/AuthContext";
-import { Link } from "react-router-dom";
-import useIsAuth from "../hooks/useIsAuth";
 
 const ProtectedRoute = ({ getInput, handleNext, handlePrev }) => {
-  const { data, page, loading, searchEntry } = useContext(ItemsContext);
+  const { data, page, searchEntry } = useContext(ItemsContext);
   const { user } = useContext(AuthContext);
   // const isUser = isAuth(user);
   // const isUser = useIsAuth();
 
   return (
     <>
-      {user ? (
+      {user && (
         <>
           <div className="search-container">
             <input
@@ -63,11 +61,6 @@ const ProtectedRoute = ({ getInput, handleNext, handlePrev }) => {
             FHXB Museum Berlins.
           </p>
         </>
-      ) : (
-        <p className="no-loggin-no-data">
-          Bitte <Link to="register">anmelden</Link> oder{" "}
-          <Link to="login">einloggen</Link>, um auf die Daten zu entdecken.{" "}
-        </p>
       )}
     </>
   );

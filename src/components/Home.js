@@ -43,21 +43,28 @@ const Home = () => {
     setPage(page - 1);
   };
 
+  const handleClose = () => {
+    console.log("object :>> ");
+  };
+
   if (data) {
     return (
-      <div>
+      <>
         <h1>Berlin SO36 Wohnhäusern Fotosammlung</h1>
         <h2>Vorwärts in die Vergangenheit</h2>
-        <p className="salutation">
+        <div className="salutation">
+          <span onClick={handleClose}>&times;</span>
           {user ? (
-            `Willkomen ${user.email}`
+            <p>
+              Willkomen <strong>{user.email}</strong>
+            </p>
           ) : (
-            <p className="no-loggin-no-data">
+            <p>
               Bitte <Link to="register">anmelden</Link> oder{" "}
               <Link to="login">einloggen</Link>, um auf die Daten zu entdecken.{" "}
             </p>
           )}
-        </p>
+        </div>
         <p>
           SO36 - das ist die alte Postleitzahl von Kreuzberg und der Name des
           berühmten Clubs, der in den 80er Jahren die Underground-Szene Berlins
@@ -71,7 +78,7 @@ const Home = () => {
           handleNext={handleNext}
           handlePrev={handlePrev}
         />
-      </div>
+      </>
     );
   }
 };
