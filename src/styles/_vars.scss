@@ -1,9 +1,12 @@
 $bg-dark: #060010;
-$bg-light: #faf5e0;
+$bg-light: lightyellow;
 $txt-dark: $bg-dark;
 $txt-light: $bg-light;
-$color1: rgb(123, 125, 253);
-$color2: #7bfda7;
+
+// $color2: #ff69b4;
+$color2: rgb(255, 255, 102);
+$color22: rgba(255, 255, 102, 0.2);
+$color21: rgba(255, 255, 102, 0.1);
 $color3: lighten($color2, 10%);
 
 $font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",

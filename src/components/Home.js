@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../store/AuthContext";
 import ProtectedRoute from "../routes/ProtectedRoute";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Home = () => {
   const {
@@ -43,8 +44,9 @@ const Home = () => {
     setPage(page - 1);
   };
 
+  const [isModalOpen, setIsModalOpen] = useState(true);
   const handleClose = () => {
-    console.log("object :>> ");
+    setIsModalOpen(false);
   };
 
   if (data) {
@@ -52,26 +54,29 @@ const Home = () => {
       <>
         <h1>Berlin SO36 Wohnhäusern Fotosammlung</h1>
         <h2>Vorwärts in die Vergangenheit</h2>
-        <div className="salutation">
-          <span onClick={handleClose}>&times;</span>
-          {user ? (
-            <p>
-              Willkomen <strong>{user.email}</strong>
-            </p>
-          ) : (
-            <p>
-              Bitte <Link to="register">anmelden</Link> oder{" "}
-              <Link to="login">einloggen</Link>, um auf die Daten zu entdecken.{" "}
-            </p>
-          )}
-        </div>
-        <p>
-          SO36 - das ist die alte Postleitzahl von Kreuzberg und der Name des
-          berühmten Clubs, der in den 80er Jahren die Underground-Szene Berlins
-          geprägt hat. Das FHXB Museum hat eine Sammlung von Fotos von
-          Wohnhäusern aus dieser Zeit ergattert, die zeigen, wie die Straßen in
-          SO36 damals ausgesehen haben.
-        </p>
+
+        {isModalOpen && (
+          <div className="salutation">
+            {user ? (
+              <div className="salutation-content">
+                <p>
+                  Willkomen <strong>{user.email}</strong>
+                </p>
+                <span className="salutation-close" onClick={handleClose}>
+                  &times;
+                </span>
+              </div>
+            ) : (
+              <div className="salutation-content">
+                <p>
+                  Bitte <Link to="register">registrieren</Link> oder{" "}
+                  <Link to="login">sich anmelden</Link>, um auf die Daten zu
+                  entdecken.{" "}
+                </p>
+              </div>
+            )}
+          </div>
+        )}
 
         <ProtectedRoute
           getInput={getInput}

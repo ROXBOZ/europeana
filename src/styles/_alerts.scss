@@ -1,9 +1,24 @@
 .salutation {
   padding: 1rem;
   border-radius: 0.25rem;
-  border: 2px solid rgba(122, 252, 166, 0.2);
-  background-color: rgba(122, 252, 166, 0.1);
+  border: 2px solid $color22;
+  background-color: $color21;
   text-align: center;
   color: $color3;
   margin: 2rem 0;
+  .salutation-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    .salutation-close {
+      justify-self: flex-end;
+      cursor: pointer;
+      padding: 0.1em;
+      &:hover {
+        color: darken($color2, 20%);
+      }
+    }
+  }
 }

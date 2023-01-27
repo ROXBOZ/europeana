@@ -24,7 +24,7 @@ const Register = () => {
 
   return (
     <>
-      <h2>Anmelden</h2>
+      <h2>Registrieren</h2>
       <p>Dies ist eine Demo-App. Du kannst mit falschen Daten einloggen.</p>
       <div className="register-form">
         <div className="email-container">
@@ -58,7 +58,7 @@ const Register = () => {
           sich anmelden
         </button>
         <p>
-          Schon angemeldet? <Link to="/login">Zum&nbsp;Einloggen</Link>.
+          Schon angemeldet? <Link to="/login">Zum&nbsp;Anmelden</Link>.
         </p>
       </div>
     </>

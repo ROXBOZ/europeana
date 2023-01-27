@@ -6,7 +6,7 @@ export const ItemsContextProvider = (props) => {
   const [data, setData] = useState([]);
   const [, setError] = useState(null);
   const [page, setPage] = useState(1);
-  const [row] = useState(12);
+  const [row] = useState(6);
   const [searchEntry, setSearchEntry] = useState("");
   const [loading, setLoading] = useState(true);
 
@@ -24,6 +24,12 @@ export const ItemsContextProvider = (props) => {
       setError(error);
     }
   };
+
+  const urls = [
+    `https://www.europeana.eu/api/v2/search.json?wskey=${API_KEY} &query=Berlin&query =Kreuzberg&query=Museum FHXB&start=${page}&rows=${row}`,
+    "https://jsonplaceholder.typicode.com/posts/2",
+    "https://jsonplaceholder.typicode.com/posts/3",
+  ];
 
   // To fetch all Items for filtering
 

@@ -29,7 +29,7 @@ const Login = () => {
 
   return (
     <>
-      <h2>Einloggen</h2>
+      <h2>Sich anmelden</h2>
       <p>Dies ist eine Demo-App. Du kannst mit falschen Daten einloggen.</p>
       <div className="login-form">
         <div className="email-container">
@@ -63,7 +63,7 @@ const Login = () => {
         </button>
 
         <p>
-          Nicht angemeldet? <Link to="/register">Zum&nbsp;Anmelden</Link>.
+          Nicht registriert? <Link to="/register">Zur&nbsp;Registrierung</Link>.
         </p>
       </div>
     </>

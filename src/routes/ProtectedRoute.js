@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { ItemsContext } from "../store/ItemsContext";
 import Card from "../components/Card";
 import { AuthContext } from "../store/AuthContext";
+import Map from "../components/Map";
 
 const ProtectedRoute = ({ getInput, handleNext, handlePrev }) => {
   const { data, page, searchEntry } = useContext(ItemsContext);
@@ -14,6 +15,13 @@ const ProtectedRoute = ({ getInput, handleNext, handlePrev }) => {
     <>
       {user && (
         <>
+          <p>
+            SO36 - das ist die alte Postleitzahl von Kreuzberg und der Name des
+            berühmten Clubs, der in den 80er Jahren die Underground-Szene
+            Berlins geprägt hat. Das FHXB Museum hat eine Sammlung von Fotos von
+            Wohnhäusern aus dieser Zeit ergattert, die zeigen, wie die Straßen
+            in SO36 damals ausgesehen haben.
+          </p>
           <div className="search-container">
             <input
               value={searchEntry}
@@ -36,6 +44,8 @@ const ProtectedRoute = ({ getInput, handleNext, handlePrev }) => {
               nächste&nbsp;→
             </button>
           </div>
+
+          <Map />
 
           {data.items ? (
             data.items

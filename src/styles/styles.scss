@@ -44,14 +44,6 @@ body {
   }
 }
 
-// @media only screen and (min-width: 600px) {
-//   header,
-//   main {
-//     background-color: blue;
-//     padding: $padding-md !important;
-//   }
-// }
-
 @media only screen and (min-width: 600px) {
   #root {
     justify-content: center;
@@ -62,4 +54,8 @@ body {
       padding: $padding-md !important;
     }
   }
+}
+
+.map {
+  background-color: red;
 }
