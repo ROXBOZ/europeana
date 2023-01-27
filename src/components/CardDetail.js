@@ -5,7 +5,7 @@ import GoogleLink from "./GoogleLink";
 const CardDetail = () => {
   let location = useLocation();
   console.log("location", location);
-  const { title, clearTitle, img, provider, description, copyrights } =
+  const { title, clearTitle, img, provider, description, creator, copyrights } =
     location.state.content;
 
   const street = clearTitle.split(",")[0];
@@ -16,17 +16,21 @@ const CardDetail = () => {
       {true ? (
         <div className="card-content">
           <h3 className="data-title">{title}</h3>
-          <img className="card-img" src={img} alt={clearTitle} />
-          <p className="data-description">{description}.</p>
-          <GoogleLink title={title} googleMapLink={googleMapLink} />
-          <div className="data-caption">
-            <span>
-              ©&nbsp;
-              <a href={copyrights} className="data-provider">
-                {provider}
-              </a>
-            </span>
+          <div className="card-main-content">
+            <img className="card-img" src={img} alt={clearTitle} />
+            <div className="card-main-content-texts">
+              <p className="data-description">{description}.</p>
+              {/* <p className="data-creator">von {creator}</p> */}
+              <GoogleLink title={title} googleMapLink={googleMapLink} />
+              <span>
+                ©&nbsp;
+                <a href={copyrights} className="data-provider">
+                  {provider}
+                </a>
+              </span>
+            </div>
           </div>
+          <div className="data-caption"></div>
         </div>
       ) : (
         <p>...loading (3) ...</p>

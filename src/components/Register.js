@@ -24,11 +24,8 @@ const Register = () => {
 
   return (
     <>
-      <h2>Sich anmelden</h2>
-      <p>
-        Dies ist eine Demo-App. Du kannst dich mit falschen Informationen
-        anmelden.
-      </p>
+      <h2>Anmelden</h2>
+      <p>Dies ist eine Demo-App. Du kannst mit falschen Daten einloggen.</p>
       <div className="register-form">
         <div className="email-container">
           <label htmlFor="email">Email</label>
@@ -48,7 +45,9 @@ const Register = () => {
             id="password"
           />
         </div>
+
         <button
+          className="big-button"
           disabled={
             password.length < 6 || !email.includes("@") || !email.includes(".")
               ? true
@@ -59,7 +58,7 @@ const Register = () => {
           sich anmelden
         </button>
         <p>
-          Bereits angemeldet? <Link to="/login">Zum&nbsp;Einloggen</Link>.
+          Schon angemeldet? <Link to="/login">Zum&nbsp;Einloggen</Link>.
         </p>
       </div>
     </>

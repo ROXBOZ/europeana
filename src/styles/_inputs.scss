@@ -1,0 +1,26 @@
+.search-container {
+  width: 100%;
+}
+
+label {
+  color: $txt-light;
+}
+input {
+  width: 98%;
+  display: block;
+  background-color: white;
+  height: 3em;
+  border: 2px solid $color3;
+  border-radius: 0.25em;
+
+  &::placeholder {
+    font-weight: bold;
+    color: lighten($txt-dark, 40%);
+  }
+}
+
+input {
+  &::value {
+    color: red;
+  }
+}

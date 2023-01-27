@@ -3,6 +3,8 @@ import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { signOut } from "firebase/auth";
+
 import { onAuthStateChanged } from "firebase/auth";
 
 import { auth } from "../config/firebaseConfig";
@@ -27,7 +29,8 @@ export const AuthContextProvider = (props) => {
       const errorMessage = error.message;
       if (errorMessage.includes("email-already-in-use")) {
         setShowModal(true);
-        console.log("EROROROROR");
+
+        alert("already in use");
         return (
           <>
             {showModal && (
@@ -63,7 +66,6 @@ export const AuthContextProvider = (props) => {
     }
   };
 
-  // last 13 min of Firebase Spike
   const checkUserStatus = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -71,7 +73,7 @@ export const AuthContextProvider = (props) => {
         console.log("user logged in");
         setUser(user);
       } else {
-        console.log("user not loged in");
+        console.log("user NOT loged in");
         setUser(null);
       }
     });
@@ -82,9 +84,13 @@ export const AuthContextProvider = (props) => {
   }, []);
 
   const logout = () => {
-    setUser("");
-    redirectTo("/");
-    console.log("logged out");
+    signOut(auth)
+      .then(() => {
+        setUser(null);
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
   };
 
   return (

@@ -4,13 +4,17 @@ html {
   h1,
   h2,
   h3 {
-    font-weight: 400;
-    color: $text-color;
+    font-weight: 600;
+    color: $color2;
   }
 
   p {
-    max-width: 80ch;
-    color: $text-color;
+    max-width: 70ch;
+    color: $txt-light;
+  }
+
+  .total-results {
+    color: $color2;
   }
 
   h2 + p {
@@ -23,26 +27,13 @@ html {
   }
 
   a {
-    color: darken($primary, 40%);
+    color: $color2;
     font-weight: bold;
     text-decoration: none;
     border-bottom: 2px solid;
     &:hover {
       border: none;
-      color: darken($primary, 20%);
-    }
-  }
-
-  button {
-    background-color: lighten($primary, 10%);
-    font-family: $font;
-    padding: 0.5em;
-    border-radius: 0.5em;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    &:hover {
-      opacity: 60%;
+      // color: darken($primary, 20%);
     }
   }
 }
@@ -65,7 +56,7 @@ $type-ratios: (
 }
 
 $type-base-size: 1rem;
-$type-size-ratio: type-ratio("minorThird");
+$type-size-ratio: type-ratio("perfectFourth");
 $type-levels: 4, 3, 2, 1;
 $type-styles: ();
 $level-size: $type-base-size;

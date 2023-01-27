@@ -8,6 +8,7 @@ const Card = ({ c }) => {
   const provider = c.dataProvider[0];
   const description = c.dcDescription[0];
   const copyrights = c.rights[0];
+  const creator = c.dcCreator;
 
   let shortTitle;
   if (title.length > 40) {
@@ -29,6 +30,7 @@ const Card = ({ c }) => {
     provider,
     description,
     copyrights,
+    creator,
   };
 
   return (

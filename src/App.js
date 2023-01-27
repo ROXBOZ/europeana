@@ -1,5 +1,4 @@
 import Home from "./components/Home";
-import About from "./components/About";
 import CardDetail from "./components/CardDetail";
 import {
   createBrowserRouter,
@@ -15,6 +14,7 @@ import { DarkModeContextProvider } from "./store/DarkModeContext";
 import { AuthContextProvider } from "./store/AuthContext";
 import { app } from "./config/firebaseConfig";
 import Register from "./components/Register";
+import Logout from "./components/Logout";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -43,8 +43,9 @@ const router = createBrowserRouter(
           </ItemsContextProvider>
         }
       />
-      <Route path="about" element={<About />} />
+
       <Route path="login" element={<Login />} />
+      <Route path="logout" element={<Logout />} />
       <Route path="register" element={<Register />} />
       <Route path="*" element={<NotFound />} />
     </Route>

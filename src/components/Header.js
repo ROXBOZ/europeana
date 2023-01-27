@@ -1,26 +1,21 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../store/AuthContext";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const { user, login, logout } = useContext(AuthContext);
 
   return (
     <header>
+      <Link to="/" className="title">
+        Berlin&nbsp;SO36
+      </Link>
       <nav>
-        <NavLink className="nav-link" to="/">
-          Berlin&nbsp;SO36
+        <NavLink className="nav-link" to={!user ? "login" : "logout"}>
+          {!user ? "einloggen" : "ausloggen"}
         </NavLink>
-        <NavLink className="nav-link" to="about">
-          About
-        </NavLink>
-        {user ? (
-          <button onClick={logout}>Logout</button>
-        ) : (
-          <button onClick={login}>Login</button>
-        )}
       </nav>
-      {/* <Switch onChange={switchMode()} /> */}
     </header>
   );
 };

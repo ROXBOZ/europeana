@@ -1,34 +1,48 @@
 header {
-  display: flex;
-  align-items: center;
-  gap: 2em;
   left: 0;
   right: 0;
-  background-color: darken($primary, 30%);
-  color: white;
+  display: flex;
+  justify-items: center;
+  justify-content: space-between;
+  align-items: center;
+  a {
+    border-bottom: none !important;
+  }
+  .title {
+    font-size: x-large;
+    text-align: center !important;
+    font-family: "poster-cut-neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: $txt-light;
+    white-space: nowrap;
+  }
   nav {
     display: flex;
-    gap: 1em;
     align-items: center;
+    justify-content: space-evenly;
     .nav-link {
-      color: white;
+      color: $txt-light;
+      margin: 0.5em;
+      padding: 0.5em;
+      border: 2px solid $txt-light !important;
+      border-radius: 0.25em;
       &.active {
-        border: none;
+        border: 2px solid lighten($bg-dark, 15%) !important;
+        margin: 0.5em;
+        padding: 0.5em;
+        border-radius: 0.25em;
+        background-color: lighten($bg-dark, 15%);
+        color: $txt-light !important;
       }
       &:hover {
-        color: white;
+        color: $txt-light;
       }
     }
     .login-nav-link {
-      color: $text-color;
-      background-color: lighten($primary, 20%);
       padding: 0.25em;
       border-radius: 0.25em;
       border-bottom: transparent;
-      &:hover {
-        color: $text-color;
-        background-color: lighten($primary, 10%);
-      }
     }
   }
 }

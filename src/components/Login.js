@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useContext(AuthContext);
+  const { login, register } = useContext(AuthContext);
   const redirectTo = useNavigate();
 
   const handleEmailChange = (e) => {
@@ -21,6 +21,10 @@ const Login = () => {
   const handleLogin = () => {
     login(email, password);
     redirectTo("/ ");
+  };
+
+  const handleRegister = () => {
+    register(email, password);
   };
 
   return (
@@ -47,6 +51,7 @@ const Login = () => {
           />
         </div>
         <button
+          className="big-button"
           disabled={
             password.length < 6 || !email.includes("@") || !email.includes(".")
               ? true
@@ -54,8 +59,9 @@ const Login = () => {
           }
           onClick={handleLogin}
         >
-          sich anmelden
+          einloggen
         </button>
+
         <p>
           Nicht angemeldet? <Link to="/register">Zum&nbsp;Anmelden</Link>.
         </p>
@@ -65,29 +71,3 @@ const Login = () => {
 };
 
 export default Login;
-
-// import React from "react";
-
-// const Login = () => {
-//   const handleInput = (e) => {
-//     console.log(e.target.value);
-//   };
-//   return (
-//     <div className="login-page">
-//       <h2>Login</h2>
-//       <p>
-//         <div className="login-container">
-//           <label for="login-name">Name</label>
-//           <input onChange={handleInput} id="login-name" type="text" />
-//         </div>
-//         <div className="login-container">
-//           <label for="login-email">Email</label>
-//           <input onChange={handleInput} id="login-email" type="text" />
-//         </div>
-//         <button>Senden</button>
-//       </p>
-//     </div>
-//   );
-// };
-
-// export default Login;

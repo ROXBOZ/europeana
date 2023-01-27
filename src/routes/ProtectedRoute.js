@@ -19,11 +19,10 @@ const ProtectedRoute = ({ getInput, handleNext, handlePrev }) => {
           <div className="search-container">
             <input
               value={searchEntry}
-              id="search"
               onChange={getInput}
               className="search-bar"
               type="text"
-              placeholder="Suche eine Straße im Kiez..."
+              placeholder="&nbsp;Suche eine Straße im Kiez..."
             />
           </div>
 
@@ -50,16 +49,24 @@ const ProtectedRoute = ({ getInput, handleNext, handlePrev }) => {
                 );
               })
               .map((c) => {
-                return <Card key={c.id} c={c} />;
+                return (
+                  <>
+                    <Card key={c.id} c={c} />
+                  </>
+                );
               })
           ) : (
             <p>...loading (1)...</p>
           )}
+          <p className="total-results">
+            <strong>{data.totalResults} Ergebnisse</strong> von den Archiven
+            FHXB Museum Berlins.
+          </p>
         </>
       ) : (
-        <p>
+        <p className="no-loggin-no-data">
           Bitte <Link to="register">anmelden</Link> oder{" "}
-          <Link to="login">einloggen</Link>, um auf die Daten entdecken.{" "}
+          <Link to="login">einloggen</Link>, um auf die Daten zu entdecken.{" "}
         </p>
       )}
     </>

@@ -4,6 +4,7 @@ import { ItemsContext } from "../store/ItemsContext";
 import { useContext } from "react";
 import { AuthContext } from "../store/AuthContext";
 import ProtectedRoute from "../routes/ProtectedRoute";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const {
@@ -46,8 +47,17 @@ const Home = () => {
     return (
       <div>
         <h1>Berlin SO36 Wohnhäusern Fotosammlung</h1>
-        <p className="salutation">Hallo {user?.email}</p>
         <h2>Vorwärts in die Vergangenheit</h2>
+        <p className="salutation">
+          {user ? (
+            `Willkomen ${user.email}`
+          ) : (
+            <p className="no-loggin-no-data">
+              Bitte <Link to="register">anmelden</Link> oder{" "}
+              <Link to="login">einloggen</Link>, um auf die Daten zu entdecken.{" "}
+            </p>
+          )}
+        </p>
         <p>
           SO36 - das ist die alte Postleitzahl von Kreuzberg und der Name des
           berühmten Clubs, der in den 80er Jahren die Underground-Szene Berlins
@@ -61,10 +71,6 @@ const Home = () => {
           handleNext={handleNext}
           handlePrev={handlePrev}
         />
-        <p className="small">
-          <strong>{data.totalResults}</strong> Ergebnisse von{" "}
-          <a href="">FHXB Museum</a> bei <a href="">Europana Search API</a>.
-        </p>
       </div>
     );
   }

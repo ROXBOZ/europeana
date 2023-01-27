@@ -2,56 +2,64 @@
 @import "a11y";
 @import "header";
 @import "typography";
-@import "home";
-@import "search";
+@import "inputs";
 @import "login";
 @import "card";
-@import "theme";
 @import "footer";
-@import "salutation";
+@import "alerts";
+@import "button";
 
 * {
   overflow-wrap: break-word;
 }
 body {
   line-height: 1.5;
-  background-color: whitesmoke;
-  margin: 0 0 auto 0;
-  padding: 0;
+  background-color: $bg-dark;
   font-family: $font;
   min-height: 100% !important;
   display: flex;
   flex-direction: column;
-  header,
-  h1,
-  h2,
-  h3,
-  p,
-  Link,
-  footer,
-  .pagination-button-container,
-  .search-container {
-    padding: $padding-sm;
-  }
-
+  padding: $padding-sm;
+  align-items: center;
   main {
-    padding: 0;
+    margin: 0;
+
+    max-width: 70ch;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  body {
+    padding: $padding-sm $padding-md;
+    main {
+      margin: $block-flow-md;
+    }
   }
 }
 
 @media only screen and (min-width: 768px) {
   body {
-    header,
-    h1,
-    h2,
-    h3,
-    p,
-    Link,
-    footer,
-    .card,
-    .search-container,
-    .pagination-button-container {
-      padding: $padding-sm $padding-lg;
+    padding: $padding-sm $padding-lg;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  body {
+    padding: $padding-sm $padding-lg;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  body {
+    padding: $padding-sm $padding-xl;
+  }
+}
+
+@media only screen and (min-width: 1800px) {
+  body {
+    padding: $padding-sm $padding-xxl;
+    main {
+      max-width: 70ch;
     }
   }
 }
