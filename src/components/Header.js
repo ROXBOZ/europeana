@@ -4,14 +4,15 @@ import { AuthContext } from "../store/AuthContext";
 import { Link } from "react-router-dom";
 
 const Header = () => {
-  const { user, login, logout } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   return (
     <header>
-      <Link to="/" className="title">
+      <Link to="/" className="logo">
         Berlin&nbsp;SO36
       </Link>
       <nav>
+        {!user ? null : <NavLink to="konto">Mein Konto</NavLink>}
         <NavLink className="nav-link" to={!user ? "login" : "logout"}>
           {!user ? "einloggen" : "ausloggen"}
         </NavLink>

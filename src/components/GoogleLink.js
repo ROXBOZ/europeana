@@ -1,13 +1,18 @@
 import React from "react";
+import { FaStreetView } from "react-icons/fa";
 
 const GoogleLink = ({ title, googleMapLink }) => {
   if (title.includes("Fotografie: ")) {
     return (
-      <p className="data-google-link">
-        <a href={googleMapLink} target="_blank" rel="noopener noreferrer">
-          <button className="google-button">Zurück in die Zukunft</button>
-        </a>
-      </p>
+      <a
+        className="data-google-link"
+        href={googleMapLink}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <FaStreetView />
+        &nbsp;Google Street
+      </a>
     );
   }
 };

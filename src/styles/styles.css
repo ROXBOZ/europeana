@@ -24,7 +24,7 @@ header {
 header a {
   border-bottom: none !important;
 }
-header .title {
+header .logo {
   font-weight: 600;
   font-style: normal;
   color: lightyellow;
@@ -57,23 +57,26 @@ header nav .nav-link:hover {
 html {
   font-size: 16px;
 }
-html h2 {
+html h2.title {
   font-family: "poster-cut-neue", sans-serif;
-  width: 100%;
+  font-size: 4vw;
+  line-height: 1;
+  text-align: center;
 }
 html h1,
 html h2,
 html h3 {
   letter-spacing: 1.5px;
   font-weight: 600;
-  color: rgb(255, 255, 102);
+  color: gold;
 }
 html p {
   max-width: 70ch;
   color: lightyellow;
+  line-height: 1.6;
 }
 html .total-results {
-  color: rgb(255, 255, 102);
+  color: gold;
 }
 html h2 + p {
   margin-top: 0;
@@ -83,7 +86,7 @@ html .small {
   font-size: 80%;
 }
 html a {
-  color: rgb(255, 255, 102);
+  color: gold;
   font-weight: bold;
   text-decoration: none;
   border-bottom: 2px solid;
@@ -154,7 +157,7 @@ input {
   display: block;
   background-color: white;
   height: 3em;
-  border: 2px solid #ffff99;
+  border: 2px solid #ffdf33;
   border-radius: 0.25em;
 }
 input::-moz-placeholder {
@@ -185,7 +188,7 @@ input::value {
 
 .card-link .card {
   max-width: 70ch;
-  background-color: lightyellow;
+  background-color: #ffe34d;
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
   margin: 1rem 0;
@@ -193,6 +196,9 @@ input::value {
   gap: 1rem;
   align-items: center;
   height: 5rem;
+}
+.card-link .card:hover {
+  background-color: gold;
 }
 .card-link .card .card-title {
   color: #060010;
@@ -237,10 +243,31 @@ input::value {
   font-size: 80%;
 }
 .card-content .card-main-content .data-caption {
-  color: rgb(255, 255, 102);
+  color: gold;
 }
 .card-content .card-main-content .data-copyrights {
-  color: rgb(255, 255, 102);
+  color: gold;
+}
+.card-content .card-main-content .card-content-button-container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin: 1rem 0;
+}
+.card-content .card-main-content .card-content-button-container .data-google-link {
+  border: none;
+  color: lightyellow;
+  font-weight: 400;
+}
+.card-content .card-main-content .card-content-button-container .card-like {
+  color: lightyellow;
+  opacity: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.card-content .card-main-content .card-content-button-container .card-like .card-like-icon {
+  opacity: 50% !important;
 }
 
 @media only screen and (min-width: 600px) {
@@ -268,10 +295,10 @@ footer a {
 .salutation {
   padding: 1rem;
   border-radius: 0.25rem;
-  border: 2px solid rgba(255, 255, 102, 0.2);
-  background-color: rgba(255, 255, 102, 0.1);
+  border: 2px solid rgba(255, 215, 0, 0.2);
+  background-color: rgba(255, 215, 0, 0.1);
   text-align: center;
-  color: #ffff99;
+  color: #ffdf33;
   margin: 2rem 0;
 }
 .salutation .salutation-content {
@@ -287,7 +314,7 @@ footer a {
   padding: 0.1em;
 }
 .salutation .salutation-content .salutation-close:hover {
-  color: yellow;
+  color: #998100;
 }
 
 .pagination-button-container {
@@ -300,7 +327,7 @@ footer a {
 button,
 .pagination-button,
 .google-button {
-  background-color: rgb(255, 255, 102);
+  background-color: gold;
   padding: 0.5em;
   min-height: 3em;
   border-radius: 0.25em;
@@ -315,7 +342,7 @@ button:hover,
 }
 
 .big-button {
-  background-color: #ffff99;
+  background-color: #ffdf33;
   margin: 1em 0 0 0;
   width: 100%;
   color: #060010 !important;

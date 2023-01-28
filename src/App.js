@@ -10,11 +10,11 @@ import RootLayout from "./components/RootLayout";
 import NotFound from "./components/NotFound";
 import Login from "./components/Login";
 import { ItemsContextProvider } from "./store/ItemsContext";
-import { DarkModeContextProvider } from "./store/DarkModeContext";
 import { AuthContextProvider } from "./store/AuthContext";
 import { app } from "./config/firebaseConfig";
 import Register from "./components/Register";
 import Logout from "./components/Logout";
+import Konto from "./components/Konto";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -44,6 +44,7 @@ const router = createBrowserRouter(
         }
       />
 
+      <Route path="konto" element={<Konto />} />
       <Route path="login" element={<Login />} />
       <Route path="logout" element={<Logout />} />
       <Route path="register" element={<Register />} />

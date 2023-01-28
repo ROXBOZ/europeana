@@ -1,7 +1,7 @@
 .card-link {
   .card {
     max-width: 70ch;
-    background-color: $bg-light;
+    background-color: lighten($color2, 15%);
     border-radius: 0.5rem;
     padding: 0.5rem 1rem;
     margin: 1rem 0;
@@ -9,6 +9,9 @@
     gap: 1rem;
     align-items: center;
     height: 5rem;
+    &:hover {
+      background-color: $color2;
+    }
     .card-title {
       color: $txt-dark;
     }
@@ -59,6 +62,27 @@
 
     .data-copyrights {
       color: $color2;
+    }
+    .card-content-button-container {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      margin: 1rem 0;
+      .data-google-link {
+        border: none;
+        color: $txt-light;
+        font-weight: 400;
+      }
+      .card-like {
+        color: $txt-light;
+        opacity: 100%;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        .card-like-icon {
+          opacity: 50% !important;
+        }
+      }
     }
   }
 }

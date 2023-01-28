@@ -53,7 +53,7 @@ const Home = () => {
     return (
       <>
         <h1>Berlin SO36 Wohnhäusern Fotosammlung</h1>
-        <h2>Vorwärts in die Vergangenheit</h2>
+        <h2 className="title">Vorwärts in die Vergangenheit</h2>
 
         {isModalOpen && (
           <div className="salutation">
@@ -69,9 +69,8 @@ const Home = () => {
             ) : (
               <div className="salutation-content">
                 <p>
-                  Bitte <Link to="register">registrieren</Link> oder{" "}
-                  <Link to="login">sich anmelden</Link>, um auf die Daten zu
-                  entdecken.{" "}
+                  <Link to="register">Registrieren</Link> /{" "}
+                  <Link to="login">Anmelden</Link>, um die Daten zu entdecken.
                 </p>
               </div>
             )}

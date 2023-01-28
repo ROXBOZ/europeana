@@ -1,5 +1,6 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { API_KEY } from "../config/apiKey";
+import { useEffect } from "react";
 
 export const ItemsContext = createContext();
 export const ItemsContextProvider = (props) => {
@@ -9,15 +10,15 @@ export const ItemsContextProvider = (props) => {
   const [row] = useState(6);
   const [searchEntry, setSearchEntry] = useState("");
   const [loading, setLoading] = useState(true);
+  const url = `https://www.europeana.eu/api/v2/search.json?wskey=${API_KEY} &query=Berlin&query =Kreuzberg&query=Museum FHXB&start=${page}&rows=${row}`;
+  const urlAll = `https://www.europeana.eu/api/v2/search.json?wskey=${API_KEY} &query=Berlin&query =Kreuzberg&query=Museum FHXB&start=${page}&rows=999`;
 
   const fetchData = async () => {
     try {
-      const response = await fetch(
-        `https://www.europeana.eu/api/v2/search.json?wskey=${API_KEY} &query=Berlin&query =Kreuzberg&query=Museum FHXB&start=${page}&rows=${row}`
-      );
+      const response = await fetch(url);
       const result = await response.json();
       setData(result);
-      // console.log("result :>> ", result);
+      console.log("result :>> ", result);
       setLoading(false);
     } catch (error) {
       console.log("Catch: ", error);
@@ -25,36 +26,30 @@ export const ItemsContextProvider = (props) => {
     }
   };
 
-  const urls = [
-    `https://www.europeana.eu/api/v2/search.json?wskey=${API_KEY} &query=Berlin&query =Kreuzberg&query=Museum FHXB&start=${page}&rows=${row}`,
-    "https://jsonplaceholder.typicode.com/posts/2",
-    "https://jsonplaceholder.typicode.com/posts/3",
-  ];
+  // fetching the entire API
 
-  // To fetch all Items for filtering
+  const [allData, setAllData] = useState({});
+  const fetchAllData = async () => {
+    try {
+      const promises = [];
+      for (let page = 1; page <= 3; page++) {
+        const response = await fetch(urlAll);
+        const result = await response.json();
+        promises.all(result.items);
+      }
+      setAllData(promises);
+      setLoading(false);
+    } catch (error) {
+      console.log("Catch: ", error);
+      setError(error);
+    }
+  };
 
-  // const [entireList, setEntireList] = useState([]);
+  useEffect(() => {
+    fetchAllData();
+  }, []);
 
-  // const fetchAllData = async () => {
-  //   let totalResults = 2696;
-  //   let totalPages = Math.ceil(totalResults / row);
-  //   // const [promises, setPromises] = useState([]);
-  //   const promises = [];
-  //   for (let p = 1; p <= totalPages; p++) {
-  //     try {
-  //       const response = await fetch(
-  //         `https://www.europeana.eu/api/v2/search.json?wskey=${API_KEY}&query=Berlin&query=Kreuzberg&query=Museum+FHXB&start=${page}&rows=${row}&query=${searchEntry}`
-  //       );
-  //       const result = await response.json();
-
-  //       setEntireList((entireList) => [...entireList, ...result.items]);
-  //       // setEntireList((entireList) => [...entireList, ...result.items]);
-  //     } catch (error) {
-  //       console.log("Catch: ", error);
-  //       setError(error);
-  //     }
-  //   }
-  // };
+  console.log("allData :>> ", allData);
 
   return (
     <ItemsContext.Provider
