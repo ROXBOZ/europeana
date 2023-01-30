@@ -48,7 +48,7 @@ header nav .nav-button.active {
   color: lightyellow;
 }
 header nav .nav-button:hover {
-  color: gold;
+  color: yellow;
   border: transparent;
   border-bottom: none !important;
 }
@@ -75,7 +75,7 @@ html h2,
 html h3 {
   letter-spacing: 1.5px;
   font-weight: 600;
-  color: gold;
+  color: yellow;
 }
 html p {
   max-width: 70ch;
@@ -83,7 +83,7 @@ html p {
   line-height: 1.6;
 }
 html .total-results {
-  color: gold;
+  color: yellow;
 }
 html h2 + p {
   margin-top: 0;
@@ -93,7 +93,7 @@ html .small {
   font-size: 80%;
 }
 html a {
-  color: gold;
+  color: yellow;
   font-weight: bold;
   text-decoration: none;
   border-bottom: 2px solid;
@@ -166,7 +166,7 @@ input {
   display: block;
   background-color: white;
   height: 3em;
-  border: 2px solid #ffdf33;
+  border: 2px solid #ffff33;
   border-radius: 0.25em;
 }
 input::-moz-placeholder {
@@ -197,7 +197,7 @@ input::value {
 
 .card-link .card {
   max-width: 70ch;
-  background-color: #ffe34d;
+  background-color: #ffff4d;
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
   margin: 1rem 0;
@@ -207,7 +207,7 @@ input::value {
   height: 5rem;
 }
 .card-link .card:hover {
-  background-color: gold;
+  background-color: yellow;
 }
 .card-link .card .card-title {
   color: #060010;
@@ -256,10 +256,10 @@ input::value {
   font-size: 80%;
 }
 .card-content .card-main-content .data-caption {
-  color: gold;
+  color: yellow;
 }
 .card-content .card-main-content .data-copyrights {
-  color: gold;
+  color: yellow;
 }
 .card-content .card-main-content .card-content-button-container {
   display: flex;
@@ -308,7 +308,7 @@ input::value {
   position: absolute;
   top: 5rem;
   right: 30rem;
-  color: gold;
+  color: yellow;
   font-weight: bold;
   transition: 0.3s;
 }
@@ -338,29 +338,33 @@ footer a {
   color: lightyellow;
 }
 
-.alert {
+.alert,
+.chat-msg {
   padding: 1rem;
   border-radius: 0.25rem;
   border: 2px solid rgba(255, 215, 0, 0.2);
-  background-color: rgba(255, 215, 0, 0.1);
+  background-color: rgba(38, 38, 37, 0.1);
   text-align: center;
-  color: #ffdf33;
+  color: #ffff33;
   margin: 2rem 0;
 }
-.alert .alert-content {
+.alert .alert-content,
+.chat-msg .alert-content {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
 }
-.alert .alert-content .alert-close {
+.alert .alert-content .alert-close,
+.chat-msg .alert-content .alert-close {
   justify-self: flex-end;
   cursor: pointer;
   padding: 0.1em;
 }
-.alert .alert-content .alert-close:hover {
-  color: #998100;
+.alert .alert-content .alert-close:hover,
+.chat-msg .alert-content .alert-close:hover {
+  color: #999900;
 }
 
 .pagination-button-container {
@@ -369,11 +373,13 @@ footer a {
   padding: 1rem 0;
   max-width: 70ch;
 }
+.pagination-button-container .pagination-button {
+  background-color: transparent;
+  color: yellow;
+}
 
-button,
-.pagination-button,
-.google-button {
-  background-color: gold;
+button {
+  background-color: yellow;
   padding: 0.5em;
   min-height: 3em;
   border-radius: 0.25em;
@@ -381,14 +387,12 @@ button,
   font-weight: bold;
   cursor: pointer;
 }
-button:hover,
-.pagination-button:hover,
-.google-button:hover {
+button:hover {
   opacity: 60%;
 }
 
 .big-button {
-  background-color: #ffdf33;
+  background-color: #ffff33;
   margin: 1em 0 0 0;
   width: 100%;
   color: #060010;
@@ -401,6 +405,15 @@ button:hover,
 .data-google-link {
   font-size: 16px;
   background-color: transparent;
+}
+
+.chat-msg {
+  text-align: left;
+}
+
+.add-msg {
+  display: flex;
+  gap: 1em;
 }
 
 * {

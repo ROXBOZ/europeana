@@ -3,11 +3,13 @@
   justify-content: space-between;
   padding: 1rem 0;
   max-width: 70ch;
+  .pagination-button {
+    background-color: transparent;
+    color: $color2;
+  }
 }
 
-button,
-.pagination-button,
-.google-button {
+button {
   background-color: $color2;
   padding: 0.5em;
   min-height: 3em;
@@ -15,7 +17,6 @@ button,
   border: none;
   font-weight: bold;
   cursor: pointer;
-
   &:hover {
     opacity: 60%;
   }

@@ -46,13 +46,13 @@ const ProtectedRoute = ({ getInput, handleNext, handlePrev, handleSearch }) => {
 
           {data.items ? (
             data.items
-              .filter((item) => {
-                return (
-                  item.dcTitleLangAware.de[0]
-                    .toLowerCase()
-                    .includes(searchEntry.toLowerCase()) || !searchEntry
-                );
-              })
+              // .filter((item) => {
+              //   return (
+              //     item.dcTitleLangAware.de[0]
+              //       .toLowerCase()
+              //       .includes(searchEntry.toLowerCase()) || !searchEntry
+              //   );
+              // })
               .map((c) => {
                 return (
                   <>

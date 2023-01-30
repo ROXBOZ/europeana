@@ -1,13 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Konto = () => {
   return (
     <>
       <h1>Mein Konto</h1>
       <h2>Mein Konto</h2>
-      <p>
+      <Link to="/chat">
         ↗&nbsp;<a>Chat Room</a>
-      </p>
+      </Link>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores porro
         optio officia, a id sapiente voluptates nihil accusantium, reiciendis

@@ -15,6 +15,7 @@ import { AuthContextProvider } from "./store/AuthContext";
 import Register from "./components/Register";
 import Logout from "./components/Logout";
 import Konto from "./components/Konto";
+import Chat from "./components/Chat";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -45,6 +46,7 @@ const router = createBrowserRouter(
       />
 
       <Route path="konto" element={<Konto />} />
+      <Route path="chat" element={<Chat />} />
       <Route path="login" element={<Login />} />
       <Route path="logout" element={<Logout />} />
       <Route path="register" element={<Register />} />
