@@ -1,17 +1,34 @@
 import { createContext, useContext, useState } from "react";
 import { API_KEY } from "../config/apiKey";
-import { useEffect } from "react";
 
 export const ItemsContext = createContext();
+
 export const ItemsContextProvider = (props) => {
-  const [data, setData] = useState([]);
-  const [, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [row] = useState(6);
-  const [searchEntry, setSearchEntry] = useState("");
+  const [data, setData] = useState({});
+  const [, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const url = `https://www.europeana.eu/api/v2/search.json?wskey=${API_KEY} &query=Berlin&query =Kreuzberg&query=Museum FHXB&start=${page}&rows=${row}`;
-  const urlAll = `https://www.europeana.eu/api/v2/search.json?wskey=${API_KEY} &query=Berlin&query =Kreuzberg&query=Museum FHXB&start=${page}&rows=999`;
+  const [searchEntry, setSearchEntry] = useState(""); // what is inputted
+  const [url, setUrl] = useState(
+    `https://www.europeana.eu/api/v2/search.json?wskey=${API_KEY}&query=Berlin&query =Kreuzberg&query=Museum FHXB&start=${page}&rows=${row}`
+  );
+
+  // const strasseFormat = (strasse) => {
+  //   if (strasse && strasse.includes("strasse")) {
+  //     strasse.replace("strasse", "str");
+  //   } else if (strasse && strasse.includes("straße")) {
+  //     strasse.replace("straße", "str");
+  //   }
+  //   return strasse;
+  // };
+  // strasseFormat(searchEntry);
+
+  // console.log("searchEntry :>> ", searchEntry);
+
+  // prepare it for fetching
+
+  // const search = searchEntry ? `&query=${searchEntry}` : null;
 
   const fetchData = async () => {
     try {
@@ -26,30 +43,12 @@ export const ItemsContextProvider = (props) => {
     }
   };
 
-  // fetching the entire API
-
-  const [allData, setAllData] = useState({});
-  const fetchAllData = async () => {
-    try {
-      const promises = [];
-      for (let page = 1; page <= 3; page++) {
-        const response = await fetch(urlAll);
-        const result = await response.json();
-        promises.all(result.items);
-      }
-      setAllData(promises);
-      setLoading(false);
-    } catch (error) {
-      console.log("Catch: ", error);
-      setError(error);
-    }
+  const getInput = (e) => {
+    setSearchEntry(e.target.value);
+    setUrl(
+      `https://www.europeana.eu/api/v2/search.json?wskey=${API_KEY}&query=Berlin&query =Kreuzberg&query=Museum FHXB&query=${searchEntry}&start=${page}&rows=${row}`
+    );
   };
-
-  useEffect(() => {
-    fetchAllData();
-  }, []);
-
-  console.log("allData :>> ", allData);
 
   return (
     <ItemsContext.Provider
@@ -57,12 +56,11 @@ export const ItemsContextProvider = (props) => {
         data,
         page,
         loading,
-        // entireList,
         searchEntry,
+        getInput,
         setSearchEntry,
         setPage,
         fetchData,
-        // fetchAllData,
       }}
     >
       {props.children}

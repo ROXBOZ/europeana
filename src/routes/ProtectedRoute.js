@@ -6,7 +6,7 @@ import { AuthContext } from "../store/AuthContext";
 import Map from "../components/Map";
 
 const ProtectedRoute = ({ getInput, handleNext, handlePrev }) => {
-  const { data, page, searchEntry } = useContext(ItemsContext);
+  const { data, search, page, searchEntry } = useContext(ItemsContext);
   const { user } = useContext(AuthContext);
   // const isUser = isAuth(user);
   // const isUser = useIsAuth();

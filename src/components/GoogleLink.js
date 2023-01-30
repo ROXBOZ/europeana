@@ -11,7 +11,7 @@ const GoogleLink = ({ title, googleMapLink }) => {
         rel="noopener noreferrer"
       >
         <FaStreetView />
-        &nbsp;Google Street
+        &nbsp;<strong>Google Street</strong>
       </a>
     );
   }

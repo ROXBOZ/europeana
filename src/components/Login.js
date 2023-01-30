@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login, register } = useContext(AuthContext);
+  const { login, errorMessageLogin } = useContext(AuthContext);
   const redirectTo = useNavigate();
 
   const handleEmailChange = (e) => {
@@ -20,17 +20,19 @@ const Login = () => {
 
   const handleLogin = () => {
     login(email, password);
-    redirectTo("/ ");
+    if (errorMessageLogin?.includes("wrong-password")) {
+      redirectTo("/ ");
+    }
   };
 
-  const handleRegister = () => {
-    register(email, password);
-  };
-
+  console.log("errorMessageLogin :>> ", errorMessageLogin);
   return (
     <>
       <h2>Sich anmelden</h2>
       <p>Dies ist eine Demo-App. Du kannst mit falschen Daten einloggen.</p>
+      {errorMessageLogin?.includes("wrong-password") && (
+        <p className="alert">Falsches Passwort. Go Figure.</p>
+      )}
       <div className="login-form">
         <div className="email-container">
           <label htmlFor="email">Email</label>
@@ -39,15 +41,17 @@ const Login = () => {
             type="email"
             name="email"
             id="email"
+            placeholder="Email Adresse"
           />
         </div>
         <div className="password-container">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Passwort</label>
           <input
             onChange={handlePasswordChange}
             type="password"
             name="password"
             id="password"
+            placeholder="Passwort"
           />
         </div>
         <button

@@ -34,19 +34,23 @@ header nav .nav-link {
   color: lightyellow;
   margin: 0.5em;
   padding: 0.5em;
-  border: 2px solid lightyellow !important;
+  border: 2px solid lightyellow;
+  border-bottom: 2px solid !important;
   border-radius: 0.25em;
 }
 header nav .nav-link.active {
-  border: 2px solid #23005d !important;
+  border: 2px solid #23005d;
+  border-bottom: none !important;
   margin: 0.5em;
   padding: 0.5em;
   border-radius: 0.25em;
   background-color: #23005d;
-  color: lightyellow !important;
+  color: lightyellow;
 }
 header nav .nav-link:hover {
-  color: lightyellow;
+  color: gold;
+  border: transparent;
+  border-bottom: none !important;
 }
 
 @media only screen and (min-width: 600px) {
@@ -59,9 +63,9 @@ html {
 }
 html h2.title {
   font-family: "poster-cut-neue", sans-serif;
-  font-size: 4vw;
   line-height: 1;
   text-align: center;
+  font-size: 300%;
 }
 html h1,
 html h2,
@@ -266,9 +270,6 @@ input::value {
   align-items: center;
   cursor: pointer;
 }
-.card-content .card-main-content .card-content-button-container .card-like .card-like-icon {
-  opacity: 50% !important;
-}
 
 @media only screen and (min-width: 600px) {
   .card-content .card-main-content {
@@ -292,7 +293,7 @@ footer a {
   color: lightyellow;
 }
 
-.salutation {
+.alert {
   padding: 1rem;
   border-radius: 0.25rem;
   border: 2px solid rgba(255, 215, 0, 0.2);
@@ -301,19 +302,19 @@ footer a {
   color: #ffdf33;
   margin: 2rem 0;
 }
-.salutation .salutation-content {
+.alert .alert-content {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
 }
-.salutation .salutation-content .salutation-close {
+.alert .alert-content .alert-close {
   justify-self: flex-end;
   cursor: pointer;
   padding: 0.1em;
 }
-.salutation .salutation-content .salutation-close:hover {
+.alert .alert-content .alert-close:hover {
   color: #998100;
 }
 
@@ -346,6 +347,12 @@ button:hover,
   margin: 1em 0 0 0;
   width: 100%;
   color: #060010 !important;
+}
+
+.card-like,
+.data-google-link {
+  font-size: 16px;
+  background-color: transparent;
 }
 
 * {

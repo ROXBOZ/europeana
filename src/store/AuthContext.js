@@ -4,16 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { signOut } from "firebase/auth";
-
 import { onAuthStateChanged } from "firebase/auth";
-
 import { auth } from "../config/firebaseConfig";
 
 export const AuthContext = createContext();
 export const AuthContextProvider = (props) => {
   const [user, setUser] = useState(false);
+  const [userName, setUserName] = useState("stranger");
   const redirectTo = useNavigate();
-  const [showModal, setShowModal] = useState(false);
+  const [errorMessageRegister, setErrorMessageRegister] = useState("");
+  const [errorMessageLogin, setErrorMessageLogin] = useState("");
 
   const register = async (email, password) => {
     try {
@@ -22,30 +22,11 @@ export const AuthContextProvider = (props) => {
         email,
         password
       );
-      const user = userCredential.user;
+      // const user = userCredential.user;
       setUser(userCredential.user);
       redirectTo("/");
     } catch (error) {
-      const errorMessage = error.message;
-      if (errorMessage.includes("email-already-in-use")) {
-        setShowModal(true);
-
-        alert("already in use");
-        return (
-          <>
-            {showModal && (
-              <div id="myModal" className="modal">
-                <div className="modal-content">
-                  <span className="close" onClick={() => setShowModal(false)}>
-                    &times;
-                  </span>
-                  <p>Bereits verwendetes Passwort. Melde dich an.</p>
-                </div>
-              </div>
-            )}
-          </>
-        );
-      }
+      setErrorMessageRegister(error.message);
     }
   };
 
@@ -56,20 +37,18 @@ export const AuthContextProvider = (props) => {
         email,
         password
       );
-      const user = userCredential.user;
+      // const user = userCredential.user;
       setUser(userCredential.user);
       redirectTo("/");
     } catch (error) {
-      console.log("error", error);
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      setErrorMessageLogin(error.message);
     }
   };
 
   const checkUserStatus = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        const uid = user.uid;
+        // const uid = user.uid;
         console.log("user logged in");
         setUser(user);
       } else {
@@ -94,7 +73,18 @@ export const AuthContextProvider = (props) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, register }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        userName,
+        setUserName,
+        login,
+        logout,
+        register,
+        errorMessageRegister,
+        errorMessageLogin,
+      }}
+    >
       {props.children}
     </AuthContext.Provider>
   );

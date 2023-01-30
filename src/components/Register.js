@@ -7,8 +7,14 @@ import { Link } from "react-router-dom";
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { register } = useContext(AuthContext);
+
+  const { register, setUserName, errorMessageRegister } =
+    useContext(AuthContext);
   const redirectTo = useNavigate();
+
+  const handleUserNameChange = (e) => {
+    setUserName(e.target.value);
+  };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -26,7 +32,21 @@ const Register = () => {
     <>
       <h2>Registrieren</h2>
       <p>Dies ist eine Demo-App. Du kannst mit falschen Daten einloggen.</p>
+      {errorMessageRegister?.includes("email-already-in-use") && (
+        <p className="alert">
+          Du hast bereits ein Konto. <Link to="/login">Zum&nbsp;Anmelden</Link>
+        </p>
+      )}
       <div className="register-form">
+        <div className="username-container">
+          <label htmlFor="username">Benutzername</label>
+          <input
+            onChange={handleUserNameChange}
+            type="username"
+            name="username"
+            id="username"
+          />
+        </div>
         <div className="email-container">
           <label htmlFor="email">Email</label>
           <input

@@ -8,34 +8,14 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const Home = () => {
-  const {
-    data,
-    page,
-    loading,
-    setPage,
-    // entireList,
-    searchEntry,
-    setSearchEntry,
-    fetchData,
-    // fetchAllData,
-  } = useContext(ItemsContext);
+  const { data, page, setPage, searchEntry, getInput, fetchData } =
+    useContext(ItemsContext);
 
-  const { user } = useContext(AuthContext);
+  const { user, userName } = useContext(AuthContext);
 
   useEffect(() => {
     fetchData();
-  }, [page]);
-
-  // useEffect(() => {
-  //   cleanup();
-  //   fetchAllData();
-  // }, [page]);
-
-  // console.log("entireList", entireList);
-
-  const getInput = (e) => {
-    setSearchEntry(e.target.value);
-  };
+  }, [page, searchEntry]);
 
   const handleNext = () => {
     setPage(page + 1);
@@ -53,21 +33,26 @@ const Home = () => {
     return (
       <>
         <h1>Berlin SO36 Wohnhäusern Fotosammlung</h1>
-        <h2 className="title">Vorwärts in die Vergangenheit</h2>
+        <h2 className="title">
+          Vorwärts
+          <br />
+          in die Vergangenheit
+        </h2>
 
         {isModalOpen && (
-          <div className="salutation">
+          <div className="alert">
             {user ? (
-              <div className="salutation-content">
+              <div className="alert-content">
                 <p>
-                  Willkomen <strong>{user.email}</strong>
+                  Willkommen <strong>{userName}</strong>
+                  {/* Willkomen <strong>{user.email}</strong> */}
                 </p>
-                <span className="salutation-close" onClick={handleClose}>
+                <span className="alert-close" onClick={handleClose}>
                   &times;
                 </span>
               </div>
             ) : (
-              <div className="salutation-content">
+              <div className="alert-content">
                 <p>
                   <Link to="register">Registrieren</Link> /{" "}
                   <Link to="login">Anmelden</Link>, um die Daten zu entdecken.
