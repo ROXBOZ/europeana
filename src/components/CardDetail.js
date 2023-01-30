@@ -14,10 +14,18 @@ const CardDetail = () => {
   const googleMapLink = `https://www.google.com/maps?q=${street}`;
 
   const [opacity, setOpacity] = useState(0.5);
-
   const handleSpeichern = () => {
-    console.log("yolo :>> ");
     setOpacity(opacity === 1 ? 0.5 : 1);
+  };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    if (isModalOpen === true) {
+      setIsModalOpen(false);
+    } else {
+      setIsModalOpen(true);
+    }
   };
 
   return (
@@ -26,14 +34,30 @@ const CardDetail = () => {
         <div className="card-content">
           <h3 className="data-title">{title}</h3>
           <div className="card-main-content">
-            <img className="card-img" src={img} alt={clearTitle} />
+            <img
+              className="card-img"
+              src={img}
+              alt={clearTitle}
+              onClick={toggleModal}
+            />
+            {isModalOpen && (
+              <div className="modal">
+                <span onClick={toggleModal} className="close-modal">
+                  &times; schließen
+                </span>
+                <figure>
+                  <img className="img-modal" src={img} alt={clearTitle} />
+                  <figcaption>{clearTitle}</figcaption>
+                </figure>
+              </div>
+            )}
             <div className="card-main-content-texts">
               <p className="data-description">{description}.</p>
               <div className="card-content-button-container">
                 <GoogleLink title={title} googleMapLink={googleMapLink} />
                 <button onClick={handleSpeichern} className="card-like">
                   <FaSave className="card-like-icon" style={{ opacity }} />
-                  &nbsp; Speichern
+                  &nbsp; speichern
                 </button>
               </div>
               <span className="data-copyrights">

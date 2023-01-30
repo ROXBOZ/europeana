@@ -11,7 +11,7 @@ import NotFound from "./components/NotFound";
 import Login from "./components/Login";
 import { ItemsContextProvider } from "./store/ItemsContext";
 import { AuthContextProvider } from "./store/AuthContext";
-import { app } from "./config/firebaseConfig";
+// import { app } from "./config/firebaseConfig";
 import Register from "./components/Register";
 import Logout from "./components/Logout";
 import Konto from "./components/Konto";

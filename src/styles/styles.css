@@ -30,7 +30,7 @@ header .logo {
   color: lightyellow;
   white-space: nowrap;
 }
-header nav .nav-link {
+header nav .nav-button {
   color: lightyellow;
   margin: 0.5em;
   padding: 0.5em;
@@ -38,7 +38,7 @@ header nav .nav-link {
   border-bottom: 2px solid !important;
   border-radius: 0.25em;
 }
-header nav .nav-link.active {
+header nav .nav-button.active {
   border: 2px solid #23005d;
   border-bottom: none !important;
   margin: 0.5em;
@@ -47,10 +47,13 @@ header nav .nav-link.active {
   background-color: #23005d;
   color: lightyellow;
 }
-header nav .nav-link:hover {
+header nav .nav-button:hover {
   color: gold;
   border: transparent;
   border-bottom: none !important;
+}
+header nav .nav-link.active {
+  color: lightyellow;
 }
 
 @media only screen and (min-width: 600px) {
@@ -150,6 +153,8 @@ h1,
 
 .search-container {
   width: 100%;
+  display: flex;
+  gap: 1rem;
 }
 
 label {
@@ -242,6 +247,10 @@ input::value {
   width: 100%;
   margin: min(2rem, 4vh) 0;
   filter: contrast(1.1);
+  cursor: pointer;
+}
+.card-content .card-main-content .card-img:hover {
+  opacity: 50%;
 }
 .card-content .card-main-content .data-provider {
   font-size: 80%;
@@ -269,6 +278,42 @@ input::value {
   display: flex;
   align-items: center;
   cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  padding-top: 5em;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal .img-modal {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+.modal figcaption {
+  font-weight: bold;
+  color: lightyellow;
+  text-align: center;
+  padding: 1rem 0;
+}
+.modal .close-modal {
+  cursor: pointer;
+  position: absolute;
+  top: 5rem;
+  right: 30rem;
+  color: gold;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.modal .close-modal:hover {
+  color: lightyellow;
 }
 
 @media only screen and (min-width: 600px) {
@@ -346,7 +391,10 @@ button:hover,
   background-color: #ffdf33;
   margin: 1em 0 0 0;
   width: 100%;
-  color: #060010 !important;
+  color: #060010;
+}
+.big-button:disabled {
+  opacity: 50%;
 }
 
 .card-like,

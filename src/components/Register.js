@@ -10,7 +10,7 @@ const Register = () => {
 
   const { register, setUserName, errorMessageRegister } =
     useContext(AuthContext);
-  const redirectTo = useNavigate();
+  // const redirectTo = useNavigate();
 
   const handleUserNameChange = (e) => {
     setUserName(e.target.value);
@@ -68,12 +68,12 @@ const Register = () => {
 
         <button
           className="big-button"
+          onClick={handleRegister}
           disabled={
             password.length < 6 || !email.includes("@") || !email.includes(".")
               ? true
               : false
           }
-          onClick={handleRegister}
         >
           sich anmelden
         </button>

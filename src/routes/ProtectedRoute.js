@@ -3,13 +3,10 @@ import { useContext } from "react";
 import { ItemsContext } from "../store/ItemsContext";
 import Card from "../components/Card";
 import { AuthContext } from "../store/AuthContext";
-import Map from "../components/Map";
 
-const ProtectedRoute = ({ getInput, handleNext, handlePrev }) => {
-  const { data, search, page, searchEntry } = useContext(ItemsContext);
+const ProtectedRoute = ({ getInput, handleNext, handlePrev, handleSearch }) => {
+  const { data, page, searchEntry } = useContext(ItemsContext);
   const { user } = useContext(AuthContext);
-  // const isUser = isAuth(user);
-  // const isUser = useIsAuth();
 
   return (
     <>
@@ -25,12 +22,13 @@ const ProtectedRoute = ({ getInput, handleNext, handlePrev }) => {
           </p>
           <div className="search-container">
             <input
-              value={searchEntry}
+              // value={searchEntry}
               onChange={getInput}
               className="search-bar"
               type="text"
               placeholder="&nbsp;Suche eine Straße im Kiez..."
             />
+            <button onClick={handleSearch}>Suchen</button>
           </div>
 
           <div className="pagination-button-container">
@@ -45,8 +43,6 @@ const ProtectedRoute = ({ getInput, handleNext, handlePrev }) => {
               nächste&nbsp;→
             </button>
           </div>
-
-          {/* <Map /> */}
 
           {data.items ? (
             data.items

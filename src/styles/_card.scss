@@ -50,6 +50,10 @@
       width: 100%;
       margin: $block-flow-sm 0;
       filter: contrast(1.1);
+      cursor: pointer;
+      &:hover {
+        opacity: 50%;
+      }
     }
 
     .data-provider {
@@ -80,6 +84,44 @@
         align-items: center;
         cursor: pointer;
       }
+    }
+  }
+}
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  padding-top: 5em;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  .img-modal {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+  }
+
+  figcaption {
+    font-weight: bold;
+    color: $txt-light;
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .close-modal {
+    cursor: pointer;
+    position: absolute;
+    top: 5rem;
+    right: 30rem;
+    color: $color2;
+    font-weight: bold;
+    transition: 0.3s;
+    &:hover {
+      color: $txt-light;
     }
   }
 }

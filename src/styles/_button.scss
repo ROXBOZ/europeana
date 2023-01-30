@@ -25,7 +25,10 @@ button,
   background-color: $color3;
   margin: 1em 0 0 0;
   width: 100%;
-  color: $txt-dark !important;
+  color: $txt-dark;
+  &:disabled {
+    opacity: 50%;
+  }
 }
 
 .card-like,

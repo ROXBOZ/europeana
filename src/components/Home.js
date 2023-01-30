@@ -8,25 +8,50 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const Home = () => {
-  const { data, page, setPage, searchEntry, getInput, fetchData } =
-    useContext(ItemsContext);
-
+  const {
+    data,
+    NoSearchUrl,
+    page,
+    setPage,
+    fetchData,
+    searchEntry,
+    setSearchEntry,
+    streetFormat,
+    searchUrl,
+  } = useContext(ItemsContext);
   const { user, userName } = useContext(AuthContext);
 
+  // Welcoming Alert
+
+  const [isAlertOpen, setIsAlertOpen] = useState(true);
+  const handleClose = () => {
+    setIsAlertOpen(false);
+  };
+
+  // Search
+
   useEffect(() => {
-    fetchData();
-  }, [page, searchEntry]);
+    fetchData(NoSearchUrl);
+  }, [page]);
+
+  // WHY CONTENT DISAPPEAR WHEN ADDING INPUT ???
+
+  const getInput = (e) => {
+    setSearchEntry(e.target.value);
+  };
+
+  const handleSearch = () => {
+    // streetFormat(searchEntry);
+    fetchData(searchUrl);
+  };
+
+  // Pagination
 
   const handleNext = () => {
     setPage(page + 1);
   };
   const handlePrev = () => {
     setPage(page - 1);
-  };
-
-  const [isModalOpen, setIsModalOpen] = useState(true);
-  const handleClose = () => {
-    setIsModalOpen(false);
   };
 
   if (data) {
@@ -39,13 +64,12 @@ const Home = () => {
           in die Vergangenheit
         </h2>
 
-        {isModalOpen && (
+        {isAlertOpen && (
           <div className="alert">
             {user ? (
               <div className="alert-content">
                 <p>
                   Willkommen <strong>{userName}</strong>
-                  {/* Willkomen <strong>{user.email}</strong> */}
                 </p>
                 <span className="alert-close" onClick={handleClose}>
                   &times;
@@ -63,6 +87,7 @@ const Home = () => {
         )}
 
         <ProtectedRoute
+          handleSearch={handleSearch}
           getInput={getInput}
           handleNext={handleNext}
           handlePrev={handlePrev}

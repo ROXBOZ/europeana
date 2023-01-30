@@ -12,8 +12,12 @@ const Header = () => {
         Berlin&nbsp;SO36
       </Link>
       <nav>
-        {!user ? null : <NavLink to="konto">Mein Konto</NavLink>}
-        <NavLink className="nav-link" to={!user ? "login" : "logout"}>
+        {!user ? null : (
+          <NavLink className="nav-link" to="konto">
+            Mein Konto
+          </NavLink>
+        )}
+        <NavLink className="nav-button" to={!user ? "login" : "logout"}>
           {!user ? "einloggen" : "ausloggen"}
         </NavLink>
       </nav>

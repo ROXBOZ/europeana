@@ -25,7 +25,6 @@ const Login = () => {
     }
   };
 
-  console.log("errorMessageLogin :>> ", errorMessageLogin);
   return (
     <>
       <h2>Sich anmelden</h2>
@@ -56,12 +55,12 @@ const Login = () => {
         </div>
         <button
           className="big-button"
+          onClick={handleLogin}
           disabled={
             password.length < 6 || !email.includes("@") || !email.includes(".")
               ? true
               : false
           }
-          onClick={handleLogin}
         >
           einloggen
         </button>
