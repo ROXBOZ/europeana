@@ -1,39 +1,41 @@
-.pagination-button-container {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem 0;
-  max-width: 70ch;
-  .pagination-button {
-    background-color: transparent;
-    color: $color2;
-  }
-}
-
 button {
-  background-color: $color2;
+  background-color: $primary;
   padding: 0.5em;
   min-height: 3em;
   border-radius: 0.25em;
   border: none;
   font-weight: bold;
   cursor: pointer;
+
   &:hover {
     opacity: 60%;
   }
+
+  &:disabled {
+    opacity: 30%;
+  }
 }
 
-.big-button {
-  background-color: $color3;
+.full-width-button {
   margin: 1em 0 0 0;
   width: 100%;
   color: $txt-dark;
   &:disabled {
-    opacity: 50%;
+    opacity: $disabled-opacity;
   }
 }
 
-.card-like,
+.pagination-button-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  max-width: 70ch;
+}
+
+.pagination-button,
+.card-save,
 .data-google-link {
   font-size: 16px;
+  color: $primary;
   background-color: transparent;
 }

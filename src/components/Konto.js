@@ -7,7 +7,7 @@ const Konto = () => {
       <h1>Mein Konto</h1>
       <h2>Mein Konto</h2>
       <Link to="/chat">
-        ↗&nbsp;<a>Chat Room</a>
+        ↗&nbsp;<a>Guestbook</a>
       </Link>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores porro

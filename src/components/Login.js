@@ -60,7 +60,7 @@ const Login = () => {
           />
         </div>
         <button
-          className="big-button"
+          className="full-width-button"
           onClick={handleLogin}
           disabled={
             password.length < 6 || !email.includes("@") || !email.includes(".")

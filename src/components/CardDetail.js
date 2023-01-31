@@ -42,21 +42,23 @@ const CardDetail = () => {
             />
             {isModalOpen && (
               <div className="modal">
-                <span onClick={toggleModal} className="close-modal">
-                  &times; schließen
-                </span>
-                <figure>
-                  <img className="img-modal" src={img} alt={clearTitle} />
-                  <figcaption>{clearTitle}</figcaption>
-                </figure>
+                <div className="modal-content">
+                  <span onClick={toggleModal} className="close-modal">
+                    &times; schließen
+                  </span>
+                  <figure>
+                    <img className="img-modal" src={img} alt={clearTitle} />
+                    <figcaption>{clearTitle}</figcaption>
+                  </figure>
+                </div>
               </div>
             )}
             <div className="card-main-content-texts">
               <p className="data-description">{description}.</p>
               <div className="card-content-button-container">
                 <GoogleLink title={title} googleMapLink={googleMapLink} />
-                <button onClick={handleSpeichern} className="card-like">
-                  <FaSave className="card-like-icon" style={{ opacity }} />
+                <button onClick={handleSpeichern} className="card-save">
+                  <FaSave className="card-save-icon" style={{ opacity }} />
                   &nbsp; speichern
                 </button>
               </div>

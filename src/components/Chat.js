@@ -32,10 +32,10 @@ const Chat = () => {
     });
   };
 
-  const secondToDate = (time) => {
-    const date = new Date(time).toLocaleDateString();
-    return date;
-  };
+  // const secondToDate = (time) => {
+  //   const date = new Date(time).toLocaleDateString();
+  //   return date;
+  // };
 
   useEffect(() => {
     liveUpdate();
@@ -58,7 +58,9 @@ const Chat = () => {
   return (
     <div>
       <h1>Chat</h1>
-      <h2>Chat Room</h2>
+      <h2>Guestbook</h2>
+      <p>The concept of a Guestbook here is extremely lame.</p>
+
       <div className="add-msg">
         <input
           value={value}
@@ -68,18 +70,36 @@ const Chat = () => {
           id="chat"
           placeholder="Diese App ist wunderbar..."
         ></input>
-        <button onClick={handleSubmit}>Senden</button>
+        <button
+          disabled={newMessage === "" ? true : false}
+          onClick={handleSubmit}
+        >
+          Senden
+        </button>
       </div>
       {messages &&
         messages
           .sort((a, b) => b.date.seconds - a.date.seconds)
           .map((message) => {
+            const date = new Date(message.date.seconds * 1000);
             return (
               <>
                 <div className="chat-msg">
                   <p>
-                    {message.author} –{" "}
-                    {secondToDate(message.date.seconds * 1000)}
+                    <span className="message-date">
+                      {date.toLocaleDateString("de-DE", {
+                        day: "numeric",
+                        year: "numeric",
+                        month: "short",
+                      })}
+                      ,{" "}
+                      {date.toLocaleTimeString([], {
+                        hour: "numeric",
+                        minute: "numeric",
+                      })}
+                    </span>
+                    <br />
+                    <span className="message-author">{message.author}</span>
                   </p>
                   <p>{message.text}</p>
                 </div>

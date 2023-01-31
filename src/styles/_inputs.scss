@@ -7,22 +7,17 @@
 label {
   color: $txt-light;
 }
+
 input {
-  width: 98%;
+  width: 100% !important;
   display: block;
-  background-color: white;
+  background-color: $bg-light;
   height: 3em;
-  border: 2px solid $color3;
+  border: 2px solid $primary-light;
   border-radius: 0.25em;
 
   &::placeholder {
     font-weight: bold;
     color: lightgrey;
-  }
-}
-
-input {
-  &::value {
-    color: red;
   }
 }

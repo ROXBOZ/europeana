@@ -100,7 +100,9 @@ const Home = () => {
           <div className="alert">
             {user ? (
               <div className="alert-content">
-                <p>Willkommen {firebaseUsername}</p>
+                <p>
+                  Willkommen <strong>{firebaseUsername}</strong>!
+                </p>
                 <span className="alert-close" onClick={handleClose}>
                   &times;
                 </span>

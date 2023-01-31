@@ -71,7 +71,7 @@ const Register = () => {
         </div>
 
         <button
-          className="big-button"
+          className="full-width-button"
           onClick={handleRegister}
           disabled={
             password.length < 6 || !email.includes("@") || !email.includes(".")

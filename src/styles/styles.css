@@ -1,5 +1,9 @@
-/* padding */
-/*margin*/
+/*------Colors------*/
+/*------Fonts------*/
+/*------Paddings------*/
+/*------Margins------*/
+/*------Borders------*/
+/*------Disabled------*/
 h1 {
   border: 0;
   clip: rect(1px, 1px, 1px, 1px);
@@ -64,12 +68,6 @@ header nav .nav-link.active {
 html {
   font-size: 16px;
 }
-html h2.title {
-  font-family: "poster-cut-neue", sans-serif;
-  line-height: 1;
-  text-align: center;
-  font-size: 300%;
-}
 html h1,
 html h2,
 html h3 {
@@ -77,19 +75,27 @@ html h3 {
   font-weight: 600;
   color: #ffde98;
 }
+html h2 {
+  margin-top: 0;
+  padding-top: 0;
+}
+html h2.title {
+  font-family: "poster-cut-neue", sans-serif;
+  line-height: 1;
+  text-align: center;
+  font-size: 300%;
+}
 html p {
   max-width: 70ch;
   color: #fffaf0;
   line-height: 1.6;
-}
-html .total-results {
-  color: #ffde98;
-}
-html h2 + p {
   margin-top: 0;
   padding-top: 0;
 }
-html .small {
+html p.total-results {
+  color: #ffde98;
+}
+html p.small {
   font-size: 80%;
 }
 html a {
@@ -162,9 +168,9 @@ label {
 }
 
 input {
-  width: 98%;
+  width: 100% !important;
   display: block;
-  background-color: white;
+  background-color: #fffaf0;
   height: 3em;
   border: 2px solid #ffeecb;
   border-radius: 0.25em;
@@ -180,10 +186,6 @@ input:-ms-input-placeholder {
 input::placeholder {
   font-weight: bold;
   color: lightgrey;
-}
-
-input::value {
-  color: red;
 }
 
 .register-form .email-container,
@@ -205,9 +207,6 @@ input::value {
   gap: 1rem;
   align-items: center;
   height: 5rem;
-}
-.card-link .card:hover {
-  background-color: #ffde98;
 }
 .card-link .card .card-title {
   color: #060010;
@@ -232,13 +231,16 @@ input::value {
 .card-link .card p:hover {
   border: none;
 }
+.card-link .card:hover {
+  background-color: #ffde98;
+}
 
 .card-content .card-main-content {
   display: flex;
   flex-direction: column;
 }
-.card-content .card-main-content .data-title,
 .card-content .card-main-content p,
+.card-content .card-main-content .data-title,
 .card-content .card-main-content .data-google-link {
   padding: 0;
 }
@@ -272,7 +274,7 @@ input::value {
   color: #fffaf0;
   font-weight: 400;
 }
-.card-content .card-main-content .card-content-button-container .card-like {
+.card-content .card-main-content .card-content-button-container .card-save {
   color: #fffaf0;
   opacity: 100%;
   display: flex;
@@ -289,31 +291,40 @@ input::value {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(6, 0, 16, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.modal .img-modal {
+.modal .modal-content {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.modal .modal-content .img-modal {
   margin: auto;
   display: block;
   width: 80%;
   max-width: 700px;
 }
-.modal figcaption {
+.modal .modal-content figcaption {
   font-weight: bold;
   color: #fffaf0;
   text-align: center;
   padding: 1rem 0;
 }
-.modal .close-modal {
+.modal .modal-content .close-modal {
   cursor: pointer;
-  position: absolute;
-  top: 5rem;
-  right: 30rem;
+  align-self: flex-end;
   color: #ffde98;
   font-weight: bold;
   transition: 0.3s;
 }
-.modal .close-modal:hover {
-  color: #fffaf0;
+.modal .modal-content .close-modal:hover {
+  color: #ffeecb;
 }
 
 @media only screen and (min-width: 600px) {
@@ -338,44 +349,32 @@ footer a {
   color: #fffaf0;
 }
 
-.alert,
-.chat-msg {
+.alert {
   padding: 1rem;
-  border-radius: 0.25rem;
+  border-radius: 0.25em;
   border: 2px solid rgba(255, 215, 0, 0.2);
   background-color: rgba(38, 38, 37, 0.1);
   text-align: center;
   color: #ffeecb;
   margin: 2rem 0;
 }
-.alert .alert-content,
-.chat-msg .alert-content {
+.alert .alert-content {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
 }
-.alert .alert-content .alert-close,
-.chat-msg .alert-content .alert-close {
+.alert .alert-content p {
+  margin-bottom: 0;
+}
+.alert .alert-content .alert-close {
   justify-self: flex-end;
   cursor: pointer;
   padding: 0.1em;
 }
-.alert .alert-content .alert-close:hover,
-.chat-msg .alert-content .alert-close:hover {
+.alert .alert-content .alert-close:hover {
   color: #ffbd32;
-}
-
-.pagination-button-container {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem 0;
-  max-width: 70ch;
-}
-.pagination-button-container .pagination-button {
-  background-color: transparent;
-  color: #ffde98;
 }
 
 button {
@@ -390,30 +389,55 @@ button {
 button:hover {
   opacity: 60%;
 }
+button:disabled {
+  opacity: 30%;
+}
 
-.big-button {
-  background-color: #ffeecb;
+.full-width-button {
   margin: 1em 0 0 0;
   width: 100%;
   color: #060010;
 }
-.big-button:disabled {
+.full-width-button:disabled {
   opacity: 50%;
 }
 
-.card-like,
-.data-google-link {
-  font-size: 16px;
-  background-color: transparent;
+.pagination-button-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  max-width: 70ch;
 }
 
-.chat-msg {
-  text-align: left;
+.pagination-button,
+.card-save,
+.data-google-link {
+  font-size: 16px;
+  color: #ffde98;
+  background-color: transparent;
 }
 
 .add-msg {
   display: flex;
   gap: 1em;
+}
+
+.chat-msg {
+  text-align: left !important;
+  padding: 1rem;
+  border-radius: 0.25em;
+  border: 2px solid rgba(255, 215, 0, 0.2);
+  background-color: rgba(38, 38, 37, 0.1);
+  text-align: center;
+  color: #ffeecb;
+  margin: 2rem 0;
+}
+.chat-msg .message-author {
+  font-weight: bold;
+}
+.chat-msg .message-date {
+  color: #ffde98;
+  font-size: 80%;
 }
 
 * {

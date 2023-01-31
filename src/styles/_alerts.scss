@@ -1,24 +1,27 @@
-.alert,
-.chat-msg {
+.alert {
   padding: 1rem;
-  border-radius: 0.25rem;
-  border: 2px solid $color22;
-  background-color: $color21;
+  border-radius: $border-radius;
+  border: $solid-border $primary-transparent-02;
+  background-color: $primary-transparent-01;
   text-align: center;
-  color: $color3;
+  color: $primary-light;
   margin: 2rem 0;
+
   .alert-content {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     gap: 2rem;
+    p {
+      margin-bottom: 0;
+    }
     .alert-close {
       justify-self: flex-end;
       cursor: pointer;
       padding: 0.1em;
       &:hover {
-        color: darken($color2, 20%);
+        color: darken($primary, 20%);
       }
     }
   }
