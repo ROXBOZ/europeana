@@ -36,19 +36,17 @@ const Home = () => {
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data().username);
-      console.log("user.uid :", user.uid);
       if (doc.id === user.uid) {
         setFirebaseUsername(doc.data().username);
-      } else {
-        console.log("poin poin");
       }
     });
   };
 
   useEffect(() => {
-    getFirebaseUser();
-  }, []);
+    if (user?.uid) {
+      getFirebaseUser();
+    }
+  }, [user]);
 
   // Search
 
@@ -71,7 +69,6 @@ const Home = () => {
   };
 
   const handleSearch = () => {
-    // streetFormat(searchEntry);
     fetchData(searchUrl);
     if (searchEntry === "") {
       fetchData(NoSearchUrl);
@@ -103,7 +100,7 @@ const Home = () => {
           <div className="alert">
             {user ? (
               <div className="alert-content">
-                {/* <p>Willkommen {firebaseUsername}</p> */}
+                <p>Willkommen {firebaseUsername}</p>
                 <span className="alert-close" onClick={handleClose}>
                   &times;
                 </span>
