@@ -6,6 +6,8 @@ import { AuthContext } from "../store/AuthContext";
 import ProtectedRoute from "../routes/ProtectedRoute";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { db } from "../config/firebaseConfig";
+import { collection, doc, getDoc, getDocs, query } from "firebase/firestore";
 
 const Home = () => {
   const {
@@ -19,7 +21,8 @@ const Home = () => {
     streetFormat,
     searchUrl,
   } = useContext(ItemsContext);
-  const { user, userName } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+  const [firebaseUsername, setFirebaseUsername] = useState([]);
 
   // Welcoming Alert
 
@@ -28,21 +31,53 @@ const Home = () => {
     setIsAlertOpen(false);
   };
 
+  const getFirebaseUser = async () => {
+    const q = query(collection(db, "users"));
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach((doc) => {
+      console.log(doc.id, " => ", doc.data().username);
+      console.log("user.uid :", user.uid);
+      if (doc.id === user.uid) {
+        setFirebaseUsername(doc.data().username);
+      } else {
+        console.log("poin poin");
+      }
+    });
+  };
+
+  useEffect(() => {
+    getFirebaseUser();
+  }, []);
+
   // Search
 
   useEffect(() => {
-    fetchData(NoSearchUrl);
+    if (searchEntry === "") {
+      fetchData(NoSearchUrl);
+    } else {
+      fetchData(searchUrl);
+    }
   }, [page]);
 
-  // WHY CONTENT DISAPPEAR WHEN ADDING INPUT ???
-
   const getInput = (e) => {
-    setSearchEntry(e.target.value);
+    const formatted = streetFormat(e.target.value);
+    console.log("formatted", formatted);
+    setSearchEntry(formatted);
+
+    if (e.target.value === "") {
+      fetchData(NoSearchUrl);
+    }
   };
 
   const handleSearch = () => {
     // streetFormat(searchEntry);
     fetchData(searchUrl);
+    if (searchEntry === "") {
+      fetchData(NoSearchUrl);
+    } else {
+      fetchData(searchUrl);
+    }
   };
 
   // Pagination
@@ -68,9 +103,7 @@ const Home = () => {
           <div className="alert">
             {user ? (
               <div className="alert-content">
-                <p>
-                  Willkommen <strong>{userName}</strong>
-                </p>
+                {/* <p>Willkommen {firebaseUsername}</p> */}
                 <span className="alert-close" onClick={handleClose}>
                   &times;
                 </span>

@@ -5,7 +5,8 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { signOut } from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../config/firebaseConfig";
+import { auth, db } from "../config/firebaseConfig";
+import { doc, setDoc } from "firebase/firestore";
 
 export const AuthContext = createContext();
 export const AuthContextProvider = (props) => {
@@ -26,6 +27,9 @@ export const AuthContextProvider = (props) => {
       console.log("user", user);
       setUser(userCredential.user);
       redirectTo("/");
+      setDoc(doc(db, "users", user.uid), {
+        username: userName,
+      });
     } catch (error) {
       setErrorMessageRegister(error.message);
     }

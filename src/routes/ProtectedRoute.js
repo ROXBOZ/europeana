@@ -22,7 +22,6 @@ const ProtectedRoute = ({ getInput, handleNext, handlePrev, handleSearch }) => {
           </p>
           <div className="search-container">
             <input
-              // value={searchEntry}
               onChange={getInput}
               className="search-bar"
               type="text"
