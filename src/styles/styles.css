@@ -27,14 +27,14 @@ header a {
 header .logo {
   font-weight: 600;
   font-style: normal;
-  color: lightyellow;
+  color: #fffaf0;
   white-space: nowrap;
 }
 header nav .nav-button {
-  color: lightyellow;
+  color: #fffaf0;
   margin: 0.5em;
   padding: 0.5em;
-  border: 2px solid lightyellow;
+  border: 2px solid #fffaf0;
   border-bottom: 2px solid !important;
   border-radius: 0.25em;
 }
@@ -45,15 +45,15 @@ header nav .nav-button.active {
   padding: 0.5em;
   border-radius: 0.25em;
   background-color: #23005d;
-  color: lightyellow;
+  color: #fffaf0;
 }
 header nav .nav-button:hover {
-  color: yellow;
+  color: #ffde98;
   border: transparent;
   border-bottom: none !important;
 }
 header nav .nav-link.active {
-  color: lightyellow;
+  color: #fffaf0;
 }
 
 @media only screen and (min-width: 600px) {
@@ -75,15 +75,15 @@ html h2,
 html h3 {
   letter-spacing: 1.5px;
   font-weight: 600;
-  color: yellow;
+  color: #ffde98;
 }
 html p {
   max-width: 70ch;
-  color: lightyellow;
+  color: #fffaf0;
   line-height: 1.6;
 }
 html .total-results {
-  color: yellow;
+  color: #ffde98;
 }
 html h2 + p {
   margin-top: 0;
@@ -93,7 +93,7 @@ html .small {
   font-size: 80%;
 }
 html a {
-  color: yellow;
+  color: #ffde98;
   font-weight: bold;
   text-decoration: none;
   border-bottom: 2px solid;
@@ -158,7 +158,7 @@ h1,
 }
 
 label {
-  color: lightyellow;
+  color: #fffaf0;
 }
 
 input {
@@ -166,7 +166,7 @@ input {
   display: block;
   background-color: white;
   height: 3em;
-  border: 2px solid #ffff33;
+  border: 2px solid #ffeecb;
   border-radius: 0.25em;
 }
 input::-moz-placeholder {
@@ -197,7 +197,7 @@ input::value {
 
 .card-link .card {
   max-width: 70ch;
-  background-color: #ffff4d;
+  background-color: #fff7e5;
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
   margin: 1rem 0;
@@ -207,7 +207,7 @@ input::value {
   height: 5rem;
 }
 .card-link .card:hover {
-  background-color: yellow;
+  background-color: #ffde98;
 }
 .card-link .card .card-title {
   color: #060010;
@@ -256,10 +256,10 @@ input::value {
   font-size: 80%;
 }
 .card-content .card-main-content .data-caption {
-  color: yellow;
+  color: #ffde98;
 }
 .card-content .card-main-content .data-copyrights {
-  color: yellow;
+  color: #ffde98;
 }
 .card-content .card-main-content .card-content-button-container {
   display: flex;
@@ -269,11 +269,11 @@ input::value {
 }
 .card-content .card-main-content .card-content-button-container .data-google-link {
   border: none;
-  color: lightyellow;
+  color: #fffaf0;
   font-weight: 400;
 }
 .card-content .card-main-content .card-content-button-container .card-like {
-  color: lightyellow;
+  color: #fffaf0;
   opacity: 100%;
   display: flex;
   align-items: center;
@@ -299,7 +299,7 @@ input::value {
 }
 .modal figcaption {
   font-weight: bold;
-  color: lightyellow;
+  color: #fffaf0;
   text-align: center;
   padding: 1rem 0;
 }
@@ -308,12 +308,12 @@ input::value {
   position: absolute;
   top: 5rem;
   right: 30rem;
-  color: yellow;
+  color: #ffde98;
   font-weight: bold;
   transition: 0.3s;
 }
 .modal .close-modal:hover {
-  color: lightyellow;
+  color: #fffaf0;
 }
 
 @media only screen and (min-width: 600px) {
@@ -328,14 +328,14 @@ input::value {
   }
 }
 footer {
-  color: lightyellow;
+  color: #fffaf0;
   display: flex;
   flex-direction: column;
   line-height: 2;
   text-align: center;
 }
 footer a {
-  color: lightyellow;
+  color: #fffaf0;
 }
 
 .alert,
@@ -345,7 +345,7 @@ footer a {
   border: 2px solid rgba(255, 215, 0, 0.2);
   background-color: rgba(38, 38, 37, 0.1);
   text-align: center;
-  color: #ffff33;
+  color: #ffeecb;
   margin: 2rem 0;
 }
 .alert .alert-content,
@@ -364,7 +364,7 @@ footer a {
 }
 .alert .alert-content .alert-close:hover,
 .chat-msg .alert-content .alert-close:hover {
-  color: #999900;
+  color: #ffbd32;
 }
 
 .pagination-button-container {
@@ -375,11 +375,11 @@ footer a {
 }
 .pagination-button-container .pagination-button {
   background-color: transparent;
-  color: yellow;
+  color: #ffde98;
 }
 
 button {
-  background-color: yellow;
+  background-color: #ffde98;
   padding: 0.5em;
   min-height: 3em;
   border-radius: 0.25em;
@@ -392,7 +392,7 @@ button:hover {
 }
 
 .big-button {
-  background-color: #ffff33;
+  background-color: #ffeecb;
   margin: 1em 0 0 0;
   width: 100%;
   color: #060010;
@@ -418,11 +418,11 @@ button:hover {
 
 * {
   overflow-wrap: break-word;
+  line-height: 1.5;
 }
 
 body {
   background-color: #060010;
-  line-height: 1.5;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   min-height: 100% !important;
   display: flex;
@@ -462,7 +462,4 @@ body #root .root-layout main {
     max-width: 600px;
     padding: clamp(1.5rem, 6%, 3rem) !important;
   }
-}
-.map {
-  background-color: red;
 }/*# sourceMappingURL=styles.css.map */

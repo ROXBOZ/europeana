@@ -25,8 +25,14 @@ const Login = () => {
     }
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      login(email, password);
+    }
+  };
+
   return (
-    <>
+    <div onKeyDown={handleKeyPress}>
       <h2>Sich anmelden</h2>
       <p>Dies ist eine Demo-App. Du kannst mit falschen Daten einloggen.</p>
       {errorMessageLogin?.includes("wrong-password") && (
@@ -69,7 +75,7 @@ const Login = () => {
           Nicht registriert? <Link to="/register">Zur&nbsp;Registrierung</Link>.
         </p>
       </div>
-    </>
+    </div>
   );
 };
 

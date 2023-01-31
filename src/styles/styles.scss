@@ -12,10 +12,11 @@
 
 * {
   overflow-wrap: break-word;
+  line-height: 1.5;
 }
+
 body {
   background-color: $bg-dark;
-  line-height: 1.5;
   font-family: $font;
   min-height: 100% !important;
   display: flex;
@@ -55,8 +56,4 @@ body {
       padding: $padding-md !important;
     }
   }
-}
-
-.map {
-  background-color: red;
 }

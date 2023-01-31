@@ -30,7 +30,7 @@ export const ItemsContextProvider = (props) => {
       const response = await fetch(url);
       const result = await response.json();
       setData(result);
-      console.log("result :>> ", result);
+      // console.log("result :>> ", result);
       setLoading(false);
     } catch (error) {
       console.log("Catch: ", error);

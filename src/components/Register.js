@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { useState } from "react";
 import { AuthContext } from "../store/AuthContext";
-// import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const Register = () => {
@@ -10,7 +9,6 @@ const Register = () => {
 
   const { register, setUserName, errorMessageRegister } =
     useContext(AuthContext);
-  // const redirectTo = useNavigate();
 
   const handleUserNameChange = (e) => {
     setUserName(e.target.value);
@@ -28,8 +26,14 @@ const Register = () => {
     register(email, password);
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      register(email, password);
+    }
+  };
+
   return (
-    <>
+    <div onKeyDown={handleKeyPress}>
       <h2>Registrieren</h2>
       <p>Dies ist eine Demo-App. Du kannst mit falschen Daten einloggen.</p>
       {errorMessageRegister?.includes("email-already-in-use") && (
@@ -81,7 +85,7 @@ const Register = () => {
           Schon angemeldet? <Link to="/login">Zum&nbsp;Anmelden</Link>.
         </p>
       </div>
-    </>
+    </div>
   );
 };
 
