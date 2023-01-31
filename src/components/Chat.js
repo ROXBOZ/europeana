@@ -71,18 +71,21 @@ const Chat = () => {
         <button onClick={handleSubmit}>Senden</button>
       </div>
       {messages &&
-        messages.map((message) => {
-          return (
-            <>
-              <div className="chat-msg">
-                <p>
-                  {message.author} – {secondToDate(message.date.seconds * 1000)}
-                </p>
-                <p>{message.text}</p>
-              </div>
-            </>
-          );
-        })}
+        messages
+          .sort((a, b) => b.date.seconds - a.date.seconds)
+          .map((message) => {
+            return (
+              <>
+                <div className="chat-msg">
+                  <p>
+                    {message.author} –{" "}
+                    {secondToDate(message.date.seconds * 1000)}
+                  </p>
+                  <p>{message.text}</p>
+                </div>
+              </>
+            );
+          })}
     </div>
   );
 };
