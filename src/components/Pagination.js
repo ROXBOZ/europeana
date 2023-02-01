@@ -1,5 +1,4 @@
-import React from "react";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { ItemsContext } from "../store/ItemsContext";
 
 const Pagination = ({ handleNext, handlePrev }) => {
@@ -9,11 +8,11 @@ const Pagination = ({ handleNext, handlePrev }) => {
       <button
         className="pagination-button"
         disabled={page === 1 ? true : false}
-        onClick={handlePrev()}
+        onClick={handlePrev}
       >
         ←&nbsp;vor
       </button>
-      <button className="pagination-button" onClick={handleNext()}>
+      <button className="pagination-button" onClick={handleNext}>
         nächste&nbsp;→
       </button>
     </div>

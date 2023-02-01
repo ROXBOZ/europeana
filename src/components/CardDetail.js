@@ -11,11 +11,12 @@ import { ItemsContext } from "../store/ItemsContext";
 import Chat from "./Chat";
 
 const CardDetail = () => {
-  const { animate, setAnimate } = useContext(ItemsContext);
-  console.log("animate :>> ", animate);
+  const { animate, setAnimate, userSaved, setUserSaved } =
+    useContext(ItemsContext);
+  // console.log("animate :>> ", animate);
   const { user } = useContext(AuthContext);
   let location = useLocation();
-  console.log("location", location);
+  // console.log("location", location);
   const { id, title, clearTitle, img, provider, description, copyrights } =
     location.state.content;
 
@@ -23,15 +24,13 @@ const CardDetail = () => {
   const googleMapLink = `https://www.google.com/maps?q=${street}`;
 
   // what key for firestore next item ?
-
-  const [newItem, setNewItem] = useState("");
-
-  const unsub = onSnapshot(doc(db, "saved", user.uid), (doc) => {
-    let currentData = doc.data();
-    let currentAmountOfItems = Object.keys(currentData).length;
-    setNewItem(`item_${currentAmountOfItems + 1}`);
-    // console.log("newItem :>> ", newItem);
-  });
+  // const [newItem, setNewItem] = useState("");
+  // const unsub = onSnapshot(doc(db, "saved", user.uid), (doc) => {
+  //   let currentData = doc.data();
+  //   let currentAmountOfItems = Object.keys(currentData).length;
+  //   setNewItem(`item_${currentAmountOfItems + 1}`);
+  //   // console.log("newItem :>> ", newItem);
+  // });
 
   const [opacity, setOpacity] = useState(0.5);
 
@@ -55,9 +54,9 @@ const CardDetail = () => {
     // }
   };
 
-  useEffect(() => {
-    unsub();
-  }, [setNewItem]);
+  // useEffect(() => {
+  //   unsub();
+  // }, [setNewItem]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -68,7 +67,8 @@ const CardDetail = () => {
     <>
       {true ? (
         <div className="card-content">
-          <h3 className="data-title">{title}</h3>
+          <h1 className="data-title">{title}</h1>
+          <h2 className="data-title">{clearTitle}</h2>
           <div className="card-main-content">
             <img
               className="card-img"

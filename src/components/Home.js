@@ -14,6 +14,7 @@ const Home = () => {
     data,
     NoSearchUrl,
     page,
+    row,
     setPage,
     fetchData,
     searchEntry,
@@ -80,10 +81,10 @@ const Home = () => {
   // Pagination
 
   const handleNext = () => {
-    setPage(page + 1);
+    setPage(page + row);
   };
   const handlePrev = () => {
-    setPage(page - 1);
+    setPage(page - row);
   };
 
   if (data) {

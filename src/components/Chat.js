@@ -54,9 +54,8 @@ const Chat = ({ id }) => {
   };
 
   return (
-    <div>
-      <h1>Chat</h1>
-      <h2>Kommentare</h2>
+    <div className="chat-container">
+      <h3>Kommentare</h3>
 
       <div className="add-msg">
         <input

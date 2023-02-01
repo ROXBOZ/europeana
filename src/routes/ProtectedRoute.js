@@ -3,20 +3,16 @@ import { useContext } from "react";
 import { ItemsContext } from "../store/ItemsContext";
 import Card from "../components/Card";
 import { AuthContext } from "../store/AuthContext";
-import { Link } from "react-router-dom";
+import Pagination from "../components/Pagination";
 
 const ProtectedRoute = ({ getInput, handleNext, handlePrev, handleSearch }) => {
-  const { data, page } = useContext(ItemsContext);
+  const { data } = useContext(ItemsContext);
   const { user } = useContext(AuthContext);
 
   return (
     <>
       {user && (
         <>
-          <p>
-            ↗&nbsp;
-            <Link to="/chat">Guestbook</Link>
-          </p>
           <p>
             <strong>SO36</strong> - das ist die alte Postleitzahl von Kreuzberg
             und der Name des berühmten Clubs, der in den 80er Jahren die
@@ -35,38 +31,22 @@ const ProtectedRoute = ({ getInput, handleNext, handlePrev, handleSearch }) => {
             <button onClick={handleSearch}>Suchen</button>
           </div>
 
-          <div className="pagination-button-container">
-            <button
-              className="pagination-button"
-              disabled={page === 1 ? true : false}
-              onClick={handlePrev}
-            >
-              ←&nbsp;vor
-            </button>
-            <button className="pagination-button" onClick={handleNext}>
-              nächste&nbsp;→
-            </button>
-          </div>
+          <Pagination handleNext={handleNext} handlePrev={handlePrev} />
 
           {data.items ? (
-            data.items
-              // .filter((item) => {
-              //   return (
-              //     item.dcTitleLangAware.de[0]
-              //       .toLowerCase()
-              //       .includes(searchEntry.toLowerCase()) || !searchEntry
-              //   );
-              // })
-              .map((c) => {
-                return (
-                  <>
-                    <Card key={c.id} c={c} />
-                  </>
-                );
-              })
+            data.items.map((c) => {
+              const id = c.id.replace(
+                "/2064115/Museu_ProvidedCHO_museum_digital_",
+                ""
+              );
+              console.log("id", id);
+
+              return <Card key={id} c={c} id={id} />;
+            })
           ) : (
             <p>...loading (1)...</p>
           )}
+          <Pagination handleNext={handleNext} handlePrev={handlePrev} />
           <p className="total-results">
             <strong>{data.totalResults} Ergebnisse</strong>
           </p>

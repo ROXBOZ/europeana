@@ -8,40 +8,37 @@ import Card from "./Card";
 
 const Konto = () => {
   const { user } = useContext(AuthContext);
-  const [userSaved, setUserSaved] = useState([]);
+  const { userSaved, setUserSaved } = useContext(ItemsContext);
 
-  const getSavedItems = async () => {
-    const q = query(collection(db, "saved"));
-    const querySnapshot = await getDocs(q);
-    let AllItems = [];
-    querySnapshot.forEach((doc) => {
-      if (doc.id === user.uid) {
-        let items = doc.data();
-        for (let key in items) {
-          if (key.startsWith("item_")) {
-            AllItems.push(items[key]);
-          }
-        }
-      }
-    });
-    setUserSaved(
-      AllItems.map((d) => {
-        return (
-          <>
-            <p>{d}</p>
+  // const [userSaved, setUserSaved] = useState([]);
 
-            {/* <Card c={d} key={d.id} /> */}
-          </>
-        );
-      })
-    );
-  };
+  // const getSavedItems = async () => {
+  //   // TO READ THE ITEMS
+  //   // do this operation in context and send it to konto and send it to card detail
+  //   // get the items from the database, get the array and loop over it, if saved id includes. id then run delete function
+  //   // push and pull
+  //   // method array remove
+  //   const q = query(collection(db, "saved"));
+  //   const querySnapshot = await getDocs(q);
+  //   let AllItems = [];
+  //   querySnapshot.forEach((doc) => {
+  //     if (doc.id === user.uid) {
+  //       let items = doc.data();
+  //       for (let key in items) {
+  //         if (key.startsWith("item_")) {
+  //           AllItems.push(items[key]);
+  //         }
+  //       }
+  //     }
+  //   });
+  //   setUserSaved(AllItems);
+  // };
 
-  useEffect(() => {
-    if (user?.uid) {
-      getSavedItems();
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user?.uid) {
+  //     getSavedItems();
+  //   }
+  // }, [user]);
 
   return (
     <>
@@ -55,9 +52,27 @@ const Konto = () => {
         excepturi autem!
       </p>
       <h3>Geschpeichert</h3>
-      <div>{userSaved}</div>
+      {userSaved &&
+        userSaved.map((d) => {
+          return (
+            <>
+              <p>{d}</p>
+              {/* <Card c={d} key={d.id} /> */}
+            </>
+          );
+        })}
     </>
   );
 };
 
 export default Konto;
+
+// AllItems.map((d) => {
+//   return (
+//     <>
+//       {/* <p>{d}</p> */}
+
+//       <Card c={d} key={d.id} />
+//     </>
+//   );
+// })

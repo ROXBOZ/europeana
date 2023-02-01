@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Card = ({ c }) => {
-  const id = c.id.replace("/2064115/Museu_ProvidedCHO_museum_digital_", "");
+const Card = ({ c, id }) => {
+  // const id = c.id.replace("/2064115/Museu_ProvidedCHO_museum_digital_", "");
+  // ? after every c
   const title = c.dcTitleLangAware["de"][0];
   const img = c.edmIsShownBy[0];
   const provider = c.dataProvider[0];

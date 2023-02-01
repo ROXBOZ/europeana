@@ -1,5 +1,9 @@
-import { createContext, useState } from "react";
+import { collection, getDocs, query } from "firebase/firestore";
+import { createContext, useContext, useState } from "react";
 import { API_KEY } from "../config/apiKey";
+import { db } from "../config/firebaseConfig";
+import { useEffect } from "react";
+import { AuthContext } from "./AuthContext";
 
 export const ItemsContext = createContext();
 export const ItemsContextProvider = (props) => {
@@ -9,7 +13,7 @@ export const ItemsContextProvider = (props) => {
   const [, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [searchEntry, setSearchEntry] = useState("");
-
+  const { user } = useContext(AuthContext);
   const streetFormat = (input) => {
     if (input && input.includes("strasse")) {
       return input.replace("strasse", "str");
@@ -18,9 +22,6 @@ export const ItemsContextProvider = (props) => {
     }
     return input;
   };
-
-  // animation of Mein Konto Link when saving an item
-  const [animate, setAnimate] = useState(true);
 
   const baseUrl = `https://www.europeana.eu/api/v2/search.json?wskey=${API_KEY}&query=Berlin&query =Kreuzberg&query=Museum FHXB`;
   const NoSearchUrl = `${baseUrl}&start=${page}&rows=${row}`;
@@ -39,6 +40,41 @@ export const ItemsContextProvider = (props) => {
     }
   };
 
+  // animation of Mein Konto Link when saving an item
+  const [animate, setAnimate] = useState(true);
+
+  // saved items
+
+  const [userSaved, setUserSaved] = useState([]);
+
+  const getSavedItems = async () => {
+    const q = query(collection(db, "saved"));
+    const querySnapshot = await getDocs(q);
+    let AllItems = [];
+    querySnapshot.forEach((doc) => {
+      if (doc.id === user.uid) {
+        let items = doc.data();
+        for (let key in items) {
+          if (key.startsWith("item_")) {
+            AllItems.push(items[key]);
+          }
+        }
+      }
+    });
+    setUserSaved(AllItems);
+  };
+
+  useEffect(() => {
+    if (user?.uid) {
+      getSavedItems();
+    }
+  }, [user]);
+
+  // TO READ THE ITEMS
+  // do this operation in context and send it to konto and send it to card detail
+  // get the items from the database, get the array and loop over it, if saved id includes. id then run delete function
+  // push and pull
+  // method array remove
   return (
     <ItemsContext.Provider
       value={{
@@ -51,6 +87,8 @@ export const ItemsContextProvider = (props) => {
         searchEntry,
         animate,
         setAnimate,
+        userSaved,
+        setUserSaved,
         setSearchEntry,
         setPage,
         fetchData,
