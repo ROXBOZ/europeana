@@ -22,8 +22,7 @@ const Home = () => {
     streetFormat,
     searchUrl,
   } = useContext(ItemsContext);
-  const { user } = useContext(AuthContext);
-  const [firebaseUsername, setFirebaseUsername] = useState([]);
+  const { user, firebaseUsername } = useContext(AuthContext);
 
   // Welcoming Alert
 
@@ -31,23 +30,6 @@ const Home = () => {
   const handleClose = () => {
     setIsAlertOpen(false);
   };
-
-  const getFirebaseUser = async () => {
-    const q = query(collection(db, "users"));
-    const querySnapshot = await getDocs(q);
-
-    querySnapshot.forEach((doc) => {
-      if (doc.id === user.uid) {
-        setFirebaseUsername(doc.data().username);
-      }
-    });
-  };
-
-  useEffect(() => {
-    if (user?.uid) {
-      getFirebaseUser();
-    }
-  }, [user]);
 
   // Search
 

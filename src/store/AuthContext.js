@@ -6,7 +6,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { signOut } from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../config/firebaseConfig";
-import { doc, setDoc } from "firebase/firestore";
+import { collection, doc, getDocs, query, setDoc } from "firebase/firestore";
 
 export const AuthContext = createContext();
 export const AuthContextProvider = (props) => {
@@ -73,6 +73,25 @@ export const AuthContextProvider = (props) => {
       });
   };
 
+  const [firebaseUsername, setFirebaseUsername] = useState([]);
+
+  const getFirebaseUser = async () => {
+    const q = query(collection(db, "users"));
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach((doc) => {
+      if (doc.id === user.uid) {
+        setFirebaseUsername(doc.data().username);
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (user?.uid) {
+      getFirebaseUser();
+    }
+  }, [user]);
+
   return (
     <AuthContext.Provider
       value={{
@@ -84,6 +103,7 @@ export const AuthContextProvider = (props) => {
         register,
         errorMessageRegister,
         errorMessageLogin,
+        firebaseUsername,
       }}
     >
       {props.children}
