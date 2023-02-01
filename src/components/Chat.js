@@ -76,30 +76,28 @@ const Chat = ({ id }) => {
       {messages &&
         messages
           .sort((a, b) => b.date.seconds - a.date.seconds)
-          .map((message) => {
+          .map((message, index) => {
             const date = new Date(message.date.seconds * 1000);
             return (
-              <>
-                <div className="chat-msg">
-                  <p>
-                    <span className="message-date">
-                      {date.toLocaleDateString("de-DE", {
-                        day: "numeric",
-                        year: "numeric",
-                        month: "short",
-                      })}
-                      ,{" "}
-                      {date.toLocaleTimeString([], {
-                        hour: "numeric",
-                        minute: "numeric",
-                      })}
-                    </span>
-                    <br />
-                    <span className="message-author">{message.author}</span>
-                  </p>
-                  <p>{message.text}</p>
-                </div>
-              </>
+              <div key={index} className="chat-msg">
+                <p>
+                  <span className="message-date">
+                    {date.toLocaleDateString("de-DE", {
+                      day: "numeric",
+                      year: "numeric",
+                      month: "short",
+                    })}
+                    ,{" "}
+                    {date.toLocaleTimeString([], {
+                      hour: "numeric",
+                      minute: "numeric",
+                    })}
+                  </span>
+                  <br />
+                  <span className="message-author">{message.author}</span>
+                </p>
+                <p>{message.text}</p>
+              </div>
             );
           })}
     </div>

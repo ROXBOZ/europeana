@@ -10,46 +10,21 @@ const Konto = () => {
   const { user } = useContext(AuthContext);
   const { userSaved, setUserSaved } = useContext(ItemsContext);
 
-  // const [userSaved, setUserSaved] = useState([]);
-
-  // const getSavedItems = async () => {
-  //   // TO READ THE ITEMS
-  //   // do this operation in context and send it to konto and send it to card detail
-  //   // get the items from the database, get the array and loop over it, if saved id includes. id then run delete function
-  //   // push and pull
-  //   // method array remove
-  //   const q = query(collection(db, "saved"));
-  //   const querySnapshot = await getDocs(q);
-  //   let AllItems = [];
-  //   querySnapshot.forEach((doc) => {
-  //     if (doc.id === user.uid) {
-  //       let items = doc.data();
-  //       for (let key in items) {
-  //         if (key.startsWith("item_")) {
-  //           AllItems.push(items[key]);
-  //         }
-  //       }
-  //     }
-  //   });
-  //   setUserSaved(AllItems);
-  // };
-
-  // useEffect(() => {
-  //   if (user?.uid) {
-  //     getSavedItems();
-  //   }
-  // }, [user]);
+  // 1. make sure liked item added manually in database appear here
+  // 2. make sure there are no duplicates
+  // 3. make speichern button add/delete on toggle (check comments on CardDetail)
+  // 4. On Konto, make sure CARDS appear
+  // 5. allow user to delete Card
 
   return (
     <>
       <h1>Mein Konto</h1>
       <h2>Mein Konto</h2>
-
+      <>Liebe* {firebaseUsername}</>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores porro
-        optio officia, a id sapiente voluptates nihil accusantium, reiciendis
-        vel facilis provident similique quibusdam sed? Quidem provident impedit
-        excepturi autem!
+        Auf dieser Seite hast du die Möglichkeit, die Bilder anzusehen, die du
+        gespeichert hast. Sie sind alle hier zusammengefasst, damit du einfach
+        und bequem darauf zugreifen kannst.
       </p>
       <h3>Geschpeichert</h3>
       {userSaved &&

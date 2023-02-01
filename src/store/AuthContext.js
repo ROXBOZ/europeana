@@ -42,7 +42,6 @@ export const AuthContextProvider = (props) => {
         email,
         password
       );
-      // const user = userCredential.user;
       setUser(userCredential.user);
       redirectTo("/");
     } catch (error) {
@@ -53,11 +52,8 @@ export const AuthContextProvider = (props) => {
   const checkUserStatus = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        // const uid = user.uid;
-        // console.log("user logged in");
         setUser(user);
       } else {
-        // console.log("user NOT loged in");
         setUser(null);
       }
     });

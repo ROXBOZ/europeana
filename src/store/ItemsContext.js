@@ -40,28 +40,22 @@ export const ItemsContextProvider = (props) => {
     }
   };
 
-  // animation of Mein Konto Link when saving an item
   const [animate, setAnimate] = useState(true);
-
-  // saved items
-
   const [userSaved, setUserSaved] = useState([]);
 
   const getSavedItems = async () => {
     const q = query(collection(db, "saved"));
     const querySnapshot = await getDocs(q);
-    let AllItems = [];
+    const savedItemsArray = [];
     querySnapshot.forEach((doc) => {
-      if (doc.id === user.uid) {
-        let items = doc.data();
-        for (let key in items) {
-          if (key.startsWith("item_")) {
-            AllItems.push(items[key]);
-          }
-        }
+      if (user.uid === doc.id) {
+        const savedItems = doc.data().savedItems;
+        savedItems.forEach((item) => {
+          savedItemsArray.push(item);
+        });
       }
     });
-    setUserSaved(AllItems);
+    setUserSaved(savedItemsArray);
   };
 
   useEffect(() => {
@@ -70,11 +64,6 @@ export const ItemsContextProvider = (props) => {
     }
   }, [user]);
 
-  // TO READ THE ITEMS
-  // do this operation in context and send it to konto and send it to card detail
-  // get the items from the database, get the array and loop over it, if saved id includes. id then run delete function
-  // push and pull
-  // method array remove
   return (
     <ItemsContext.Provider
       value={{

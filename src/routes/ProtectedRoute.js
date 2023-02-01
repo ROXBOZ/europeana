@@ -39,7 +39,6 @@ const ProtectedRoute = ({ getInput, handleNext, handlePrev, handleSearch }) => {
                 "/2064115/Museu_ProvidedCHO_museum_digital_",
                 ""
               );
-              console.log("id", id);
 
               return <Card key={id} c={c} id={id} />;
             })

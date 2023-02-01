@@ -13,10 +13,8 @@ import Chat from "./Chat";
 const CardDetail = () => {
   const { animate, setAnimate, userSaved, setUserSaved } =
     useContext(ItemsContext);
-  // console.log("animate :>> ", animate);
   const { user } = useContext(AuthContext);
   let location = useLocation();
-  // console.log("location", location);
   const { id, title, clearTitle, img, provider, description, copyrights } =
     location.state.content;
 
