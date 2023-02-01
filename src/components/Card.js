@@ -24,6 +24,7 @@ const Card = ({ c }) => {
     .replace("um ", "~");
 
   const itemDetail = {
+    id,
     title,
     clearTitle,
     img,

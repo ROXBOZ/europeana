@@ -440,6 +440,34 @@ button:disabled {
   font-size: 80%;
 }
 
+.animate {
+  -webkit-animation-name: wiggle;
+          animation-name: wiggle;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+}
+
+/* Keyframes */
+@-webkit-keyframes wiggle {
+  0% {
+    font-size: 100%;
+  }
+  50% {
+    font-size: 120%;
+    color: #fffaf0;
+  }
+}
+@keyframes wiggle {
+  0% {
+    font-size: 100%;
+  }
+  50% {
+    font-size: 120%;
+    color: #fffaf0;
+  }
+}
 * {
   overflow-wrap: break-word;
   line-height: 1.5;

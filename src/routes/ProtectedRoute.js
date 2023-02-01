@@ -3,15 +3,20 @@ import { useContext } from "react";
 import { ItemsContext } from "../store/ItemsContext";
 import Card from "../components/Card";
 import { AuthContext } from "../store/AuthContext";
+import { Link } from "react-router-dom";
 
 const ProtectedRoute = ({ getInput, handleNext, handlePrev, handleSearch }) => {
-  const { data, page, searchEntry } = useContext(ItemsContext);
+  const { data, page } = useContext(ItemsContext);
   const { user } = useContext(AuthContext);
 
   return (
     <>
       {user && (
         <>
+          <p>
+            ↗&nbsp;
+            <Link to="/chat">Guestbook</Link>
+          </p>
           <p>
             <strong>SO36</strong> - das ist die alte Postleitzahl von Kreuzberg
             und der Name des berühmten Clubs, der in den 80er Jahren die

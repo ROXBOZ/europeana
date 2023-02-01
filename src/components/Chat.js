@@ -3,9 +3,9 @@ import { useContext, useEffect, useState } from "react";
 import { db } from "../config/firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 import { AuthContext } from "../store/AuthContext";
-import { doc, onSnapshot } from "firebase/firestore";
+import { onSnapshot } from "firebase/firestore";
 
-const Chat = () => {
+const Chat = ({ id }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const { user } = useContext(AuthContext);
@@ -26,16 +26,13 @@ const Chat = () => {
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const msgs = [];
       querySnapshot.forEach((doc) => {
-        msgs.push(doc.data());
+        if (id === doc.data().item_id) {
+          msgs.push(doc.data());
+        }
       });
       setMessages(msgs);
     });
   };
-
-  // const secondToDate = (time) => {
-  //   const date = new Date(time).toLocaleDateString();
-  //   return date;
-  // };
 
   useEffect(() => {
     liveUpdate();
@@ -51,6 +48,7 @@ const Chat = () => {
       text: newMessage,
       author: user.email,
       date: new Date(),
+      item_id: id,
     });
     setValue("");
   };
@@ -58,8 +56,7 @@ const Chat = () => {
   return (
     <div>
       <h1>Chat</h1>
-      <h2>Guestbook</h2>
-      <p>The concept of a Guestbook here is extremely lame.</p>
+      <h2>Kommentare</h2>
 
       <div className="add-msg">
         <input

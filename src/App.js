@@ -23,7 +23,9 @@ const router = createBrowserRouter(
       path="/"
       element={
         <AuthContextProvider>
-          <RootLayout />
+          <ItemsContextProvider>
+            <RootLayout />
+          </ItemsContextProvider>
         </AuthContextProvider>
       }
     >
