@@ -54,10 +54,10 @@ export const AuthContextProvider = (props) => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // const uid = user.uid;
-        console.log("user logged in");
+        // console.log("user logged in");
         setUser(user);
       } else {
-        console.log("user NOT loged in");
+        // console.log("user NOT loged in");
         setUser(null);
       }
     });

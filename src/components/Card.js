@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Card = ({ c }) => {
-  const id = c.id.replace("/2064115/", "");
+  const id = c.id.replace("/2064115/Museu_ProvidedCHO_museum_digital_", "");
   const title = c.dcTitleLangAware["de"][0];
   const img = c.edmIsShownBy[0];
   const provider = c.dataProvider[0];
