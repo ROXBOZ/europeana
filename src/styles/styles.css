@@ -338,6 +338,20 @@ input::placeholder {
   color: #ffeacb;
 }
 
+.saved-items-container {
+  display: grid;
+  grid-template-columns: 2fr auto;
+  align-items: center;
+  gap: 2rem;
+}
+.saved-items-container .saved-item-close {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  justify-self: flex-end;
+  color: #fffaf0;
+}
+
 @media only screen and (min-width: 600px) {
   .card-content .card-main-content {
     display: flex;
@@ -422,7 +436,8 @@ button:disabled {
 
 .pagination-button,
 .card-save,
-.data-google-link {
+.data-google-link,
+.saved-item-close {
   cursor: pointer;
   font-size: 16px;
   color: #ffd698;

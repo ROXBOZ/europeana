@@ -1,8 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../store/AuthContext";
 import { ItemsContext } from "../store/ItemsContext";
 import Card from "./Card";
 import { useEffect } from "react";
+import { arrayRemove, doc, updateDoc } from "firebase/firestore";
+import { db } from "../config/firebaseConfig";
 
 const Konto = () => {
   const { user, firebaseUsername } = useContext(AuthContext);
@@ -13,14 +15,21 @@ const Konto = () => {
     fetchData(NoSearchUrl);
   }, []);
 
+  const handleDelete = async (e, id) => {
+    // alert("feature is coming");
+    const savedItemRef = doc(db, "saved", user.uid);
+    await updateDoc(savedItemRef, {
+      savedItems: arrayRemove(id),
+    });
+  };
+
   return (
     <>
       <h1>Mein Konto</h1>
       <h2>Konto von {firebaseUsername}</h2>
       <p>
         Auf dieser Seite hast du die Möglichkeit, die Bilder anzusehen, die du
-        gespeichert hast. Sie sind alle hier zusammengefasst, damit du einfach
-        und bequem darauf zugreifen kannst.
+        gespeichert hast.
       </p>
 
       <h3>Geschpeichert</h3>
@@ -35,7 +44,21 @@ const Konto = () => {
               );
 
               if (userSaved.includes(id)) {
-                return <Card key={id} c={c} id={id} />;
+                return (
+                  <>
+                    <div className="saved-items-container">
+                      <div className="saved-item-card">
+                        <Card key={id} c={c} id={id} />
+                      </div>
+                      <button
+                        onClick={(e) => handleDelete(e, id)}
+                        className="saved-item-close"
+                      >
+                        &times;
+                      </button>
+                    </div>
+                  </>
+                );
               } else {
                 return null;
               }
