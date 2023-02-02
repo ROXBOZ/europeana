@@ -21,6 +21,8 @@ const Chat = ({ id }) => {
     setMessages(msgs);
   };
 
+  console.log("getMessages", getMessages);
+
   const liveUpdate = () => {
     const q = query(collection(db, "chat"));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -31,6 +33,7 @@ const Chat = ({ id }) => {
         }
       });
       setMessages(msgs);
+      console.log("unsubscribe :>> ", unsubscribe);
     });
   };
 

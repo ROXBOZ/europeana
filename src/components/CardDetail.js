@@ -7,7 +7,6 @@ import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { useContext } from "react";
 import { AuthContext } from "../store/AuthContext";
 import { db } from "../config/firebaseConfig";
-import { ItemsContext } from "../store/ItemsContext";
 import Chat from "./Chat";
 
 const CardDetail = () => {
@@ -19,7 +18,7 @@ const CardDetail = () => {
   const street = clearTitle.split(",")[0];
   const googleMapLink = `https://www.google.com/maps?q=${street}`;
 
-  const [opacity, setOpacity] = useState(0.5);
+  const [, setOpacity] = useState(0.5);
   const [isSaved, setIsSaved] = useState("");
 
   const handleSave = async () => {
