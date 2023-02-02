@@ -1,9 +1,10 @@
 import { getDocs, query } from "firebase/firestore";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { db } from "../config/firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 import { AuthContext } from "../store/AuthContext";
 import { onSnapshot } from "firebase/firestore";
+import { useEffect } from "react";
 
 const Chat = ({ id }) => {
   const [messages, setMessages] = useState([]);
@@ -47,7 +48,8 @@ const Chat = ({ id }) => {
   };
 
   const handleSubmit = async () => {
-    const docRef = await addDoc(collection(db, "chat"), {
+    // const docRef = await
+    await addDoc(collection(db, "chat"), {
       text: newMessage,
       author: user.email,
       date: new Date(),

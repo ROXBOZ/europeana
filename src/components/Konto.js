@@ -8,7 +8,7 @@ import { db } from "../config/firebaseConfig";
 
 const Konto = () => {
   const { user, firebaseUsername } = useContext(AuthContext);
-  const { data, NoSearchUrl, fetchData, id, userSaved, setUserSaved } =
+  const { data, NoSearchUrl, fetchData, userSaved, setUserSaved } =
     useContext(ItemsContext);
 
   useEffect(() => {
