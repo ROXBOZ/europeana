@@ -17,7 +17,7 @@ input {
   border-radius: 0.25em;
 
   &::placeholder {
-    font-weight: bold;
     color: lightgrey;
+    font-size: 120%;
   }
 }

@@ -4,6 +4,7 @@
 /*------Margins------*/
 /*------Borders------*/
 /*------Disabled------*/
+/*------Transition------*/
 h1 {
   border: 0;
   clip: rect(1px, 1px, 1px, 1px);
@@ -41,6 +42,7 @@ header nav .nav-button {
   border: 2px solid #fffaf0;
   border-bottom: 2px solid !important;
   border-radius: 0.25em;
+  transition: 1s !important;
 }
 header nav .nav-button.active {
   border: 2px solid #23005d;
@@ -54,7 +56,8 @@ header nav .nav-button.active {
 header nav .nav-button:hover {
   color: #ffd698;
   border: transparent;
-  border-bottom: none !important;
+  border-bottom: transparent !important;
+  transition: 1s;
 }
 header nav .nav-link.active {
   color: #fffaf0;
@@ -80,10 +83,10 @@ html h2 {
   padding-top: 0;
 }
 html h2.title {
+  padding-top: 2rem;
   font-family: "poster-cut-neue", sans-serif;
   line-height: 1;
   text-align: center;
-  font-size: 300%;
 }
 html p {
   max-width: 70ch;
@@ -103,11 +106,17 @@ html a {
   font-weight: bold;
   text-decoration: none;
   border-bottom: 2px solid;
+  transition: 1s;
 }
 html a:hover {
   border: none;
 }
 
+@media only screen and (min-width: 600px) {
+  h2.title {
+    font-size: 300%;
+  }
+}
 /* Ratio Scale */
 h4,
 .h4 {
@@ -176,20 +185,22 @@ input {
   border-radius: 0.25em;
 }
 input::-moz-placeholder {
-  font-weight: bold;
   color: lightgrey;
+  font-size: 120%;
 }
 input:-ms-input-placeholder {
-  font-weight: bold;
   color: lightgrey;
+  font-size: 120%;
 }
 input::placeholder {
-  font-weight: bold;
   color: lightgrey;
+  font-size: 120%;
 }
 
+.register-form .username-container,
 .register-form .email-container,
 .register-form .password-container,
+.login-form .username-container,
 .login-form .email-container,
 .login-form .password-container {
   max-width: 70ch;
@@ -394,7 +405,7 @@ button:disabled {
 }
 
 .full-width-button {
-  margin: 1em 0 0 0;
+  margin: 1em 0;
   width: 100%;
   color: #060010;
 }
@@ -412,6 +423,7 @@ button:disabled {
 .pagination-button,
 .card-save,
 .data-google-link {
+  cursor: pointer;
   font-size: 16px;
   color: #ffd698;
   background-color: transparent;
@@ -444,34 +456,6 @@ button:disabled {
   font-size: 80%;
 }
 
-.animate {
-  -webkit-animation-name: wiggle;
-          animation-name: wiggle;
-  -webkit-animation-iteration-count: 1;
-          animation-iteration-count: 1;
-  -webkit-animation-duration: 2s;
-          animation-duration: 2s;
-}
-
-/* Keyframes */
-@-webkit-keyframes wiggle {
-  0% {
-    font-size: 100%;
-  }
-  50% {
-    font-size: 120%;
-    color: #fffaf0;
-  }
-}
-@keyframes wiggle {
-  0% {
-    font-size: 100%;
-  }
-  50% {
-    font-size: 120%;
-    color: #fffaf0;
-  }
-}
 * {
   overflow-wrap: break-word;
   line-height: 1.5;

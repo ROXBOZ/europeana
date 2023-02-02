@@ -7,10 +7,7 @@ import Card from "./Card";
 
 const Konto = () => {
   const { firebaseUsername } = useContext(AuthContext);
-  const { userSaved } = useContext(ItemsContext);
-
-  // 4. make sure CARDS appear
-  // 5. allow user to delete Card
+  const { id, userSaved } = useContext(ItemsContext);
 
   return (
     <>
@@ -24,14 +21,33 @@ const Konto = () => {
       <h3>Geschpeichert</h3>
 
       {userSaved &&
-        userSaved.map((s) => {
+        userSaved.map((c) => {
           return (
             <>
-              {/* <Card key={doc.id} c={s} id={doc.id} /> */}
-              <p>{s}</p>
+              <p>{c}</p>
             </>
           );
         })}
+
+      {/* /* console.log("c", c); // on KONTO, c = item id // on PROTECTED ROUTE, c
+      = object of API */}
+
+      {/* {data.items ? (
+        data.items.map((c) => {
+          if (userSaved) {
+            userSaved.map((c) => {
+              if (c === id) {
+                <>
+                  <Card c={c} />
+                  <p>{c}</p>
+                </>;
+              }
+            });
+          }
+        })
+      ) : (
+        <p>No data found</p>
+      )} */}
     </>
   );
 };

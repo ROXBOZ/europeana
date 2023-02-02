@@ -6,11 +6,6 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   const { user } = useContext(AuthContext);
-  const { animate, setAnimate } = useContext(ItemsContext);
-
-  // useEffect(() => {
-  //   <NavLink />;
-  // }, [setAnimate]);
 
   return (
     <header>
@@ -19,10 +14,7 @@ const Header = () => {
       </Link>
       <nav>
         {!user ? null : (
-          <NavLink
-            className={`nav-link ${animate ? "animate" : ""}`}
-            to="konto"
-          >
+          <NavLink className="nav-link" to="konto">
             Mein Konto
           </NavLink>
         )}

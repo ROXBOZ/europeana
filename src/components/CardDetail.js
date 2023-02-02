@@ -11,6 +11,7 @@ import {
   collection,
   addDoc,
   arrayUnion,
+  arrayRemove,
 } from "firebase/firestore";
 import { useContext } from "react";
 import { AuthContext } from "../store/AuthContext";
@@ -19,8 +20,7 @@ import { ItemsContext } from "../store/ItemsContext";
 import Chat from "./Chat";
 
 const CardDetail = () => {
-  const { animate, setAnimate, userSaved, setUserSaved } =
-    useContext(ItemsContext);
+  const { userSaved, setUserSaved } = useContext(ItemsContext);
   const { user } = useContext(AuthContext);
   let location = useLocation();
   const { id, title, clearTitle, img, provider, description, copyrights } =
@@ -30,22 +30,42 @@ const CardDetail = () => {
   const googleMapLink = `https://www.google.com/maps?q=${street}`;
   const [opacity, setOpacity] = useState(0.5);
 
-  // 2. make speichern button add/delete on toggle
-  // 3. make sure there are no duplicates
+  const [isSaved, setIsSaved] = useState(false);
 
   const handleSave = async () => {
-    setOpacity(opacity === 1 ? 0.5 : 1);
-
+    setIsSaved(true);
+    setOpacity(1);
     const savedItemRef = doc(db, "saved", user.uid);
+    console.log("saving :>> ");
     await updateDoc(savedItemRef, {
       savedItems: arrayUnion(id),
     });
   };
 
+  const handleUnsave = async () => {
+    setIsSaved(false);
+    setOpacity(0.5);
+    const savedItemRef = doc(db, "saved", user.uid);
+    console.log("unsaving");
+    await updateDoc(savedItemRef, {
+      savedItems: arrayRemove(id),
+    });
+  };
+
+  const toggleSave = () => {
+    if (isSaved) {
+      handleUnsave();
+    } else {
+      handleSave();
+    }
+  };
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
+    if (window.innerWidth > 600) {
+      setIsModalOpen(!isModalOpen);
+    }
   };
   return (
     <>
@@ -77,7 +97,8 @@ const CardDetail = () => {
               <p className="data-description">{description}.</p>
               <div className="card-content-button-container">
                 <GoogleLink title={title} googleMapLink={googleMapLink} />
-                <button onClick={handleSave} className="card-save">
+
+                <button onClick={toggleSave} className="card-save">
                   <FaSave className="card-save-icon" style={{ opacity }} />
                   &nbsp; speichern
                 </button>

@@ -73,11 +73,7 @@ const Home = () => {
     return (
       <>
         <h1>Berlin SO36 Wohnhäusern Fotosammlung</h1>
-        <h2 className="title">
-          Vorwärts
-          <br />
-          in die Vergangenheit
-        </h2>
+        <h2 className="title">Vorwärts in die Vergangenheit</h2>
 
         {isAlertOpen && (
           <div className="alert">
