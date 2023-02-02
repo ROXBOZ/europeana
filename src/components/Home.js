@@ -6,8 +6,6 @@ import { AuthContext } from "../store/AuthContext";
 import ProtectedRoute from "../routes/ProtectedRoute";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { db } from "../config/firebaseConfig";
-import { collection, doc, getDoc, getDocs, query } from "firebase/firestore";
 
 const Home = () => {
   const {

@@ -1,7 +1,6 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../store/AuthContext";
-import { ItemsContext } from "../store/ItemsContext";
 import { Link } from "react-router-dom";
 
 const Header = () => {

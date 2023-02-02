@@ -3,16 +3,7 @@ import { useLocation } from "react-router-dom";
 import GoogleLink from "./GoogleLink";
 import { FaSave } from "react-icons/fa";
 import { useState } from "react";
-import {
-  doc,
-  onSnapshot,
-  updateDoc,
-  deleteField,
-  collection,
-  addDoc,
-  arrayUnion,
-  arrayRemove,
-} from "firebase/firestore";
+import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { useContext } from "react";
 import { AuthContext } from "../store/AuthContext";
 import { db } from "../config/firebaseConfig";
@@ -20,7 +11,6 @@ import { ItemsContext } from "../store/ItemsContext";
 import Chat from "./Chat";
 
 const CardDetail = () => {
-  const { userSaved, setUserSaved } = useContext(ItemsContext);
   const { user } = useContext(AuthContext);
   let location = useLocation();
   const { id, title, clearTitle, img, provider, description, copyrights } =

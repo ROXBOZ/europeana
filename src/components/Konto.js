@@ -1,11 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { AuthContext } from "../store/AuthContext";
 import { ItemsContext } from "../store/ItemsContext";
 import Card from "./Card";
 import { useEffect } from "react";
 import { arrayRemove, doc, updateDoc } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
-import { useLocation } from "react-router-dom";
 
 const Konto = () => {
   const { user, firebaseUsername } = useContext(AuthContext);
