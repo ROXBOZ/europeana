@@ -34,6 +34,7 @@ const CardDetail = () => {
 
   const handleSave = async () => {
     setIsSaved(true);
+    setOpacity(1);
     const savedItemRef = doc(db, "saved", user.uid);
     console.log("saving :>> ");
     await updateDoc(savedItemRef, {
@@ -43,6 +44,7 @@ const CardDetail = () => {
 
   const handleUnsave = async () => {
     setIsSaved(false);
+    setOpacity(0.5);
     const savedItemRef = doc(db, "saved", user.uid);
     console.log("unsaving");
     await updateDoc(savedItemRef, {
@@ -56,7 +58,6 @@ const CardDetail = () => {
     } else {
       handleSave();
     }
-    // refresh the konto component
   };
 
   ///

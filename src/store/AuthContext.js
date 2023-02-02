@@ -15,6 +15,7 @@ export const AuthContextProvider = (props) => {
   const redirectTo = useNavigate();
   const [errorMessageRegister, setErrorMessageRegister] = useState("");
   const [errorMessageLogin, setErrorMessageLogin] = useState("");
+  const [firebaseUsername, setFirebaseUsername] = useState([]);
 
   const register = async (email, password) => {
     try {
@@ -26,7 +27,7 @@ export const AuthContextProvider = (props) => {
       const user = userCredential.user;
       console.log("user", user);
       setUser(userCredential.user);
-      redirectTo("/");
+      redirectTo("/", { replace: true });
       setDoc(doc(db, "users", user.uid), {
         username: userName,
       });
@@ -43,7 +44,7 @@ export const AuthContextProvider = (props) => {
         password
       );
       setUser(userCredential.user);
-      redirectTo("/");
+      redirectTo("/", { replace: true });
     } catch (error) {
       setErrorMessageLogin(error.message);
     }
@@ -72,8 +73,6 @@ export const AuthContextProvider = (props) => {
         console.log("error", error);
       });
   };
-
-  const [firebaseUsername, setFirebaseUsername] = useState([]);
 
   const getFirebaseUser = async () => {
     const q = query(collection(db, "users"));

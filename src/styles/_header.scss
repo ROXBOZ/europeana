@@ -2,7 +2,8 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  max-width: 99vw;
+  //width: 100%;
 
   a {
     border-bottom: none !important;
