@@ -5,10 +5,11 @@ import Card from "./Card";
 import { useEffect } from "react";
 import { arrayRemove, doc, updateDoc } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
+import { useLocation } from "react-router-dom";
 
 const Konto = () => {
   const { user, firebaseUsername } = useContext(AuthContext);
-  const { data, NoSearchUrl, fetchData, id, userSaved } =
+  const { data, NoSearchUrl, fetchData, id, userSaved, setUserSaved } =
     useContext(ItemsContext);
 
   useEffect(() => {
@@ -16,11 +17,11 @@ const Konto = () => {
   }, []);
 
   const handleDelete = async (e, id) => {
-    // alert("feature is coming");
     const savedItemRef = doc(db, "saved", user.uid);
     await updateDoc(savedItemRef, {
       savedItems: arrayRemove(id),
     });
+    setUserSaved(userSaved.filter((item) => item !== id));
   };
 
   return (

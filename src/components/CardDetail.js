@@ -41,7 +41,6 @@ const CardDetail = () => {
     });
   };
 
-  // this is repeated on Konto page and well shouldnt be.... put it all on context
   const handleUnsave = async () => {
     setIsSaved(false);
     const savedItemRef = doc(db, "saved", user.uid);
@@ -57,6 +56,7 @@ const CardDetail = () => {
     } else {
       handleSave();
     }
+    // refresh the konto component
   };
 
   ///
