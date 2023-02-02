@@ -71,6 +71,22 @@ const CardDetail = () => {
       setIsModalOpen(!isModalOpen);
     }
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (event.target.closest(".modal-content")) {
+        return;
+      }
+      setIsModalOpen(false);
+    };
+
+    window.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isModalOpen]);
+
   return (
     <>
       {true ? (
