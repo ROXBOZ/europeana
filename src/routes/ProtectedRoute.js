@@ -9,10 +9,16 @@ const ProtectedRoute = ({ getInput, handleNext, handlePrev, handleSearch }) => {
   const { data } = useContext(ItemsContext);
   const { user } = useContext(AuthContext);
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   return (
     <>
       {user && (
-        <>
+        <div onKeyDown={handleKeyPress}>
           <p>
             <strong>SO36</strong> - das ist die alte Postleitzahl von Kreuzberg
             und der Name des berühmten Clubs, der in den 80er Jahren die
@@ -35,6 +41,7 @@ const ProtectedRoute = ({ getInput, handleNext, handlePrev, handleSearch }) => {
 
           {data.items ? (
             data.items.map((c) => {
+              console.log("c on PR page :", c); // item
               const id = c.id.replace(
                 "/2064115/Museu_ProvidedCHO_museum_digital_",
                 ""
@@ -49,7 +56,7 @@ const ProtectedRoute = ({ getInput, handleNext, handlePrev, handleSearch }) => {
           <p className="total-results">
             <strong>{data.totalResults} Ergebnisse</strong>
           </p>
-        </>
+        </div>
       )}
     </>
   );

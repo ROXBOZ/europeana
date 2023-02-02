@@ -36,7 +36,7 @@ const Card = ({ c, id }) => {
   return (
     <Link
       className="card-link"
-      to={{ pathname: `items/${id}` }}
+      to={{ pathname: `/items/${id}` }}
       state={{ content: itemDetail }}
       key={id}
     >

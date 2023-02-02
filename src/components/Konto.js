@@ -1,13 +1,17 @@
-import React, { useState, useContext, useEffect } from "react";
-import { db } from "../config/firebaseConfig";
-import { collection, doc, getDoc, getDocs, query } from "firebase/firestore";
+import React, { useContext } from "react";
 import { AuthContext } from "../store/AuthContext";
 import { ItemsContext } from "../store/ItemsContext";
 import Card from "./Card";
+import { useEffect } from "react";
 
 const Konto = () => {
-  const { firebaseUsername } = useContext(AuthContext);
-  const { id, userSaved } = useContext(ItemsContext);
+  const { user, firebaseUsername } = useContext(AuthContext);
+  const { data, NoSearchUrl, fetchData, id, userSaved } =
+    useContext(ItemsContext);
+
+  useEffect(() => {
+    fetchData(NoSearchUrl);
+  }, []);
 
   return (
     <>
@@ -18,36 +22,29 @@ const Konto = () => {
         gespeichert hast. Sie sind alle hier zusammengefasst, damit du einfach
         und bequem darauf zugreifen kannst.
       </p>
+
       <h3>Geschpeichert</h3>
 
-      {userSaved &&
-        userSaved.map((c) => {
-          return (
-            <>
-              <p>{c}</p>
-            </>
-          );
-        })}
+      {user && (
+        <>
+          {data.items ? (
+            data.items.map((c) => {
+              const id = c.id.replace(
+                "/2064115/Museu_ProvidedCHO_museum_digital_",
+                ""
+              );
 
-      {/* /* console.log("c", c); // on KONTO, c = item id // on PROTECTED ROUTE, c
-      = object of API */}
-
-      {/* {data.items ? (
-        data.items.map((c) => {
-          if (userSaved) {
-            userSaved.map((c) => {
-              if (c === id) {
-                <>
-                  <Card c={c} />
-                  <p>{c}</p>
-                </>;
+              if (userSaved.includes(id)) {
+                return <Card key={id} c={c} id={id} />;
+              } else {
+                return null;
               }
-            });
-          }
-        })
-      ) : (
-        <p>No data found</p>
-      )} */}
+            })
+          ) : (
+            <p>...loading (1)...</p>
+          )}
+        </>
+      )}
     </>
   );
 };

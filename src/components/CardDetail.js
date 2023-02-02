@@ -28,13 +28,12 @@ const CardDetail = () => {
 
   const street = clearTitle.split(",")[0];
   const googleMapLink = `https://www.google.com/maps?q=${street}`;
-  const [opacity, setOpacity] = useState(0.5);
 
-  const [isSaved, setIsSaved] = useState(false);
+  const [opacity, setOpacity] = useState(0.5);
+  const [isSaved, setIsSaved] = useState("");
 
   const handleSave = async () => {
     setIsSaved(true);
-    setOpacity(1);
     const savedItemRef = doc(db, "saved", user.uid);
     console.log("saving :>> ");
     await updateDoc(savedItemRef, {
@@ -44,7 +43,6 @@ const CardDetail = () => {
 
   const handleUnsave = async () => {
     setIsSaved(false);
-    setOpacity(0.5);
     const savedItemRef = doc(db, "saved", user.uid);
     console.log("unsaving");
     await updateDoc(savedItemRef, {
@@ -59,6 +57,12 @@ const CardDetail = () => {
       handleSave();
     }
   };
+
+  ///
+
+  // is the item already saved, then the saved button should display opacity accordingly.
+
+  ///
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -99,7 +103,10 @@ const CardDetail = () => {
                 <GoogleLink title={title} googleMapLink={googleMapLink} />
 
                 <button onClick={toggleSave} className="card-save">
-                  <FaSave className="card-save-icon" style={{ opacity }} />
+                  <FaSave
+                    className="card-save-icon"
+                    style={{ opacity: isSaved ? 1 : 0.5 }}
+                  />
                   &nbsp; speichern
                 </button>
               </div>
