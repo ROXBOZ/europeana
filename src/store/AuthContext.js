@@ -88,7 +88,7 @@ export const AuthContextProvider = (props) => {
     if (user?.uid) {
       getFirebaseUser();
     }
-  }, [user]);
+  }, [user, getFirebaseUser]);
 
   // const getFirebaseUser = async () => {
   //   const q = query(collection(db, "users"));

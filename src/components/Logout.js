@@ -16,7 +16,7 @@ const Logout = () => {
       redirectTo("/");
     }, 3000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [redirectTo]);
 
   return (
     <div>

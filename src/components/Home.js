@@ -37,7 +37,7 @@ const Home = () => {
     } else {
       fetchData(searchUrl);
     }
-  }, [searchEntry, fetchData, page]);
+  }, [searchEntry, fetchData]);
 
   const getInput = (e) => {
     const formatted = streetFormat(e.target.value);

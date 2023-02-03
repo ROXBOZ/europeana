@@ -4,6 +4,7 @@ import { API_KEY } from "../config/apiKey";
 import { db } from "../config/firebaseConfig";
 import { useEffect } from "react";
 import { AuthContext } from "./AuthContext";
+import { useCallback } from "react";
 
 export const ItemsContext = createContext();
 export const ItemsContextProvider = (props) => {
@@ -43,7 +44,7 @@ export const ItemsContextProvider = (props) => {
   const [animate, setAnimate] = useState(true);
   const [userSaved, setUserSaved] = useState([]);
 
-  const getSavedItems = async () => {
+  const getSavedItems = useCallback(async () => {
     const q = query(collection(db, "saved"));
     const querySnapshot = await getDocs(q);
     const savedItemsArray = [];
@@ -56,13 +57,34 @@ export const ItemsContextProvider = (props) => {
       }
     });
     setUserSaved(savedItemsArray);
-  };
+  }, [user, setUserSaved]);
 
   useEffect(() => {
     if (user?.uid) {
       getSavedItems();
     }
   }, [user, getSavedItems]);
+
+  // const getSavedItems = async () => {
+  //   const q = query(collection(db, "saved"));
+  //   const querySnapshot = await getDocs(q);
+  //   const savedItemsArray = [];
+  //   querySnapshot.forEach((doc) => {
+  //     if (user.uid === doc.id) {
+  //       const savedItems = doc.data().savedItems;
+  //       savedItems.forEach((item) => {
+  //         savedItemsArray.push(item);
+  //       });
+  //     }
+  //   });
+  //   setUserSaved(savedItemsArray);
+  // };
+
+  // useEffect(() => {
+  //   if (user?.uid) {
+  //     getSavedItems();
+  //   }
+  // }, [user, getSavedItems]);
 
   return (
     <ItemsContext.Provider

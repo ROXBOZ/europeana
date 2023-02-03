@@ -36,7 +36,7 @@ const Chat = ({ id }) => {
       setMessages(msgs);
       console.log("unsubscribe :>> ", unsubscribe);
     });
-  }, []);
+  }, [id]);
 
   // const liveUpdate = () => {
   //   const q = query(collection(db, "chat"));
