@@ -39,7 +39,7 @@ const Home = () => {
     } else {
       fetchData(searchUrl);
     }
-  }, [searchEntry, fetchData, NoSearchUrl, searchUrl]);
+  }, [page]);
 
   const getInput = (e) => {
     const formatted = streetFormat(e.target.value);
@@ -64,9 +64,11 @@ const Home = () => {
 
   const handleNext = () => {
     setPage(page + row);
+    console.log("page", page);
   };
   const handlePrev = () => {
     setPage(page - row);
+    console.log("page", page);
   };
 
   if (data) {

@@ -24,7 +24,6 @@ const Chat = ({ id }) => {
         }
       });
       setMessages(msgs);
-      console.log("unsubscribe :>> ", unsubscribe);
     });
   }, [id]);
 

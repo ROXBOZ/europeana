@@ -41,7 +41,6 @@ const ProtectedRoute = ({ getInput, handleNext, handlePrev, handleSearch }) => {
 
           {data.items ? (
             data.items.map((c) => {
-              console.log("c on PR page :", c); // item
               const id = c.id.replace(
                 "/2064115/Museu_ProvidedCHO_museum_digital_",
                 ""

@@ -12,16 +12,18 @@ import { db } from "../config/firebaseConfig";
 
 // Context
 import { AuthContext } from "../store/AuthContext";
+import { ItemsContext } from "../store/ItemsContext";
 
 const CardDetail = () => {
   let location = useLocation();
   const { user } = useContext(AuthContext);
+  const { userSaved, setUserSaved } = useContext(ItemsContext);
   const { id, title, clearTitle, img, provider, description, copyrights } =
     location.state.content;
   const street = clearTitle.split(",")[0];
   const googleMapLink = `https://www.google.com/maps?q=${street}`;
   const [, setOpacity] = useState(0.5);
-  const [isSaved, setIsSaved] = useState("");
+  const [isSaved, setIsSaved] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // save to firebase
@@ -42,14 +44,35 @@ const CardDetail = () => {
     });
   };
 
+  // isSaved is true or false ???   >>> EMILY
+  const isItSaved = async () => {
+    const savedRef = doc(db, "saved", user.uid);
+    savedRef.get().then((doc) => {
+      if (doc.data().savedItems.includes(id)) {
+        console.log("already exist");
+        setIsSaved(true);
+      } else {
+        console.log("does not exist");
+        setIsSaved(false);
+      }
+    });
+  };
+  useEffect(() => {
+    isItSaved();
+  }, []);
+
   // toggle between save and unsave
   const toggleSave = () => {
     if (isSaved) {
-      setOpacity(1);
-      handleUnsave();
-    } else {
+      console.log("is saved, deleting");
       setOpacity(0.5);
+      handleUnsave();
+      //setUserSaved(userSaved.filter((item) => item !== id)); UPDATE KONTO COMPONENT ?
+    } else {
+      console.log("is not saved, saving");
+      setOpacity(1);
       handleSave();
+      // setUserSaved(userSaved.filter((item) => item !== id));
     }
   };
 
@@ -110,7 +133,7 @@ const CardDetail = () => {
                     className="card-save-icon"
                     style={{ opacity: isSaved ? 1 : 0.5 }}
                   />
-                  &nbsp; speichern
+                  &nbsp; {isSaved ? "gespeichert" : "speichern"}
                 </button>
               </div>
               <span className="data-copyrights">
