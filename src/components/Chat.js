@@ -1,7 +1,15 @@
 import { useCallback, useContext, useState, useEffect } from "react";
 
 // Firebase
-import { query, collection, addDoc, onSnapshot } from "firebase/firestore";
+import {
+  query,
+  collection,
+  addDoc,
+  onSnapshot,
+  doc,
+  updateDoc,
+  arrayRemove,
+} from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
 
 // Context
@@ -48,6 +56,14 @@ const Chat = ({ id }) => {
     setValue("");
   };
 
+  // deleting a message
+
+  const handleDeleteMessage = async () => {
+    console.log("delete message");
+    alert("feature is coming");
+    // await deleteDoc(doc(db, "chat"));
+  };
+
   return (
     <div className="chat-container">
       <h3>Kommentare</h3>
@@ -75,23 +91,33 @@ const Chat = ({ id }) => {
             const date = new Date(message.date.seconds * 1000);
             return (
               <div key={index} className="chat-msg">
-                <p>
-                  <span className="message-date">
-                    {date.toLocaleDateString("de-DE", {
-                      day: "numeric",
-                      year: "numeric",
-                      month: "short",
-                    })}
-                    ,{" "}
-                    {date.toLocaleTimeString([], {
-                      hour: "numeric",
-                      minute: "numeric",
-                    })}
-                  </span>
-                  <br />
-                  <span className="message-author">{message.author}</span>
-                </p>
-                <p>{message.text}</p>
+                <div>
+                  <p>
+                    <span className="message-date">
+                      {date.toLocaleDateString("de-DE", {
+                        day: "numeric",
+                        year: "numeric",
+                        month: "short",
+                      })}
+                      ,{" "}
+                      {date.toLocaleTimeString([], {
+                        hour: "numeric",
+                        minute: "numeric",
+                      })}
+                    </span>
+                    <br />
+                    <span className="message-author">{message.author}</span>
+                  </p>
+                  <p>{message.text}</p>
+                </div>
+                {user.email === message.author && (
+                  <button
+                    className="deleteMessage"
+                    onClick={handleDeleteMessage}
+                  >
+                    löschen&nbsp;&times;
+                  </button>
+                )}
               </div>
             );
           })}

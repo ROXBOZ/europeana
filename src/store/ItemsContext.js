@@ -53,7 +53,25 @@ export const ItemsContextProvider = (props) => {
   };
 
   // get saved items
-  const getSavedItems = useCallback(async () => {
+  // const getSavedItems = useCallback(async () => {
+  //   console.log("getSavedItems run");
+  //   const q = query(collection(db, "saved"));
+  //   const querySnapshot = await getDocs(q);
+  //   const savedItemsArray = [];
+  //   querySnapshot.forEach((doc) => {
+  //     if (user.uid === doc.id) {
+  //       const savedItems = doc.data().savedItems;
+  //       savedItems.forEach((item) => {
+  //         savedItemsArray.push(item);
+  //       });
+  //     }
+  //   });
+  //   console.log("savedItemsArray :>> ", savedItemsArray);
+  //   setUserSaved(savedItemsArray);
+  // }, [user, setUserSaved]);
+
+  const getSavedItems = async () => {
+    console.log("getSavedItems run");
     const q = query(collection(db, "saved"));
     const querySnapshot = await getDocs(q);
     const savedItemsArray = [];
@@ -65,14 +83,17 @@ export const ItemsContextProvider = (props) => {
         });
       }
     });
+    console.log("savedItemsArray :>> ", savedItemsArray);
     setUserSaved(savedItemsArray);
-  }, [user, setUserSaved]);
+  };
 
   useEffect(() => {
+    // getSavedItems();
     if (user?.uid) {
       getSavedItems();
     }
-  }, [user, getSavedItems]);
+    // }, [user, getSavedItems]);
+  }, []);
 
   return (
     <ItemsContext.Provider
@@ -92,6 +113,7 @@ export const ItemsContextProvider = (props) => {
         setPage,
         fetchData,
         streetFormat,
+        getSavedItems,
       }}
     >
       {props.children}

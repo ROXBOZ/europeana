@@ -1,27 +1,35 @@
 .chat-container {
   margin-top: 3rem;
-}
-.add-msg {
-  display: flex;
-  gap: 1em;
-}
 
-.chat-msg {
-  text-align: left !important;
-  padding: 1rem;
-  border-radius: $border-radius;
-  border: $solid-border $primary-transparent-02;
-  background-color: $primary-transparent-01;
-  text-align: center;
-  color: $primary-light;
-  margin: 2rem 0;
-
-  .message-author {
-    font-weight: bold;
+  .add-msg {
+    display: flex;
+    gap: 1em;
   }
 
-  .message-date {
-    color: $primary;
-    font-size: 80%;
+  .chat-msg {
+    text-align: left !important;
+    padding: 1rem;
+    border-radius: $border-radius;
+    border: $solid-border $primary-transparent-02;
+    background-color: $primary-transparent-01;
+    text-align: center;
+    color: $primary-light;
+    margin: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+
+    .deleteMessage {
+      align-self: center;
+      width: fit-content;
+    }
+
+    .message-author {
+      font-weight: bold;
+    }
+
+    .message-date {
+      color: $primary;
+      font-size: 80%;
+    }
   }
 }

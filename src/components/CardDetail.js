@@ -7,7 +7,13 @@ import GoogleLink from "./GoogleLink";
 import Chat from "./Chat";
 
 //Firebase
-import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import {
+  doc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+  getDoc,
+} from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
 
 // Context
@@ -17,7 +23,7 @@ import { ItemsContext } from "../store/ItemsContext";
 const CardDetail = () => {
   let location = useLocation();
   const { user } = useContext(AuthContext);
-  const { userSaved, setUserSaved } = useContext(ItemsContext);
+  const { userSaved, setUserSaved, getSavedItems } = useContext(ItemsContext);
   const { id, title, clearTitle, img, provider, description, copyrights } =
     location.state.content;
   const street = clearTitle.split(",")[0];
@@ -44,11 +50,12 @@ const CardDetail = () => {
     });
   };
 
-  // isSaved is true or false ???   >>> EMILY
+  // is it saved
   const isItSaved = async () => {
     const savedRef = doc(db, "saved", user.uid);
-    savedRef.get().then((doc) => {
-      if (doc.data().savedItems.includes(id)) {
+    getDoc(savedRef).then((doc) => {
+      console.log("doc", doc.data());
+      if (doc.data().savedItems.some((e) => e === id)) {
         console.log("already exist");
         setIsSaved(true);
       } else {
@@ -58,20 +65,23 @@ const CardDetail = () => {
     });
   };
   useEffect(() => {
-    isItSaved();
+    if (user.uid) {
+      isItSaved();
+    }
   }, []);
 
   // toggle between save and unsave
   const toggleSave = () => {
     if (isSaved) {
-      console.log("is saved, deleting");
+      console.log("was saved, now deleting");
       setOpacity(0.5);
       handleUnsave();
       //setUserSaved(userSaved.filter((item) => item !== id)); UPDATE KONTO COMPONENT ?
     } else {
-      console.log("is not saved, saving");
+      console.log("was not saved, now saving");
       setOpacity(1);
       handleSave();
+      getSavedItems();
       // setUserSaved(userSaved.filter((item) => item !== id));
     }
   };

@@ -47,7 +47,14 @@ const router = createBrowserRouter(
         }
       />
 
-      <Route path="konto" element={<Konto />} />
+      <Route
+        path="konto"
+        element={
+          <ItemsContextProvider>
+            <Konto />
+          </ItemsContextProvider>
+        }
+      />
       <Route path="chat" element={<Chat />} />
       <Route path="login" element={<Login />} />
       <Route path="logout" element={<Logout />} />
