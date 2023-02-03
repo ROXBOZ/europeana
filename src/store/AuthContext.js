@@ -89,7 +89,7 @@ export const AuthContextProvider = (props) => {
     if (user?.uid) {
       getFirebaseUser();
     }
-  }, [user]);
+  }, [user, getFirebaseUser]);
 
   return (
     <AuthContext.Provider

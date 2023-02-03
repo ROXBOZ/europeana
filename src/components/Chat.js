@@ -40,7 +40,7 @@ const Chat = ({ id }) => {
 
   useEffect(() => {
     liveUpdate();
-  }, []);
+  }, [liveUpdate]);
 
   const handleInputChange = (e) => {
     setNewMessage(e.target.value);
@@ -48,7 +48,6 @@ const Chat = ({ id }) => {
   };
 
   const handleSubmit = async () => {
-    // const docRef = await
     await addDoc(collection(db, "chat"), {
       text: newMessage,
       author: user.email,
