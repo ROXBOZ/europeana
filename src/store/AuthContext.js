@@ -7,6 +7,7 @@ import { signOut } from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../config/firebaseConfig";
 import { collection, doc, getDocs, query, setDoc } from "firebase/firestore";
+import { useCallback } from "react";
 
 export const AuthContext = createContext();
 export const AuthContextProvider = (props) => {
@@ -73,7 +74,19 @@ export const AuthContextProvider = (props) => {
         console.log("error", error);
       });
   };
-  const getFirebaseUser = async () => {
+
+  // const getFirebaseUser = async () => {
+  //   const q = query(collection(db, "users"));
+  //   const querySnapshot = await getDocs(q);
+
+  //   querySnapshot.forEach((doc) => {
+  //     if (doc.id === user.uid) {
+  //       setFirebaseUsername(doc.data().username);
+  //     }
+  //   });
+  // };
+
+  const getFirebaseUser = useCallback(async () => {
     const q = query(collection(db, "users"));
     const querySnapshot = await getDocs(q);
 
@@ -82,7 +95,7 @@ export const AuthContextProvider = (props) => {
         setFirebaseUsername(doc.data().username);
       }
     });
-  };
+  }, [user, setFirebaseUsername]);
 
   useEffect(() => {
     if (user?.uid) {
