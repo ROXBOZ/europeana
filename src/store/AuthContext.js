@@ -73,7 +73,6 @@ export const AuthContextProvider = (props) => {
         console.log("error", error);
       });
   };
-
   const getFirebaseUser = async () => {
     const q = query(collection(db, "users"));
     const querySnapshot = await getDocs(q);
@@ -89,7 +88,24 @@ export const AuthContextProvider = (props) => {
     if (user?.uid) {
       getFirebaseUser();
     }
-  }, [user, getFirebaseUser]);
+  }, [user]);
+
+  // const getFirebaseUser = async () => {
+  //   const q = query(collection(db, "users"));
+  //   const querySnapshot = await getDocs(q);
+
+  //   querySnapshot.forEach((doc) => {
+  //     if (doc.id === user.uid) {
+  //       setFirebaseUsername(doc.data().username);
+  //     }
+  //   });
+  // };
+
+  // useEffect(() => {
+  //   if (user?.uid) {
+  //     getFirebaseUser();
+  //   }
+  // }, [user, getFirebaseUser]);
 
   return (
     <AuthContext.Provider

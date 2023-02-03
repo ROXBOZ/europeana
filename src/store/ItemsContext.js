@@ -62,7 +62,7 @@ export const ItemsContextProvider = (props) => {
     if (user?.uid) {
       getSavedItems();
     }
-  }, [user]);
+  }, [user, getSavedItems]);
 
   return (
     <ItemsContext.Provider

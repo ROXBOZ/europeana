@@ -1,5 +1,5 @@
 import { getDocs, query } from "firebase/firestore";
-import { useContext, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import { db } from "../config/firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 import { AuthContext } from "../store/AuthContext";
@@ -24,7 +24,7 @@ const Chat = ({ id }) => {
 
   console.log("getMessages", getMessages);
 
-  const liveUpdate = () => {
+  const liveUpdate = useCallback(() => {
     const q = query(collection(db, "chat"));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const msgs = [];
@@ -36,7 +36,21 @@ const Chat = ({ id }) => {
       setMessages(msgs);
       console.log("unsubscribe :>> ", unsubscribe);
     });
-  };
+  }, []);
+
+  // const liveUpdate = () => {
+  //   const q = query(collection(db, "chat"));
+  //   const unsubscribe = onSnapshot(q, (querySnapshot) => {
+  //     const msgs = [];
+  //     querySnapshot.forEach((doc) => {
+  //       if (id === doc.data().item_id) {
+  //         msgs.push(doc.data());
+  //       }
+  //     });
+  //     setMessages(msgs);
+  //     console.log("unsubscribe :>> ", unsubscribe);
+  //   });
+  // };
 
   useEffect(() => {
     liveUpdate();

@@ -9,7 +9,7 @@ const Logout = () => {
 
   useEffect(() => {
     logout();
-  }, []);
+  }, [logout]);
 
   useEffect(() => {
     const timer = setTimeout(() => {

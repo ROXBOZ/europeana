@@ -13,7 +13,7 @@ const Konto = () => {
 
   useEffect(() => {
     fetchData(NoSearchUrl);
-  }, []);
+  }, [fetchData, NoSearchUrl]);
 
   const handleDelete = async (e, id) => {
     const savedItemRef = doc(db, "saved", user.uid);
