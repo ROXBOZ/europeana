@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
-import { createContext } from "react";
+import { useEffect, useState, createContext, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { signOut } from "firebase/auth";
-import { onAuthStateChanged } from "firebase/auth";
+
+// Firebase
 import { auth, db } from "../config/firebaseConfig";
 import { collection, doc, getDocs, query, setDoc } from "firebase/firestore";
-import { useCallback } from "react";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+} from "firebase/auth";
 
 export const AuthContext = createContext();
 export const AuthContextProvider = (props) => {
@@ -18,6 +20,7 @@ export const AuthContextProvider = (props) => {
   const [errorMessageLogin, setErrorMessageLogin] = useState("");
   const [firebaseUsername, setFirebaseUsername] = useState([]);
 
+  // register
   const register = async (email, password) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -37,6 +40,7 @@ export const AuthContextProvider = (props) => {
     }
   };
 
+  // login
   const login = async (email, password) => {
     try {
       const userCredential = await signInWithEmailAndPassword(
@@ -51,6 +55,7 @@ export const AuthContextProvider = (props) => {
     }
   };
 
+  // check status
   const checkUserStatus = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -65,6 +70,7 @@ export const AuthContextProvider = (props) => {
     checkUserStatus();
   }, []);
 
+  // logout
   const logout = () => {
     signOut(auth)
       .then(() => {
@@ -74,17 +80,6 @@ export const AuthContextProvider = (props) => {
         console.log("error", error);
       });
   };
-
-  // const getFirebaseUser = async () => {
-  //   const q = query(collection(db, "users"));
-  //   const querySnapshot = await getDocs(q);
-
-  //   querySnapshot.forEach((doc) => {
-  //     if (doc.id === user.uid) {
-  //       setFirebaseUsername(doc.data().username);
-  //     }
-  //   });
-  // };
 
   const getFirebaseUser = useCallback(async () => {
     const q = query(collection(db, "users"));
@@ -102,23 +97,6 @@ export const AuthContextProvider = (props) => {
       getFirebaseUser();
     }
   }, [user, getFirebaseUser]);
-
-  // const getFirebaseUser = async () => {
-  //   const q = query(collection(db, "users"));
-  //   const querySnapshot = await getDocs(q);
-
-  //   querySnapshot.forEach((doc) => {
-  //     if (doc.id === user.uid) {
-  //       setFirebaseUsername(doc.data().username);
-  //     }
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   if (user?.uid) {
-  //     getFirebaseUser();
-  //   }
-  // }, [user, getFirebaseUser]);
 
   return (
     <AuthContext.Provider

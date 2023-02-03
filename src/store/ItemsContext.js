@@ -1,10 +1,17 @@
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
+
+// Firebase
 import { collection, getDocs, query } from "firebase/firestore";
-import { createContext, useContext, useState } from "react";
-// import { API_KEY } from "../config/apiKey";
 import { db } from "../config/firebaseConfig";
-import { useEffect } from "react";
+
+// Context
 import { AuthContext } from "./AuthContext";
-import { useCallback } from "react";
 
 export const ItemsContext = createContext();
 export const ItemsContextProvider = (props) => {
@@ -15,6 +22,13 @@ export const ItemsContextProvider = (props) => {
   const [loading, setLoading] = useState(true);
   const [searchEntry, setSearchEntry] = useState("");
   const { user } = useContext(AuthContext);
+  const baseUrl = `https://www.europeana.eu/api/v2/search.json?wskey=${process.env.REACT_APP_EUROPEANA_API_KEY}&query=Berlin&query =Kreuzberg&query=Museum FHXB`;
+  const NoSearchUrl = `${baseUrl}&start=${page}&rows=${row}`;
+  const searchUrl = `${baseUrl}&query=${searchEntry}&start=${page}&rows=${row}`;
+  const [animate, setAnimate] = useState(true);
+  const [userSaved, setUserSaved] = useState([]);
+
+  // dealing with strasse, straße, str...
   const streetFormat = (input) => {
     if (input && input.includes("strasse")) {
       return input.replace("strasse", "str");
@@ -24,10 +38,7 @@ export const ItemsContextProvider = (props) => {
     return input;
   };
 
-  const baseUrl = `https://www.europeana.eu/api/v2/search.json?wskey=${process.env.REACT_APP_EUROPEANA_API_KEY}&query=Berlin&query =Kreuzberg&query=Museum FHXB`;
-  const NoSearchUrl = `${baseUrl}&start=${page}&rows=${row}`;
-  const searchUrl = `${baseUrl}&query=${searchEntry}&start=${page}&rows=${row}`;
-
+  // fetch data
   const fetchData = async (url) => {
     try {
       const response = await fetch(url);
@@ -41,9 +52,7 @@ export const ItemsContextProvider = (props) => {
     }
   };
 
-  const [animate, setAnimate] = useState(true);
-  const [userSaved, setUserSaved] = useState([]);
-
+  // get saved items
   const getSavedItems = useCallback(async () => {
     const q = query(collection(db, "saved"));
     const querySnapshot = await getDocs(q);
@@ -64,27 +73,6 @@ export const ItemsContextProvider = (props) => {
       getSavedItems();
     }
   }, [user, getSavedItems]);
-
-  // const getSavedItems = async () => {
-  //   const q = query(collection(db, "saved"));
-  //   const querySnapshot = await getDocs(q);
-  //   const savedItemsArray = [];
-  //   querySnapshot.forEach((doc) => {
-  //     if (user.uid === doc.id) {
-  //       const savedItems = doc.data().savedItems;
-  //       savedItems.forEach((item) => {
-  //         savedItemsArray.push(item);
-  //       });
-  //     }
-  //   });
-  //   setUserSaved(savedItemsArray);
-  // };
-
-  // useEffect(() => {
-  //   if (user?.uid) {
-  //     getSavedItems();
-  //   }
-  // }, [user, getSavedItems]);
 
   return (
     <ItemsContext.Provider

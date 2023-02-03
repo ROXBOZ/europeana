@@ -1,8 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+
+// Context
 import { AuthContext } from "../store/AuthContext";
 import { ItemsContext } from "../store/ItemsContext";
+
+// Components
 import Card from "./Card";
-import { useEffect } from "react";
+
+// Firebase
 import { arrayRemove, doc, updateDoc } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
 
@@ -15,6 +20,7 @@ const Konto = () => {
     fetchData(NoSearchUrl);
   }, [fetchData, NoSearchUrl]);
 
+  // delete a saved item
   const handleDelete = async (e, id) => {
     const savedItemRef = doc(db, "saved", user.uid);
     await updateDoc(savedItemRef, {
@@ -64,7 +70,7 @@ const Konto = () => {
               }
             })
           ) : (
-            <p>...loading (1)...</p>
+            <p>...loading...</p>
           )}
         </>
       )}

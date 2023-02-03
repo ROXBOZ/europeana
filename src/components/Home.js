@@ -1,13 +1,16 @@
 import React from "react";
-import { useEffect } from "react";
-import { ItemsContext } from "../store/ItemsContext";
-import { useContext } from "react";
-import { AuthContext } from "../store/AuthContext";
-import ProtectedRoute from "../routes/ProtectedRoute";
+import { useEffect, useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+
+// Context
+import { ItemsContext } from "../store/ItemsContext";
+import { AuthContext } from "../store/AuthContext";
+
+// Routes
+import ProtectedRoute from "../routes/ProtectedRoute";
 
 const Home = () => {
+  const { user, firebaseUsername } = useContext(AuthContext);
   const {
     data,
     NoSearchUrl,
@@ -20,7 +23,6 @@ const Home = () => {
     streetFormat,
     searchUrl,
   } = useContext(ItemsContext);
-  const { user, firebaseUsername } = useContext(AuthContext);
 
   // Welcoming Alert
 

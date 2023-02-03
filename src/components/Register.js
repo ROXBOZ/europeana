@@ -1,31 +1,34 @@
-import React, { useContext } from "react";
-import { useState } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../store/AuthContext";
 import { Link } from "react-router-dom";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const { register, setUserName, errorMessageRegister } =
     useContext(AuthContext);
 
+  // inputting name
   const handleUserNameChange = (e) => {
     setUserName(e.target.value);
   };
 
+  // inputting email
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
 
+  // inputting password
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
 
+  // register
   const handleRegister = () => {
     register(email, password);
   };
 
+  // also work on enter keydown
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       register(email, password);

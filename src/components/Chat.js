@@ -1,10 +1,11 @@
-import { getDocs, query } from "firebase/firestore";
-import { useCallback, useContext, useState } from "react";
+import { useCallback, useContext, useState, useEffect } from "react";
+
+// Firebase
+import { query, collection, addDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
-import { collection, addDoc } from "firebase/firestore";
+
+// Context
 import { AuthContext } from "../store/AuthContext";
-import { onSnapshot } from "firebase/firestore";
-import { useEffect } from "react";
 
 const Chat = ({ id }) => {
   const [messages, setMessages] = useState([]);
@@ -12,18 +13,7 @@ const Chat = ({ id }) => {
   const { user } = useContext(AuthContext);
   const [value, setValue] = useState("");
 
-  const getMessages = async () => {
-    const q = query(collection(db, "chat"));
-    const querySnapshot = await getDocs(q);
-    const msgs = [];
-    querySnapshot.forEach((doc) => {
-      msgs.push(doc.data());
-    });
-    setMessages(msgs);
-  };
-
-  console.log("getMessages", getMessages);
-
+  // Get live update of messages
   const liveUpdate = useCallback(() => {
     const q = query(collection(db, "chat"));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -38,29 +28,17 @@ const Chat = ({ id }) => {
     });
   }, [id]);
 
-  // const liveUpdate = () => {
-  //   const q = query(collection(db, "chat"));
-  //   const unsubscribe = onSnapshot(q, (querySnapshot) => {
-  //     const msgs = [];
-  //     querySnapshot.forEach((doc) => {
-  //       if (id === doc.data().item_id) {
-  //         msgs.push(doc.data());
-  //       }
-  //     });
-  //     setMessages(msgs);
-  //     console.log("unsubscribe :>> ", unsubscribe);
-  //   });
-  // };
-
   useEffect(() => {
     liveUpdate();
   }, [liveUpdate]);
 
+  // inputting a new message
   const handleInputChange = (e) => {
     setNewMessage(e.target.value);
     setValue(e.target.value);
   };
 
+  // posting a new message
   const handleSubmit = async () => {
     await addDoc(collection(db, "chat"), {
       text: newMessage,

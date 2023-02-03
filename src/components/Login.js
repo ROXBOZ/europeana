@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import { useState } from "react";
+import React, { useContext, useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+
+// Context
 import { AuthContext } from "../store/AuthContext";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,14 +10,17 @@ const Login = () => {
   const { login, errorMessageLogin } = useContext(AuthContext);
   const redirectTo = useNavigate();
 
+  // inputting email
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
 
+  // inputting password
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
 
+  // login
   const handleLogin = () => {
     login(email, password);
     if (errorMessageLogin?.includes("wrong-password")) {
@@ -25,6 +28,7 @@ const Login = () => {
     }
   };
 
+  // also works with enter key
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       login(email, password);

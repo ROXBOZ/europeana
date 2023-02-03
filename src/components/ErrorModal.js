@@ -5,7 +5,6 @@ const ErrorModal = ({ errorMessage }) => {
 
   if (errorMessage.includes("email-already-in-use")) {
     setShowModal(true);
-    console.log("already logged idmfhjsdhfjdfghn");
   }
 
   return (

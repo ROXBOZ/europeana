@@ -1,68 +1,66 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
-import GoogleLink from "./GoogleLink";
 import { FaSave } from "react-icons/fa";
-import { useState } from "react";
-import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
-import { useContext } from "react";
-import { AuthContext } from "../store/AuthContext";
-import { db } from "../config/firebaseConfig";
+
+// Components
+import GoogleLink from "./GoogleLink";
 import Chat from "./Chat";
 
+//Firebase
+import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import { db } from "../config/firebaseConfig";
+
+// Context
+import { AuthContext } from "../store/AuthContext";
+
 const CardDetail = () => {
-  const { user } = useContext(AuthContext);
   let location = useLocation();
+  const { user } = useContext(AuthContext);
   const { id, title, clearTitle, img, provider, description, copyrights } =
     location.state.content;
-
   const street = clearTitle.split(",")[0];
   const googleMapLink = `https://www.google.com/maps?q=${street}`;
-
   const [, setOpacity] = useState(0.5);
   const [isSaved, setIsSaved] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // save to firebase
   const handleSave = async () => {
     setIsSaved(true);
-    setOpacity(1);
     const savedItemRef = doc(db, "saved", user.uid);
-    console.log("saving :>> ");
     await updateDoc(savedItemRef, {
       savedItems: arrayUnion(id),
     });
   };
 
+  // delete from firebase
   const handleUnsave = async () => {
     setIsSaved(false);
-    setOpacity(0.5);
     const savedItemRef = doc(db, "saved", user.uid);
-    console.log("unsaving");
     await updateDoc(savedItemRef, {
       savedItems: arrayRemove(id),
     });
   };
 
+  // toggle between save and unsave
   const toggleSave = () => {
     if (isSaved) {
+      setOpacity(1);
       handleUnsave();
     } else {
+      setOpacity(0.5);
       handleSave();
     }
   };
 
-  ///
-
-  // is the item already saved, then the saved button should display opacity accordingly.
-
-  ///
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
+  // Disable modal on mobile screen
   const toggleModal = () => {
     if (window.innerWidth > 600) {
       setIsModalOpen(!isModalOpen);
     }
   };
 
+  // Quitting modal with outside click
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (event.target.closest(".modal-content")) {
@@ -70,9 +68,7 @@ const CardDetail = () => {
       }
       setIsModalOpen(false);
     };
-
     window.addEventListener("mousedown", handleClickOutside);
-
     return () => {
       window.removeEventListener("mousedown", handleClickOutside);
     };

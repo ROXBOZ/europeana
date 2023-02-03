@@ -9,6 +9,7 @@ const Card = ({ c, id }) => {
   const copyrights = c.rights[0];
   const creator = c.dcCreator;
 
+  // reduce title length
   let shortTitle;
   if (title.length > 40) {
     shortTitle = title.substring(0, 40) + "...";
@@ -16,12 +17,14 @@ const Card = ({ c, id }) => {
     shortTitle = title;
   }
 
+  // remove unnecessary information
   const clearTitle = shortTitle
     .replace("Fotografie: ", "")
     .replace("Diapositive: ", "")
     .replace("Diapositiv: ", "")
     .replace("um ", "~");
 
+  // batching variables for passing them to CardDetail
   const itemDetail = {
     id,
     title,
