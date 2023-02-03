@@ -1,6 +1,6 @@
 import { collection, getDocs, query } from "firebase/firestore";
 import { createContext, useContext, useState } from "react";
-import { API_KEY } from "../config/apiKey";
+// import { API_KEY } from "../config/apiKey";
 import { db } from "../config/firebaseConfig";
 import { useEffect } from "react";
 import { AuthContext } from "./AuthContext";
@@ -24,7 +24,7 @@ export const ItemsContextProvider = (props) => {
     return input;
   };
 
-  const baseUrl = `https://www.europeana.eu/api/v2/search.json?wskey=${API_KEY}&query=Berlin&query =Kreuzberg&query=Museum FHXB`;
+  const baseUrl = `https://www.europeana.eu/api/v2/search.json?wskey=${process.env.REACT_APP_EUROPEANA_API_KEY}&query=Berlin&query =Kreuzberg&query=Museum FHXB`;
   const NoSearchUrl = `${baseUrl}&start=${page}&rows=${row}`;
   const searchUrl = `${baseUrl}&query=${searchEntry}&start=${page}&rows=${row}`;
 
