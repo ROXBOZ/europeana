@@ -1,15 +1,7 @@
 import { useCallback, useContext, useState, useEffect } from "react";
 
 // Firebase
-import {
-  query,
-  collection,
-  addDoc,
-  onSnapshot,
-  doc,
-  updateDoc,
-  arrayRemove,
-} from "firebase/firestore";
+import { query, collection, addDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
 
 // Context
@@ -24,7 +16,7 @@ const Chat = ({ id }) => {
   // Get live update of messages
   const liveUpdate = useCallback(() => {
     const q = query(collection(db, "chat"));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    onSnapshot(q, (querySnapshot) => {
       const msgs = [];
       querySnapshot.forEach((doc) => {
         if (id === doc.data().item_id) {

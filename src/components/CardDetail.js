@@ -23,7 +23,7 @@ import { ItemsContext } from "../store/ItemsContext";
 const CardDetail = () => {
   let location = useLocation();
   const { user } = useContext(AuthContext);
-  const { userSaved, setUserSaved, getSavedItems } = useContext(ItemsContext);
+  const { getSavedItems } = useContext(ItemsContext);
   const { id, title, clearTitle, img, provider, description, copyrights } =
     location.state.content;
   const street = clearTitle.split(",")[0];
@@ -68,7 +68,7 @@ const CardDetail = () => {
     if (user.uid) {
       isItSaved();
     }
-  }, []);
+  }, [isItSaved, user.uid]);
 
   // toggle between save and unsave
   const toggleSave = () => {
